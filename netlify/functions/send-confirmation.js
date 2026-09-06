@@ -1,12 +1,25 @@
 // netlify/functions/send-confirmation.js
 //
 // Triggered by a Netlify Forms "Outgoing webhook" notification on the
-// founding-waitlist form (Site configuration > Forms > Form notifications).
-// Netlify calls this function server-side the instant a submission lands, and
-// this function fires a transactional confirmation email via Resend.
+// founding-waitlist form (Site configuration > Forms > Form notifications),
+// IF that webhook notification exists. Netlify calls this function
+// server-side the instant a submission lands, and this function fires a
+// transactional confirmation email via Resend.
 //
-// Required environment variable (Site configuration > Environment variables):
-//   RESEND_API_KEY   - a Resend API key (https://resend.com)
+// STATUS: disabled by default. hello@nitevault.com is not yet a verified
+// sending domain in Resend, so until CONFIRMATION_EMAIL_ENABLED is set to
+// "true" (Site configuration > Environment variables), this function is a
+// safe no-op: it always returns 200 without calling Resend, so it can never
+// throw a 400/500 back at Netlify's webhook dispatcher, whether or not that
+// webhook notification is still configured. Confirmation email is handled
+// for now via a native Netlify dashboard notification straight to an inbox
+// (see README / chat for the exact steps), which needs no code at all.
+//
+// To turn this back on once the domain is verified in Resend:
+//   1. Site configuration > Environment variables > set CONFIRMATION_EMAIL_ENABLED = true
+//   2. Site configuration > Environment variables > set RESEND_API_KEY = <your key>
+//   3. Site configuration > Forms > Form notifications > Add notification >
+//      Outgoing webhook, pointed at /.netlify/functions/send-confirmation
 //
 // No npm dependencies: Netlify Functions run on Node 18+, which has fetch
 // built in, so this ships with zero node_modules to install or commit.
@@ -17,6 +30,15 @@ const REPLY_TO = "hello@nitevault.com";
 exports.handler = async function (event) {
   if (event.httpMethod !== "POST") {
     return { statusCode: 405, body: "Method Not Allowed" };
+  }
+
+  // Kill switch: stays off until the sending domain is verified in Resend.
+  // Returning 200 here (instead of erroring) means this function is inert
+  // and harmless even if an outgoing webhook notification is still pointed
+  // at it in the Netlify dashboard.
+  if (String(process.env.CONFIRMATION_EMAIL_ENABLED).toLowerCase() !== "true") {
+    console.log("send-confirmation: disabled (CONFIRMATION_EMAIL_ENABLED is not 'true'), skipping send");
+    return { statusCode: 200, body: "Confirmation email sending is disabled" };
   }
 
   let body;
@@ -44,12 +66,12 @@ exports.handler = async function (event) {
 
   if (!email) {
     console.error("send-confirmation: no email found in submission payload", body);
-    return { statusCode: 400, body: "Missing email in submission" };
+    return { statusCode: 200, body: "No email in submission, nothing to send" };
   }
 
   if (!process.env.RESEND_API_KEY) {
     console.error("send-confirmation: RESEND_API_KEY is not set");
-    return { statusCode: 500, body: "Email provider not configured" };
+    return { statusCode: 200, body: "Email provider not configured, skipping send" };
   }
 
   const interestsLine = interests.length
@@ -78,14 +100,17 @@ exports.handler = async function (event) {
 
     if (!res.ok) {
       const errText = await res.text();
+      // Logged for debugging, but still returns 200: a failed send (e.g. an
+      // unverified domain) should never surface as an error to whatever
+      // triggered this function.
       console.error("send-confirmation: Resend API error", res.status, errText);
-      return { statusCode: 502, body: "Failed to send confirmation email" };
+      return { statusCode: 200, body: "Resend API error, see function logs" };
     }
 
     return { statusCode: 200, body: "Confirmation email sent" };
   } catch (err) {
     console.error("send-confirmation: unexpected error", err);
-    return { statusCode: 500, body: "Unexpected error sending email" };
+    return { statusCode: 200, body: "Unexpected error, see function logs" };
   }
 };
 
