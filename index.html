@@ -89,13 +89,12 @@
      specific fill percentage, since this concept-test page has no real reservation
      count to report yet ---------- */
   .scarcity-fill{
-    width:40%;
-    background:linear-gradient(90deg, transparent, #10B981, #06B6D4, transparent);
+    width:55%;
     animation:scarcity-shimmer 2.2s ease-in-out infinite;
   }
   @keyframes scarcity-shimmer{
     0%{ transform:translateX(-100%); }
-    100%{ transform:translateX(250%); }
+    100%{ transform:translateX(220%); }
   }
 
   /* ---------- Hero dual-view tabs ---------- */
@@ -582,21 +581,21 @@
         <h2 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Secure your Nitevault before the first batch fills.</h2>
 
         <div class="mt-5 max-w-xs mx-auto">
-          <div class="scarcity-track rounded-full h-1.5 overflow-hidden bg-white/10">
-            <div class="scarcity-fill h-full rounded-full"></div>
+          <div class="scarcity-track w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="scarcity-fill h-full rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
           </div>
           <p class="mt-2 text-[11px] font-mono text-gray-500">Founding Batch 01 &middot; 500 spots &middot; reservations open now</p>
         </div>
 
         <div class="mt-5 inline-flex flex-wrap items-baseline justify-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
-          <span class="text-acid text-2xl font-display font-bold">€49.99</span>
-          <span class="line-through text-gray-500 font-mono text-sm">€75.00</span>
+          <span class="text-3xl font-black text-emerald-400">€49.99</span>
+          <span class="text-sm line-through text-slate-500 ml-2">€69.00</span>
           <span class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
         </div>
 
         <div class="mt-3 flex flex-col items-center gap-2">
-          <p class="text-xs text-gray-400">Includes: 1&times; Nitevault Holster Sling + 10&times; Compost-Ready Bio-Film Inserts + 45kg Load-Tested Carabiners</p>
-          <span class="inline-flex items-center gap-1 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Save 33% (Retail €75.00)</span>
+          <p class="text-slate-300 text-sm font-medium">Includes: 1&times; Holster Shoulder Sling &bull; 1&times; Holster Waist Belt &bull; 5&times; Compost-Ready Inserts</p>
+          <span class="inline-flex items-center gap-1 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Save 28% (Planned Retail €69.00)</span>
         </div>
 
         <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
