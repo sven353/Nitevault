@@ -63,7 +63,25 @@
 
   /* ---------- Pills ---------- */
   .pill-choice[aria-pressed="true"]{ background:#06B6D4; border-color:#06B6D4; color:#052730; }
-  .edition-pill[aria-pressed="true"]{ background:#10B981; border-color:#10B981; color:#052716; }
+  .edition-pill{ transition:all .18s ease; }
+  .edition-pill[aria-pressed="true"]{
+    border-color:#34D399; color:#34D399;
+    background:rgba(52,211,153,.12);
+    box-shadow:0 0 16px -3px rgba(52,211,153,.6);
+  }
+
+  /* ---------- Scarcity progress bar: an indeterminate neon shimmer rather than a
+     specific fill percentage, since this concept-test page has no real reservation
+     count to report yet ---------- */
+  .scarcity-fill{
+    width:40%;
+    background:linear-gradient(90deg, transparent, #10B981, #06B6D4, transparent);
+    animation:scarcity-shimmer 2.2s ease-in-out infinite;
+  }
+  @keyframes scarcity-shimmer{
+    0%{ transform:translateX(-100%); }
+    100%{ transform:translateX(250%); }
+  }
 
   /* ---------- Hero dual-view tabs ---------- */
   .view-tab{ transition:all .18s ease; }
@@ -475,26 +493,35 @@
         <span class="font-mono text-xs tracking-widest text-cyber uppercase">Founding Batch, 500 Spots</span>
         <h2 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Secure your Nitevault before the first batch fills.</h2>
 
+        <div class="mt-5 max-w-xs mx-auto">
+          <div class="scarcity-track rounded-full h-1.5 overflow-hidden bg-white/10">
+            <div class="scarcity-fill h-full rounded-full"></div>
+          </div>
+          <p class="mt-2 text-[11px] font-mono text-gray-500">Founding Batch 01 &middot; 500 spots &middot; reservations open now</p>
+        </div>
+
         <div class="mt-5 inline-flex flex-wrap items-baseline justify-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
           <span class="text-acid text-2xl font-display font-bold">€49.99</span>
           <span class="line-through text-gray-500 font-mono text-sm">€75.00</span>
           <span class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
         </div>
 
+        <p class="mt-3 text-xs text-gray-400">Includes: 1&times; Nitevault Sling + 10&times; Compost-Ready Bio-Film Inserts + 45kg-Rated Carabiners</p>
+
         <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
           <input type="hidden" name="form-name" value="waitlist">
           <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-          <input type="hidden" name="edition" id="edition-input" value="">
+          <input type="hidden" name="edition" id="edition-input" value="Berlin">
           <input type="hidden" name="priority" id="priority-input" value="">
 
           <p class="text-xs text-gray-500 font-mono mb-2">Edition</p>
           <div class="flex flex-wrap justify-center gap-2 mb-5" role="group" aria-label="Choose your edition">
-            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-acid transition" data-edition="Barcelona" aria-pressed="false">Barcelona</button>
-            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-acid transition" data-edition="Berlin" aria-pressed="false">Berlin</button>
-            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-acid transition" data-edition="Ibiza" aria-pressed="false">Ibiza</button>
+            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-emerald-400 transition" data-edition="Barcelona" aria-pressed="false">Barcelona</button>
+            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-emerald-400 transition" data-edition="Berlin" aria-pressed="true">Berlin</button>
+            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-emerald-400 transition" data-edition="Ibiza" aria-pressed="false">Ibiza</button>
           </div>
 
-          <p class="text-xs text-gray-500 font-mono mb-2">What matters most to you? (optional)</p>
+          <p class="text-xs text-gray-500 font-mono mb-2">What matters most to you? (optional, select all that apply)</p>
           <div class="flex flex-wrap justify-center gap-2 mb-5" role="group" aria-label="What matters most to you">
             <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink Tamper Protection" aria-pressed="false">Drink Tamper Protection</button>
             <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Less Single-Use Plastic" aria-pressed="false">Less Single-Use Plastic</button>
@@ -503,7 +530,8 @@
 
           <label for="final-email" class="visually-hidden">Email address</label>
           <input id="final-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com"
-            class="w-full bg-panel border border-white/15 rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-cyber focus:outline-none">
+            class="w-full bg-panel border border-white/20 rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 focus:outline-none transition">
+          <p id="final-email-error" class="hidden mt-2 text-xs text-amber-400" role="alert">Enter a valid email to continue.</p>
           <button type="submit" class="mt-3 w-full inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid transition">
             Claim My €49.99 Early-Bird Spot
           </button>
@@ -578,18 +606,18 @@
     });
   });
 
-  /* ---------- "What matters most" pills (single-select) ---------- */
+  /* ---------- "What matters most" pills (multi-select chips) ---------- */
   var priorityInput = document.getElementById('priority-input');
+  function syncPriorityInput(){
+    var selected = Array.prototype.slice.call(document.querySelectorAll('.pill-choice[aria-pressed="true"]'))
+      .map(function(p){ return p.getAttribute('data-value'); });
+    priorityInput.value = selected.join(', ');
+  }
   document.querySelectorAll('.pill-choice').forEach(function(pill){
     pill.addEventListener('click', function(){
       var alreadyActive = pill.getAttribute('aria-pressed') === 'true';
-      document.querySelectorAll('.pill-choice').forEach(function(p){ p.setAttribute('aria-pressed', 'false'); });
-      if(!alreadyActive){
-        pill.setAttribute('aria-pressed', 'true');
-        priorityInput.value = pill.getAttribute('data-value');
-      } else {
-        priorityInput.value = '';
-      }
+      pill.setAttribute('aria-pressed', String(!alreadyActive));
+      syncPriorityInput();
     });
   });
 
@@ -626,9 +654,10 @@
   }
   function isValidEmail(value){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
 
-  function wireForm(formId, successId){
+  function wireForm(formId, successId, errorId){
     var form = document.getElementById(formId);
     var success = document.getElementById(successId);
+    var errorEl = errorId ? document.getElementById(errorId) : null;
     if(!form) return;
 
     form.addEventListener('submit', function(e){
@@ -636,8 +665,17 @@
       var email = form.querySelector('input[type="email"]');
       if(!email || !isValidEmail(email.value)){
         email.focus();
-        email.classList.add('border-red-500');
+        if(errorEl){
+          email.setAttribute('aria-invalid', 'true');
+          errorEl.classList.remove('hidden');
+        } else {
+          email.classList.add('border-red-500');
+        }
         return;
+      }
+      if(errorEl){
+        email.removeAttribute('aria-invalid');
+        errorEl.classList.add('hidden');
       }
 
       var button = form.querySelector('button[type="submit"]');
@@ -661,7 +699,7 @@
   }
 
   wireForm('hero-form', 'hero-success');
-  wireForm('waitlist-form', 'waitlist-success');
+  wireForm('waitlist-form', 'waitlist-success', 'final-email-error');
 
 })();
 </script>
