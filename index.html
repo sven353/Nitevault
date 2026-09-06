@@ -64,7 +64,8 @@
   /* ---------- Pills ---------- */
   .pill-choice[aria-pressed="true"]{ background:#06B6D4; border-color:#06B6D4; color:#052730; }
   .edition-pill{ transition:all .18s ease; }
-  .edition-pill[aria-pressed="true"]{
+  .edition-pill[aria-pressed="true"],
+  .edition-pill[aria-pressed="true"]:hover{
     border-color:#34D399; color:#34D399;
     background:rgba(52,211,153,.12);
     box-shadow:0 0 16px -3px rgba(52,211,153,.6);
@@ -119,14 +120,17 @@
 <!-- ============================== NAV ============================== -->
 <header class="sticky top-[33px] sm:top-[37px] z-50 bg-void/80 backdrop-blur border-b border-white/10">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
-    <a href="#top" class="flex items-center gap-2 font-display font-bold text-lg tracking-tight">
-      <svg width="24" height="24" viewBox="0 0 26 26" fill="none" aria-hidden="true">
-        <circle cx="13" cy="13" r="12" stroke="#10B981" stroke-width="1.6"/>
-        <circle cx="13" cy="13" r="4.2" fill="#10B981"/>
+    <a href="#top" class="flex items-center gap-2 font-display text-lg">
+      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M10 13v-2.5a6 6 0 0 1 12 0V13" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6.5 13h19l2 4.5V25a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2v-7.5l2-4.5Z" fill="#0B0D14" stroke="#34D399" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M11 17.5l5 6 5-6" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
-      NITEVAULT
-      <span class="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] tracking-wider text-gray-400 border border-white/15 rounded-full px-2 py-1 ml-1">
-        <span class="w-1.5 h-1.5 rounded-full bg-acid animate-pulse"></span> BATCH 01: PRE-TOOLING OPEN
+      <span class="flex items-baseline">
+        <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
+      </span>
+      <span class="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-gray-300 border border-white/15 rounded-full px-2 py-1 ml-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Batch 01 Open
       </span>
     </a>
     <nav class="hidden lg:flex items-center gap-7 text-sm text-gray-300 font-medium">
@@ -506,7 +510,10 @@
           <span class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
         </div>
 
-        <p class="mt-3 text-xs text-gray-400">Includes: 1&times; Nitevault Sling + 10&times; Compost-Ready Bio-Film Inserts + 45kg-Rated Carabiners</p>
+        <div class="mt-3 flex flex-col items-center gap-2">
+          <p class="text-xs text-gray-400">Includes: 1&times; Nitevault Holster Sling + 10&times; Compost-Ready Bio-Film Inserts + 45kg Load-Tested Carabiners</p>
+          <span class="inline-flex items-center gap-1 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Save 33% (Retail €75.00)</span>
+        </div>
 
         <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
           <input type="hidden" name="form-name" value="waitlist">
@@ -516,9 +523,9 @@
 
           <p class="text-xs text-gray-500 font-mono mb-2">Edition</p>
           <div class="flex flex-wrap justify-center gap-2 mb-5" role="group" aria-label="Choose your edition">
-            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-emerald-400 transition" data-edition="Barcelona" aria-pressed="false">Barcelona</button>
-            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-emerald-400 transition" data-edition="Berlin" aria-pressed="true">Berlin</button>
-            <button type="button" class="edition-pill border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-emerald-400 transition" data-edition="Ibiza" aria-pressed="false">Ibiza</button>
+            <button type="button" class="edition-pill bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-white/30 transition" data-edition="Barcelona" aria-pressed="false">Barcelona</button>
+            <button type="button" class="edition-pill bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-white/30 transition" data-edition="Berlin" aria-pressed="true">Berlin</button>
+            <button type="button" class="edition-pill bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-white/30 transition" data-edition="Ibiza" aria-pressed="false">Ibiza</button>
           </div>
 
           <p class="text-xs text-gray-500 font-mono mb-2">What matters most to you? (optional, select all that apply)</p>
@@ -530,9 +537,9 @@
 
           <label for="final-email" class="visually-hidden">Email address</label>
           <input id="final-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com"
-            class="w-full bg-panel border border-white/20 rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 focus:outline-none transition">
+            class="w-full border border-white/20 bg-[#12151E] text-white rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 focus:outline-none transition">
           <p id="final-email-error" class="hidden mt-2 text-xs text-amber-400" role="alert">Enter a valid email to continue.</p>
-          <button type="submit" class="mt-3 w-full inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid transition">
+          <button type="submit" class="mt-3 w-full inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid hover:scale-[1.02] active:scale-[0.99] transition">
             Claim My €49.99 Early-Bird Spot
           </button>
         </form>
@@ -542,7 +549,7 @@
           <span>You're on the Founding VIP List! Watch your inbox for batch production updates.</span>
         </div>
 
-        <p class="mt-4 text-xs text-gray-500">No payment collected today. 1-click unsubscribe. Limited to first 500 founding members.</p>
+        <p class="mt-4 text-xs text-gray-500">No payment collected today. 1-click unsubscribe. Limited to 500 founding units.</p>
       </div>
     </div>
   </section>
@@ -551,11 +558,23 @@
 
 <!-- ============================== FOOTER ============================== -->
 <footer class="py-10 border-t border-white/10">
-  <div class="max-w-7xl mx-auto px-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
-    <span>&copy; 2026 Nitevault.com. Designed in Europe.</span>
-    <div class="flex flex-wrap gap-4">
-      <a href="mailto:hello@nitevault.com" class="text-gray-400 hover:text-acid underline underline-offset-2">hello@nitevault.com</a>
-      <span>Concept-validation page. No product has shipped yet, and no orders are being charged today.</span>
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-center gap-2 mb-5">
+      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M10 13v-2.5a6 6 0 0 1 12 0V13" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
+        <path d="M6.5 13h19l2 4.5V25a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2v-7.5l2-4.5Z" fill="#0B0D14" stroke="#34D399" stroke-width="1.4" stroke-linejoin="round"/>
+        <path d="M11 17.5l5 6 5-6" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="flex items-baseline text-sm font-display">
+        <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
+      </span>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
+      <span>&copy; 2026 Nitevault.com. Designed in Europe.</span>
+      <div class="flex flex-wrap gap-4">
+        <a href="mailto:hello@nitevault.com" class="text-gray-400 hover:text-acid underline underline-offset-2">hello@nitevault.com</a>
+        <span>Concept-validation page. No product has shipped yet, and no orders are being charged today.</span>
+      </div>
     </div>
   </div>
 </footer>
