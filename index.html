@@ -108,10 +108,11 @@
       </svg>
       NITEVAULT
       <span class="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] tracking-wider text-gray-400 border border-white/15 rounded-full px-2 py-1 ml-1">
-        <span class="w-1.5 h-1.5 rounded-full bg-cyber"></span> BATCH 01: PRE-TOOLING OPEN
+        <span class="w-1.5 h-1.5 rounded-full bg-acid animate-pulse"></span> BATCH 01: PRE-TOOLING OPEN
       </span>
     </a>
     <nav class="hidden lg:flex items-center gap-7 text-sm text-gray-300 font-medium">
+      <a href="#threat" class="hover:text-white transition">The Threat</a>
       <a href="#system" class="hover:text-white transition">The System</a>
       <a href="#editions" class="hover:text-white transition">City Editions</a>
       <a href="#specs" class="hover:text-white transition">Specs</a>
@@ -137,8 +138,8 @@
           <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
             <!-- Tab toggle -->
             <div class="flex gap-2 mb-4" role="tablist" aria-label="Product view">
-              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="true" data-view="bag">View The Holster Bag</button>
-              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="false" data-view="pouch">View The Sealed Core Pouch</button>
+              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="true" data-view="bag">View Closed Holster Bag</button>
+              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="false" data-view="pouch">View Core Pouch</button>
             </div>
 
             <!-- Bag panel -->
@@ -166,17 +167,16 @@
 
       <!-- Right: value proposition + waitlist -->
       <div class="order-1 lg:order-2">
-        <div class="inline-flex items-center gap-2 bg-panel border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 mb-6">
-          <span class="text-acid tracking-widest">★★★★★</span> Be one of the founding 500, before the batch fills
+        <div class="inline-flex items-center gap-2 bg-panel border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-amber-400 mb-6">
+          ⚠️ STOP BABYSITTING YOUR DRINK
         </div>
 
         <h1 class="font-display font-bold text-4xl sm:text-5xl leading-[1.1] tracking-tight">
-          Lock down your <span class="text-acid">drink</span>.<br>
-          Free up your <span class="text-cyber">night</span>.
+          It takes three seconds to ruin your night. Stop guarding an <span class="text-acid">open cup</span>.
         </h1>
 
         <p class="mt-5 text-gray-300 text-lg max-w-lg">
-          Nitevault is an eco-hybrid hydration sling engineered to seal out drink tampering, cut single-use festival plastic, and let you dance completely hands-free.
+          You came for the music, not to spend eight hours holding a sticky plastic cup with your palm over the top. Nitevault locks your drink from bar to mouth behind a sealed mechanical collar and a 2-bar hermetic clamp. Once it's shut, tampering leaves a visible trace. Lock it down, hit the crowd, and dance <span class="text-cyber">hands-free</span>.
         </p>
 
         <div class="mt-6 inline-flex flex-wrap items-baseline gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
@@ -200,12 +200,45 @@
 
         <div id="hero-success" role="status" aria-live="polite" class="hidden mt-7 max-w-lg items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#10B981" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>You're in! Watch your inbox for batch production updates.</span>
+          <span>You're on the Founding VIP List! Watch your inbox for batch production updates.</span>
         </div>
 
-        <p class="mt-4 text-xs text-gray-500">No payment collected today. Zero spam. 1-click unsubscribe.</p>
+        <p class="mt-4 text-xs text-gray-500">No payment collected today. 1-click unsubscribe. Limited to 500 founding units.</p>
       </div>
 
+    </div>
+  </section>
+
+  <!-- ============================== THE REALITY CHECK ============================== -->
+  <section id="threat" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">The Reality Check</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">What you're doing now, versus what you could be doing instead.</h2>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="bg-panel border border-white/10 rounded-2xl p-8">
+          <span class="font-mono text-xs tracking-widest text-gray-500 uppercase">The Open Cup Trap</span>
+          <h3 class="mt-2 font-display font-bold text-xl text-gray-300">Business as usual</h3>
+          <ul class="mt-5 space-y-3 text-sm text-gray-400">
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Constant paranoia on a crowded dancefloor</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Warm, watered-down, and spilled drinks</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> An easy target for drink-tampering</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> A mountain of single-use plastic by Sunday</li>
+          </ul>
+        </div>
+        <div class="bg-panel border border-acid/40 rounded-2xl p-8 shadow-glow-acid">
+          <span class="font-mono text-xs tracking-widest text-acid uppercase">The Nitevault Standard</span>
+          <h3 class="mt-2 font-display font-bold text-xl">Locked and sealed system</h3>
+          <ul class="mt-5 space-y-3 text-sm text-gray-300">
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Mechanical twist-lock collar</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Hermetic 2-bar base seal</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Inward-facing phone sleeve</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Lightweight, crossbody freedom</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -255,7 +288,7 @@
             <h3 class="mt-2 font-display font-bold text-xl">The Barcelona</h3>
             <p class="mt-3 text-sm text-gray-400 flex-1">Terracotta and sand ripstop nylon over a breathable air-mesh backing, built for 14-hour marathon festivals under the sun.</p>
             <div class="mt-4 font-display font-bold text-acid">€49.99</div>
-            <button type="button" class="select-edition mt-4 w-full rounded-full border border-white/15 py-2.5 text-sm font-medium hover:border-acid hover:text-acid transition" data-edition="Barcelona">Select Barcelona</button>
+            <button type="button" class="select-edition mt-4 w-full rounded-full border border-white/15 py-2.5 text-sm font-medium hover:border-acid hover:text-acid transition" data-edition="Barcelona">Choose Barcelona</button>
           </div>
         </div>
 
@@ -268,7 +301,7 @@
             <h3 class="mt-2 font-display font-bold text-xl">The Berlin</h3>
             <p class="mt-3 text-sm text-gray-400 flex-1">Ballistic matte-black 600D jacquard with blackout gunmetal hardware, zero glare, pure stealth for warehouse dancefloors.</p>
             <div class="mt-4 font-display font-bold text-acid">€49.99</div>
-            <button type="button" class="select-edition mt-4 w-full rounded-full border border-white/15 py-2.5 text-sm font-medium hover:border-cyber hover:text-cyber transition" data-edition="Berlin">Select Berlin</button>
+            <button type="button" class="select-edition mt-4 w-full rounded-full border border-white/15 py-2.5 text-sm font-medium hover:border-cyber hover:text-cyber transition" data-edition="Berlin">Choose Berlin</button>
           </div>
         </div>
 
@@ -281,7 +314,7 @@
             <h3 class="mt-2 font-display font-bold text-xl">The Ibiza</h3>
             <p class="mt-3 text-sm text-gray-400 flex-1">Deep obsidian fabric with a subtle chromatic sheen and polished chrome accents, high-glam protection from VIP lounges to main-room lasers.</p>
             <div class="mt-4 font-display font-bold text-acid">€49.99</div>
-            <button type="button" class="select-edition mt-4 w-full rounded-full border border-white/15 py-2.5 text-sm font-medium hover:border-acid hover:text-acid transition" data-edition="Ibiza">Select Ibiza</button>
+            <button type="button" class="select-edition mt-4 w-full rounded-full border border-white/15 py-2.5 text-sm font-medium hover:border-acid hover:text-acid transition" data-edition="Ibiza">Choose Ibiza</button>
           </div>
         </div>
 
@@ -332,7 +365,7 @@
       <div class="bg-panel border border-acid/30 rounded-3xl p-8 sm:p-10 shadow-glow-acid max-w-3xl mx-auto text-center">
         <span class="font-mono text-xs tracking-widest text-acid uppercase">The Eco-Hybrid Model</span>
         <h2 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Hardware you keep forever. A pouch you don't.</h2>
-        <p class="mt-4 text-gray-300">Permanent hardware you keep for years, paired with bio-film pouch inserts designed for organic waste disposal. No single-use cup waste piling up by Sunday, no 3am bottle scrubbing when you get home.</p>
+        <p class="mt-4 text-gray-300">Reusable permanent hardware plus compostable-format bio-film pouch inserts. Refill all weekend, toss the pouch into organic disposal when you're done, and skip the 3am bottle scrubbing when you get home.</p>
       </div>
     </div>
   </section>
@@ -440,10 +473,10 @@
 
         <div id="waitlist-success" role="status" aria-live="polite" class="hidden mt-6 items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm text-left">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#10B981" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          <span>You're in! Watch your inbox for batch production updates.</span>
+          <span>You're on the Founding VIP List! Watch your inbox for batch production updates.</span>
         </div>
 
-        <p class="mt-4 text-xs text-gray-500">No payment collected today. Zero spam. 1-click unsubscribe.</p>
+        <p class="mt-4 text-xs text-gray-500">No payment collected today. 1-click unsubscribe. Limited to 500 founding units.</p>
       </div>
     </div>
   </section>
