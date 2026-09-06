@@ -598,11 +598,15 @@
           <span class="inline-flex items-center gap-1 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Save 28% (Planned Retail €69.00)</span>
         </div>
 
-        <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
-          <input type="hidden" name="form-name" value="waitlist">
+        <form id="waitlist-form" name="founding-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
+          <input type="hidden" name="form-name" value="founding-waitlist" />
           <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <input type="hidden" name="edition" id="edition-input" value="Barcelona">
-          <input type="hidden" name="priority" id="priority-input" value="">
+          <div class="visually-hidden">
+            <input type="checkbox" name="interests[]" value="Drink Tamper Protection" id="interest-tamper">
+            <input type="checkbox" name="interests[]" value="Less Single-Use Plastic" id="interest-plastic">
+            <input type="checkbox" name="interests[]" value="Hands-Free Dancing" id="interest-hands-free">
+          </div>
 
           <p class="text-xs text-gray-500 font-mono mb-2">Edition</p>
           <div class="flex flex-wrap justify-center gap-2 mb-5" role="group" aria-label="Choose your edition">
@@ -613,9 +617,9 @@
 
           <p class="text-xs text-gray-500 font-mono mb-2">What matters most to you? (optional, select all that apply)</p>
           <div class="flex flex-wrap justify-center gap-2 mb-5" role="group" aria-label="What matters most to you">
-            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink Tamper Protection" aria-pressed="false">Drink Tamper Protection</button>
-            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Less Single-Use Plastic" aria-pressed="false">Less Single-Use Plastic</button>
-            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Hands-Free Dancing" aria-pressed="false">Hands-Free Dancing</button>
+            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink Tamper Protection" data-interest-id="interest-tamper" aria-pressed="false">Drink Tamper Protection</button>
+            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Less Single-Use Plastic" data-interest-id="interest-plastic" aria-pressed="false">Less Single-Use Plastic</button>
+            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Hands-Free Dancing" data-interest-id="interest-hands-free" aria-pressed="false">Hands-Free Dancing</button>
           </div>
 
           <label for="final-email" class="visually-hidden">Email address</label>
@@ -708,18 +712,15 @@
     });
   });
 
-  /* ---------- "What matters most" pills (multi-select chips) ---------- */
-  var priorityInput = document.getElementById('priority-input');
-  function syncPriorityInput(){
-    var selected = Array.prototype.slice.call(document.querySelectorAll('.pill-choice[aria-pressed="true"]'))
-      .map(function(p){ return p.getAttribute('data-value'); });
-    priorityInput.value = selected.join(', ');
-  }
+  /* ---------- "What matters most" pills (multi-select chips), each backed by a
+     hidden checkbox named interests[] so Netlify Forms captures every selection
+     as its own value on the founding-waitlist submission. ---------- */
   document.querySelectorAll('.pill-choice').forEach(function(pill){
     pill.addEventListener('click', function(){
       var alreadyActive = pill.getAttribute('aria-pressed') === 'true';
       pill.setAttribute('aria-pressed', String(!alreadyActive));
-      syncPriorityInput();
+      var checkbox = document.getElementById(pill.getAttribute('data-interest-id'));
+      if(checkbox) checkbox.checked = !alreadyActive;
     });
   });
 
