@@ -4,6 +4,16 @@ This folder has everything needed to put the concept-test page live: `index.html
 
 The waitlist form is already wired for Netlify Forms, so once this is deployed on Netlify, real email signups land in your Netlify dashboard with no extra backend to build.
 
+## Image files this version needs
+
+This version of the page references 5 product photos that aren't included yet, because I don't have the actual shots:
+
+- `bag-closed.png` (hero, Holster Bag view)
+- `pouch.png` (hero, Sealed Core Pouch view)
+- `barcelona.png`, `berlin.png`, `ibiza.png` (the three City Editions cards)
+
+They need to sit at the repo root, right next to `index.html`, not inside the `images` folder. Until they're added, the page shows a dashed placeholder box with the filename instead of a broken-image icon, so nothing looks broken in the meantime. Drop the files in with those exact names and they'll pick up automatically on the next deploy, no code changes needed.
+
 ## 1. Put it on GitHub
 
 If this is a brand new repo:
