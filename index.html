@@ -6,453 +6,71 @@
 <title>Nitevault: Lock Down Your Drink, Free Up Your Night</title>
 <meta name="description" content="Nitevault is an eco-hybrid hydration sling with a locked, sealed drink path. Reserve your founding-member spot at €49.99.">
 
-<!-- Fonts: Space Grotesk (display), Inter (body), IBM Plex Mono (spec captions) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS via CDN, configured with the Nitevault brand tokens -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#0B0C10',
+          obsidian: '#12141D',
+          panel: '#171A24',
+          panelraised: '#1C2030',
+          acid: '#22C55E',
+          cyber: '#06B6D4',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+        boxShadow: {
+          'glow-acid': '0 0 30px -5px rgba(34,197,94,.45)',
+          'glow-cyber': '0 0 30px -5px rgba(6,182,212,.45)',
+        }
+      }
+    }
+  }
+</script>
 
 <style>
-  /* ============================================================
-     TOKENS: Nitevault is a fixed dark, nightlife-forward brand.
-     Colors are painted explicitly (not theme-switched) on purpose.
-     ============================================================ */
-  :root{
-    --void:#0A0B10;
-    --obsidian:#12141C;
-    --panel:#171A24;
-    --panel-raised:#1C2030;
-    --line:rgba(255,255,255,.09);
-    --line-strong:rgba(255,255,255,.16);
-    --paper:#F5F7FA;
-    --mist:#9BA7BE;
-    --mist-dim:#6B7386;
-    --lime:#22C55E;
-    --lime-soft:rgba(34,197,94,.14);
-    --lime-glow:rgba(34,197,94,.35);
-    --cyan:#06B6D4;
-    --cyan-soft:rgba(6,182,212,.14);
-    --cyan-glow:rgba(6,182,212,.35);
-    --radius-s:6px;
-    --radius-m:12px;
-    --radius-l:20px;
-    --container:1160px;
-    --font-display:'Space Grotesk',-apple-system,'Segoe UI',sans-serif;
-    --font-body:'Inter',-apple-system,'Segoe UI',sans-serif;
-    --font-mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
-    --header-h:72px;
-  }
-
-  *,*::before,*::after{ box-sizing:border-box; }
   html{ scroll-behavior:smooth; }
+  body{ background:#0B0C10; }
+  ::selection{ background:#22C55E; color:#0B0C10; }
+  :focus-visible{ outline:2px solid #06B6D4; outline-offset:3px; border-radius:4px; }
+
   @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior:auto; }
     *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
   }
 
-  body{
-    margin:0;
-    background:var(--void);
-    color:var(--paper);
-    font-family:var(--font-body);
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
+  /* Anchor offset so sticky ticker + nav don't cover section headings */
+  section[id]{ scroll-margin-top:104px; }
 
-  img,svg{ max-width:100%; display:block; }
+  /* ---------- Ticker ---------- */
+  .ticker-track{
+    display:flex; width:max-content;
+    animation:ticker 22s linear infinite;
+  }
+  @keyframes ticker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
 
-  h1,h2,h3{
-    font-family:var(--font-display);
-    line-height:1.12;
-    letter-spacing:-0.01em;
-    margin:0;
-    text-wrap:balance;
-    color:var(--paper);
-  }
+  /* ---------- Hero product card ---------- */
+  .tilt-el{ transition:transform .25s ease-out; transform-style:preserve-3d; }
 
-  p{ margin:0; }
-  a{ color:inherit; }
-  button{ font-family:inherit; }
-
-  ::selection{ background:var(--lime); color:var(--void); }
-
-  :focus-visible{ outline:2px solid var(--cyan); outline-offset:3px; border-radius:4px; }
-
-  .container{
-    max-width:var(--container);
-    margin:0 auto;
-    padding:0 20px;
-  }
-
-  .section{ padding:clamp(3.5rem,8vw,6.5rem) 0; scroll-margin-top:var(--header-h); }
-  .section-obsidian{ background:var(--obsidian); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-
-  .eyebrow{
-    display:inline-flex; align-items:center; gap:8px;
-    font-family:var(--font-mono);
-    font-size:.72rem;
-    letter-spacing:.14em;
-    text-transform:uppercase;
-    color:var(--lime);
-    margin-bottom:16px;
-  }
-  .eyebrow::before{
-    content:""; width:6px; height:6px; border-radius:50%;
-    background:var(--lime); box-shadow:0 0 8px var(--lime-glow);
-    flex-shrink:0;
-  }
-
-  .lede{ color:var(--mist); font-size:1.05rem; max-width:52ch; }
-
-  /* ---------- Buttons ---------- */
-  .btn{
-    display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    font-family:var(--font-display); font-weight:600; font-size:.95rem;
-    padding:14px 26px; border-radius:999px; border:1px solid transparent;
-    cursor:pointer; text-decoration:none; white-space:nowrap;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease;
-  }
-  .btn:active{ transform:scale(.97); }
-  .btn-primary{
-    background:var(--lime); color:#062112;
-    box-shadow:0 0 0 0 rgba(34,197,94,.5);
-  }
-  .btn-primary:hover{ box-shadow:0 4px 24px var(--lime-glow); transform:translateY(-1px); }
-  .btn-ghost{
-    background:transparent; color:var(--paper); border-color:var(--line-strong);
-  }
-  .btn-ghost:hover{ border-color:var(--cyan); color:var(--cyan); }
-  .btn-block{ width:100%; }
-  .btn[disabled]{ opacity:.6; cursor:progress; }
-
-  /* ---------- Header ---------- */
-  .site-header{
-    position:sticky; top:0; z-index:50;
-    height:var(--header-h);
-    display:flex; align-items:center;
-    background:rgba(10,11,16,.7);
-    backdrop-filter:blur(10px) saturate(140%);
-    -webkit-backdrop-filter:blur(10px) saturate(140%);
-    border-bottom:1px solid transparent;
-    transition:border-color .25s ease, background .25s ease;
-  }
-  .site-header.is-scrolled{
-    background:rgba(10,11,16,.92);
-    border-bottom-color:var(--line);
-  }
-  .site-header .container{
-    display:flex; align-items:center; justify-content:space-between; gap:16px;
-  }
-  .logo{
-    display:flex; align-items:center; gap:10px;
-    font-family:var(--font-display); font-weight:700; font-size:1.15rem;
-    letter-spacing:-0.01em; text-decoration:none;
-  }
-  .logo-mark{
-    width:26px; height:26px; flex-shrink:0;
-  }
-  .header-badge{
-    font-family:var(--font-mono); font-size:.68rem; letter-spacing:.06em;
-    color:var(--mist); border:1px solid var(--line-strong); border-radius:999px;
-    padding:6px 12px; white-space:nowrap;
-    display:none;
-  }
-  @media (min-width:760px){ .header-badge{ display:inline-flex; align-items:center; } }
-  .header-right{ display:flex; align-items:center; gap:14px; }
-  .btn-nav{ padding:10px 18px; font-size:.85rem; }
-
-  /* ---------- Hero ---------- */
-  .hero{ padding-top:clamp(2.5rem,6vw,4.5rem); }
-  .hero .container{
-    display:grid; gap:48px; align-items:center;
-    grid-template-columns:1fr;
-  }
-  @media (min-width:960px){
-    .hero .container{ grid-template-columns:1.05fr .95fr; gap:40px; }
-  }
-  .hero h1{ font-size:clamp(2.35rem,5.4vw,3.6rem); }
-  .hero h1 .accent-lime{ color:var(--lime); }
-  .hero h1 .accent-cyan{ color:var(--cyan); }
-  .hero-copy .lede{ margin-top:18px; font-size:1.1rem; max-width:46ch; }
-
-  .price-chip{
-    margin-top:26px;
-    display:inline-flex; align-items:baseline; gap:10px; flex-wrap:wrap;
-    background:var(--panel); border:1px solid var(--line-strong);
-    border-radius:999px; padding:10px 18px;
-    font-family:var(--font-mono); font-size:.82rem;
-  }
-  .price-chip .now{ font-family:var(--font-display); font-size:1.15rem; font-weight:700; color:var(--lime); }
-  .price-chip .was{ color:var(--mist-dim); text-decoration:line-through; }
-  .price-chip .tag{ color:var(--mist); }
-
-  .hero-form-wrap{ margin-top:30px; max-width:480px; }
-  .capture-form{ display:flex; flex-direction:column; gap:12px; }
-  @media (min-width:520px){ .capture-form.inline-row{ flex-direction:row; } }
-  .field-row{ display:flex; gap:10px; flex-direction:column; }
-  @media (min-width:520px){ .field-row{ flex-direction:row; } }
-  .email-input{
-    flex:1; min-width:0;
-    background:var(--panel); border:1px solid var(--line-strong);
-    color:var(--paper); border-radius:999px; padding:14px 20px;
-    font-size:.95rem; font-family:var(--font-body);
-    transition:border-color .18s ease, box-shadow .18s ease;
-  }
-  .email-input::placeholder{ color:var(--mist-dim); }
-  .email-input:focus{ border-color:var(--lime); box-shadow:0 0 0 4px var(--lime-soft); outline:none; }
-  .form-micro{ margin-top:10px; font-size:.78rem; color:var(--mist-dim); }
-  .form-micro strong{ color:var(--mist); font-weight:600; }
-
-  .form-success{
-    display:none; align-items:center; gap:12px;
-    background:var(--lime-soft); border:1px solid rgba(34,197,94,.4);
-    border-radius:var(--radius-m); padding:16px 18px;
-    font-size:.92rem; color:var(--paper);
-  }
-  .form-success.is-visible{ display:flex; }
-  .form-success svg{ flex-shrink:0; width:22px; height:22px; }
-  .capture-form.is-hidden{ display:none; }
-
-  /* ---------- Hero visual: an abstract "sealed vault" device diagram ---------- */
-  .hero-visual{
-    position:relative; aspect-ratio:1/1.05; width:100%; max-width:440px; margin:0 auto;
-    display:flex; align-items:center; justify-content:center;
-  }
-  .device{
-    position:relative; width:78%; height:82%;
-    transform-style:preserve-3d;
-    transition:transform .25s ease-out;
-  }
-  .device-ring{
-    position:absolute; inset:0; border-radius:50%;
-    background:conic-gradient(from 0deg, var(--lime), var(--cyan), var(--lime));
-    filter:blur(0px);
-    -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-            mask:radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-    animation:spin 9s linear infinite;
-    opacity:.85;
-  }
-  @keyframes spin{ to{ transform:rotate(360deg); } }
-  .device-body{
-    position:absolute; inset:14%;
-    background:linear-gradient(155deg,var(--panel-raised),var(--obsidian));
-    border:1px solid var(--line-strong);
-    border-radius:32px;
-    box-shadow:0 30px 60px -20px rgba(0,0,0,.6), inset 0 1px 0 rgba(255,255,255,.05);
-    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
-    padding-top:14%;
-    overflow:hidden;
-  }
-  .device-clamp{
-    width:34%; aspect-ratio:1; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #cfd6e2, #7d8698 55%, #3d4353 100%);
-    box-shadow:0 4px 14px rgba(0,0,0,.5), inset 0 0 0 3px rgba(0,0,0,.25);
-    position:relative;
-  }
-  .device-clamp::after{
-    content:""; position:absolute; inset:32%; border-radius:50%;
-    background:var(--void); box-shadow:0 0 0 2px rgba(34,197,94,.6), 0 0 16px var(--lime-glow);
-  }
-  .device-strap{
-    position:absolute; left:-6%; right:-6%; top:38%; height:22%;
-    background:repeating-linear-gradient(115deg, var(--panel) 0 10px, var(--obsidian) 10px 20px);
-    transform:skewY(-6deg);
-    border-top:1px solid var(--line-strong); border-bottom:1px solid var(--line-strong);
-  }
-  .device-pouch{
-    margin-top:10%; width:58%; height:34%;
-    background:linear-gradient(180deg, rgba(6,182,212,.14), rgba(6,182,212,.02));
-    border:1px solid var(--line-strong); border-radius:16px 16px 30px 30px;
-  }
-  .device-callout{
-    position:absolute; display:flex; align-items:center; gap:8px;
-    background:rgba(10,11,16,.85); border:1px solid var(--line-strong);
-    border-radius:999px; padding:7px 12px;
-    font-family:var(--font-mono); font-size:.66rem; letter-spacing:.03em; color:var(--paper);
-    backdrop-filter:blur(6px);
-    white-space:nowrap;
-  }
-  .device-callout .dot{ width:5px; height:5px; border-radius:50%; }
-  .callout-1{ top:6%; left:-8%; }
-  .callout-1 .dot{ background:var(--lime); box-shadow:0 0 6px var(--lime-glow); }
-  .callout-2{ bottom:10%; right:-10%; }
-  .callout-2 .dot{ background:var(--cyan); box-shadow:0 0 6px var(--cyan-glow); }
-  @media (max-width:959px){ .device-callout{ display:none; } }
-
-  /* ---------- Problem ---------- */
-  .grid-3{ display:grid; gap:20px; grid-template-columns:1fr; margin-top:40px; }
-  @media (min-width:760px){ .grid-3{ grid-template-columns:repeat(3,1fr); } }
-  .problem-card{
-    background:var(--panel); border:1px solid var(--line);
-    border-radius:var(--radius-m); padding:26px;
-  }
-  .problem-card .num{
-    font-family:var(--font-mono); font-size:.75rem; color:var(--mist-dim);
-    letter-spacing:.1em;
-  }
-  .problem-card h3{ font-size:1.15rem; margin-top:14px; }
-  .problem-card p{ margin-top:10px; color:var(--mist); font-size:.95rem; }
-
-  .section-head{ max-width:640px; }
-  .section-head h2{ font-size:clamp(1.7rem,3.6vw,2.4rem); }
-  .section-head .lede{ margin-top:12px; }
-
-  /* ---------- How it works ---------- */
-  .steps{
-    margin-top:52px; position:relative;
-    display:grid; gap:36px; grid-template-columns:1fr;
-  }
-  @media (min-width:760px){
-    .steps{ grid-template-columns:repeat(3,1fr); gap:24px; }
-    .steps::before{
-      content:""; position:absolute; top:26px; left:8%; right:8%; height:1px;
-      background:linear-gradient(90deg, var(--lime), var(--cyan));
-      opacity:.4;
-    }
-  }
-  .step{ position:relative; }
-  .step-index{
-    width:52px; height:52px; border-radius:50%;
-    background:var(--panel); border:1px solid var(--line-strong);
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-mono); font-weight:500; color:var(--lime);
-    position:relative; z-index:1;
-  }
-  .step:nth-child(2) .step-index{ color:var(--cyan); }
-  .step:nth-child(3) .step-index{ color:var(--lime); }
-  .step h3{ margin-top:18px; font-size:1.2rem; }
-  .step p{ margin-top:10px; color:var(--mist); font-size:.95rem; max-width:32ch; }
-
-  /* ---------- Feature grid ---------- */
-  .feature-grid{ display:grid; gap:18px; grid-template-columns:1fr; margin-top:44px; }
-  @media (min-width:640px){ .feature-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (min-width:1000px){ .feature-grid{ grid-template-columns:repeat(3,1fr); } }
-  .feature-card{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-m);
-    padding:24px; display:flex; flex-direction:column; gap:14px;
-    transition:border-color .2s ease, transform .2s ease;
-  }
-  .feature-card:hover{ border-color:var(--line-strong); transform:translateY(-3px); }
-  .feature-icon{
-    width:38px; height:38px; border-radius:10px;
-    background:var(--lime-soft); display:flex; align-items:center; justify-content:center;
-    color:var(--lime);
-  }
-  .feature-card:nth-child(2n) .feature-icon{ background:var(--cyan-soft); color:var(--cyan); }
-  .feature-card h3{ font-size:1.05rem; }
-  .feature-spec{
-    font-family:var(--font-mono); font-size:.72rem; color:var(--mist-dim);
-    border-top:1px dashed var(--line-strong); padding-top:12px; line-height:1.55;
-  }
-
-  /* ---------- Sustainability ---------- */
-  .eco-wrap{
-    margin-top:44px; display:grid; gap:20px; grid-template-columns:1fr;
-  }
-  @media (min-width:820px){ .eco-wrap{ grid-template-columns:1.1fr .9fr; align-items:stretch; } }
-  .eco-panel{
-    background:linear-gradient(160deg, var(--lime-soft), transparent 60%), var(--panel);
-    border:1px solid var(--line); border-radius:var(--radius-l); padding:32px;
-  }
-  .eco-panel h3{ font-size:1.3rem; }
-  .eco-panel p{ margin-top:12px; color:var(--mist); }
-  .compare-list{ list-style:none; margin:24px 0 0; padding:0; display:flex; flex-direction:column; gap:14px; }
-  .compare-list li{
-    display:flex; gap:12px; align-items:flex-start;
-    background:var(--panel); border:1px solid var(--line);
-    border-radius:var(--radius-m); padding:16px 18px; font-size:.92rem; color:var(--mist);
-  }
-  .compare-list strong{ color:var(--paper); font-weight:600; }
-  .compare-list .x-mark, .compare-list .check-mark{
-    flex-shrink:0; width:20px; height:20px; margin-top:2px;
-  }
-
-  /* ---------- Founder note ---------- */
-  .founder-card{
-    margin-top:40px; display:grid; gap:24px; grid-template-columns:auto 1fr;
-    align-items:flex-start;
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-l);
-    padding:32px;
-  }
-  .founder-avatar{
-    width:56px; height:56px; border-radius:50%;
-    background:conic-gradient(from 45deg, var(--lime), var(--cyan));
-    display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-weight:700; color:var(--void);
-  }
-  .founder-card blockquote{ margin:0; font-size:1.1rem; color:var(--paper); line-height:1.65; }
-  .founder-card .attribution{ margin-top:16px; font-size:.85rem; color:var(--mist-dim); font-family:var(--font-mono); }
-
-  /* ---------- FAQ ---------- */
-  .faq-list{ margin-top:36px; display:flex; flex-direction:column; gap:12px; }
-  .faq-item{
-    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius-m);
-    overflow:hidden;
-  }
-  .faq-question{
-    width:100%; text-align:left; background:none; border:none; color:var(--paper);
-    padding:18px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px;
-    cursor:pointer; font-size:1rem; font-weight:600; font-family:var(--font-body);
-  }
-  .faq-question .plus{
-    flex-shrink:0; width:22px; height:22px; position:relative;
-  }
-  .faq-question .plus::before, .faq-question .plus::after{
-    content:""; position:absolute; background:var(--lime); border-radius:2px;
-    transition:transform .25s ease;
-  }
-  .faq-question .plus::before{ top:50%; left:0; width:100%; height:2px; transform:translateY(-50%); }
-  .faq-question .plus::after{ left:50%; top:0; height:100%; width:2px; transform:translateX(-50%); }
-  .faq-item[data-open="true"] .plus::after{ transform:translateX(-50%) rotate(90deg); opacity:0; }
-  .faq-answer{
-    display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease;
-  }
+  /* ---------- FAQ accordion ---------- */
+  .faq-answer{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
   .faq-item[data-open="true"] .faq-answer{ grid-template-rows:1fr; }
   .faq-answer-inner{ overflow:hidden; }
-  .faq-answer p{ padding:0 20px 20px; color:var(--mist); font-size:.95rem; max-width:64ch; }
+  .faq-item[data-open="true"] .faq-plus{ transform:rotate(45deg); }
+  .faq-plus{ transition:transform .25s ease; }
 
-  /* ---------- Waitlist (repeated conversion) ---------- */
-  .waitlist-card{
-    margin-top:40px; max-width:640px; margin-left:auto; margin-right:auto;
-    background:linear-gradient(160deg, var(--cyan-soft), transparent 55%), var(--panel-raised);
-    border:1px solid var(--line-strong); border-radius:var(--radius-l);
-    padding:clamp(28px,5vw,44px);
-    box-shadow:0 40px 80px -40px rgba(6,182,212,.25);
-  }
-  .waitlist-card .section-head{ max-width:none; text-align:center; margin:0 auto; }
-  .waitlist-card .eyebrow{ justify-content:center; }
-  .pill-group{
-    margin-top:22px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center;
-  }
-  .pill{
-    font-family:var(--font-mono); font-size:.78rem;
-    border:1px solid var(--line-strong); background:transparent; color:var(--mist);
-    padding:9px 16px; border-radius:999px; cursor:pointer;
-    transition:all .18s ease;
-  }
-  .pill:hover{ border-color:var(--cyan); color:var(--paper); }
-  .pill[aria-pressed="true"]{ background:var(--cyan); border-color:var(--cyan); color:#052730; }
-  .waitlist-card .hero-form-wrap{ margin:26px auto 0; }
-  .waitlist-card .form-micro{ text-align:center; }
-
-  /* ---------- Footer ---------- */
-  .site-footer{ padding:40px 0; border-top:1px solid var(--line); }
-  .site-footer .container{
-    display:flex; flex-direction:column; gap:14px;
-    align-items:flex-start; justify-content:space-between;
-    font-size:.82rem; color:var(--mist-dim);
-  }
-  @media (min-width:700px){ .site-footer .container{ flex-direction:row; align-items:center; } }
-  .site-footer a{ color:var(--mist); text-decoration:underline; text-underline-offset:3px; }
-  .site-footer a:hover{ color:var(--lime); }
-  .footer-links{ display:flex; gap:18px; flex-wrap:wrap; }
-
-  /* ---------- Gentle on-scroll lift ----------
-     Content is fully visible at rest (never hidden behind an observer);
-     entering the viewport only adds a small upward settle for polish. */
-  .reveal{ opacity:1; transform:none; transition:transform .5s ease; }
-  @media (prefers-reduced-motion: no-preference){
-    .reveal:not(.is-visible){ transform:translateY(10px); }
+  /* ---------- Pills ---------- */
+  .priority-pill[aria-pressed="true"]{
+    background:#06B6D4; border-color:#06B6D4; color:#052730;
   }
 
   .visually-hidden{
@@ -461,305 +79,380 @@
   }
 </style>
 </head>
-<body>
+<body class="bg-void text-white font-sans antialiased">
 
-<!-- ============================== HEADER ============================== -->
-<header class="site-header" id="site-header">
-  <div class="container">
-    <a href="#top" class="logo" aria-label="Nitevault home">
-      <svg class="logo-mark" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<!-- ============================== ANNOUNCEMENT TICKER ============================== -->
+<div class="sticky top-0 z-[60] bg-gradient-to-r from-acid to-cyber text-void font-mono text-xs sm:text-sm font-semibold overflow-hidden">
+  <div class="ticker-track py-2 whitespace-nowrap">
+    <span class="px-8">⚡ EARLY-BIRD BATCH RESERVATION: FIRST 500 BACKERS GET 35% OFF + FREE EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ EARLY-BIRD BATCH RESERVATION: FIRST 500 BACKERS GET 35% OFF + FREE EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ EARLY-BIRD BATCH RESERVATION: FIRST 500 BACKERS GET 35% OFF + FREE EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ EARLY-BIRD BATCH RESERVATION: FIRST 500 BACKERS GET 35% OFF + FREE EXTRA COMPOSTABLE POUCHES</span>
+  </div>
+</div>
+
+<!-- ============================== NAV ============================== -->
+<header class="sticky top-[33px] sm:top-[37px] z-50 bg-void/80 backdrop-blur border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+    <a href="#top" class="flex items-center gap-2 font-display font-bold text-lg tracking-tight">
+      <svg width="24" height="24" viewBox="0 0 26 26" fill="none" aria-hidden="true">
         <circle cx="13" cy="13" r="12" stroke="#22C55E" stroke-width="1.6"/>
         <circle cx="13" cy="13" r="4.2" fill="#22C55E"/>
-        <path d="M13 1V5.2M13 20.8V25M1 13H5.2M20.8 13H25" stroke="#06B6D4" stroke-width="1.4" stroke-linecap="round"/>
       </svg>
       NITEVAULT
+      <span class="hidden sm:inline-flex items-center gap-1 font-mono text-[10px] tracking-wider text-gray-400 border border-white/15 rounded-full px-2 py-1 ml-1">
+        <span class="w-1.5 h-1.5 rounded-full bg-cyber"></span> V3.1 CONCEPT STAGE
+      </span>
     </a>
-    <span class="header-badge">FOUNDING MEMBER BATCH — SUMMER 2027</span>
-    <div class="header-right">
-      <a href="#waitlist" class="btn btn-primary btn-nav">Join the Waitlist</a>
-    </div>
+    <nav class="hidden lg:flex items-center gap-7 text-sm text-gray-300 font-medium">
+      <a href="#why" class="hover:text-white transition">Why Nitevault</a>
+      <a href="#how-it-works" class="hover:text-white transition">How It Works</a>
+      <a href="#specs" class="hover:text-white transition">Specs</a>
+      <a href="#faq" class="hover:text-white transition">FAQ</a>
+    </nav>
+    <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold text-sm px-4 py-2.5 sm:px-5 hover:shadow-glow-acid transition whitespace-nowrap">
+      Claim Early Access (€49.99)
+    </a>
   </div>
 </header>
 
 <main id="top">
 
   <!-- ============================== HERO ============================== -->
-  <section class="hero section" id="hero">
-    <div class="container">
-      <div class="hero-copy">
-        <span class="eyebrow">Early-Bird Reservation · Limited to 500</span>
-        <h1>Lock down your <span class="accent-lime">drink</span>.<br>Free up your <span class="accent-cyan">night</span>.</h1>
-        <p class="lede">Nitevault is the eco-hybrid hydration sling that seals your drink from bar to mouth, so tampering shows instead of hiding, and swaps a night of plastic cups for one pouch you refill and toss. No product exists yet. This page is how we decide whether to build it.</p>
+  <section class="pt-14 pb-16 sm:pt-20 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-14 items-center">
 
-        <div class="price-chip">
-          <span class="now">€49.99</span>
-          <span class="was">€89 planned retail</span>
-          <span class="tag">Founding-member price, first batch only</span>
+      <!-- Left: product visual stage -->
+      <div class="order-2 lg:order-1">
+        <div class="relative max-w-md mx-auto hero-stage">
+          <!-- Ambient glow behind the product card -->
+          <div class="absolute -inset-6 bg-gradient-to-br from-acid/25 to-cyber/25 blur-2xl rounded-[2rem]" aria-hidden="true"></div>
+
+          <div class="relative bg-white rounded-3xl p-4 sm:p-5 border border-white/10 shadow-2xl tilt-el" id="device">
+            <img
+              src="images/nitevault-pouch.jpg"
+              alt="Nitevault hydration pouch with a locking sip collar, 50mm base clamp, and CO2 vent, filled with a mint and lime drink over ice"
+              class="w-full h-auto rounded-2xl"
+              width="900" height="505" loading="eager">
+          </div>
+
+          <!-- Floating feature callouts: stacked on mobile, positioned on large screens -->
+          <div class="hidden lg:block absolute -left-10 top-4 bg-void/85 backdrop-blur border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono whitespace-nowrap">🔒 Locked Sip Collar</div>
+          <div class="hidden lg:block absolute -right-8 top-1/4 bg-void/85 backdrop-blur border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono whitespace-nowrap">🫧 Carbonation-Ready Valve</div>
+          <div class="hidden lg:block absolute -left-12 bottom-1/4 bg-void/85 backdrop-blur border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono whitespace-nowrap">♻️ Compostable Bio-Film Pouch</div>
+          <div class="hidden lg:block absolute -right-6 bottom-6 bg-void/85 backdrop-blur border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono whitespace-nowrap">📱 Anti-Theft Phone Sleeve</div>
         </div>
 
-        <div class="hero-form-wrap">
-          <!-- Netlify Forms: static HTML form, detected at deploy time. See README for setup. -->
-          <form class="capture-form inline-row" id="hero-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-            <input type="hidden" name="form-name" value="waitlist">
-            <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-            <div class="field-row" style="flex:1;">
-              <label for="hero-email" class="visually-hidden">Email address</label>
-              <input class="email-input" id="hero-email" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
-            </div>
-            <button type="submit" class="btn btn-primary">Claim Early-Bird Access</button>
-          </form>
-          <div class="form-success" id="hero-success" role="status" aria-live="polite">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" stroke="#22C55E" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>You're on the list! Watch your inbox for founding batch updates.</span>
-          </div>
-          <p class="form-micro">No spam. 1-click unsubscribe. <strong>Limited to first 500 members.</strong></p>
+        <!-- Mobile: same callouts as a wrapped row -->
+        <div class="flex lg:hidden flex-wrap gap-2 justify-center mt-6">
+          <span class="bg-panel border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">🔒 Locked Sip Collar</span>
+          <span class="bg-panel border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">♻️ Compostable Pouch</span>
+          <span class="bg-panel border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">🫧 Carbonation-Ready</span>
+          <span class="bg-panel border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">📱 Anti-Theft Sleeve</span>
         </div>
       </div>
 
-      <!-- Abstract device diagram: seal ring, clamp, strap, compostable pouch -->
-      <div class="hero-visual" aria-hidden="true">
-        <div class="device" id="device">
-          <div class="device-ring"></div>
-          <div class="device-body">
-            <div class="device-clamp"></div>
-            <div class="device-strap"></div>
-            <div class="device-pouch"></div>
-          </div>
-          <div class="device-callout callout-1"><span class="dot"></span>SEALED · 2 BAR</div>
-          <div class="device-callout callout-2"><span class="dot"></span>50MM RAPID REFILL</div>
+      <!-- Right: value proposition + waitlist -->
+      <div class="order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 bg-panel border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-gray-300 mb-6">
+          <span class="text-acid tracking-widest">★★★★★</span> Be one of the founding 500, before the batch fills
         </div>
+
+        <h1 class="font-display font-bold text-4xl sm:text-5xl leading-[1.1] tracking-tight">
+          Lock down your <span class="text-acid">drink</span>.<br>
+          Free up your <span class="text-cyber">night</span>.
+        </h1>
+
+        <p class="mt-5 text-gray-300 text-lg max-w-lg">
+          Nitevault is an eco-hybrid hydration sling engineered to seal out drink tampering, cut single-use festival plastic, and let you dance hands-free all night.
+        </p>
+
+        <div class="mt-6 inline-flex flex-wrap items-baseline gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
+          <span class="text-acid text-3xl font-display font-bold">€49.99</span>
+          <span class="line-through text-gray-500 font-mono text-sm">€75.00 planned retail</span>
+          <span class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
+        </div>
+
+        <!-- Waitlist form -->
+        <form id="hero-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-7 max-w-lg" novalidate>
+          <input type="hidden" name="form-name" value="waitlist">
+          <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <input type="hidden" name="priority" id="priority-input-hero" value="">
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <label for="hero-email" class="visually-hidden">Email address</label>
+            <input id="hero-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com"
+              class="flex-1 min-w-0 bg-panel border border-white/15 rounded-full px-5 py-3.5 text-sm placeholder-gray-500 focus:border-acid focus:outline-none">
+            <button type="submit" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid transition whitespace-nowrap">
+              Reserve My Early-Bird Spot
+            </button>
+          </div>
+
+          <div class="flex flex-wrap gap-2 mt-4" role="group" aria-label="What matters most to you" data-pill-group data-target="priority-input-hero">
+            <span class="text-xs text-gray-500 font-mono self-center mr-1">What matters most?</span>
+            <button type="button" class="priority-pill border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink Tamper Protection" aria-pressed="false">Drink Tamper Protection</button>
+            <button type="button" class="priority-pill border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Less Plastic Waste" aria-pressed="false">Less Plastic Waste</button>
+            <button type="button" class="priority-pill border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Hands-Free Dancing" aria-pressed="false">Hands-Free Dancing</button>
+          </div>
+        </form>
+
+        <div id="hero-success" role="status" aria-live="polite" class="hidden mt-7 max-w-lg items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#22C55E" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>You're on the list! Watch your inbox for founding batch updates.</span>
+        </div>
+
+        <p class="mt-4 text-xs text-gray-500">No payment collected today. Instant reservation for the first production run.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================== TRUST BAR ============================== -->
+  <section id="why" class="py-14 border-y border-white/10 bg-obsidian">
+    <div class="max-w-7xl mx-auto px-5 grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      <div>
+        <div class="text-2xl">🛡️</div>
+        <h3 class="mt-3 font-display font-semibold">Sealed From Bar to Mouth</h3>
+        <p class="mt-2 text-sm text-gray-400">Locked collar and 45&deg; port keep the sip path closed, so covert tampering isn't possible without visibly breaking the seal.</p>
+      </div>
+      <div>
+        <div class="text-2xl">🌿</div>
+        <h3 class="mt-3 font-display font-semibold">Zero Dishwashing at 3 AM</h3>
+        <p class="mt-2 text-sm text-gray-400">Reusable hardware you keep for years, paired with a bladder insert designed to be compostable instead of scrubbed.</p>
+      </div>
+      <div>
+        <div class="text-2xl">⚡</div>
+        <h3 class="mt-3 font-display font-semibold">50mm Rapid Refill</h3>
+        <p class="mt-2 text-sm text-gray-400">A wide-mouth base clamp fills with ice or drinks in seconds, no fighting a narrow bottle neck at a crowded bar.</p>
+      </div>
+      <div>
+        <div class="text-2xl">💃</div>
+        <h3 class="mt-3 font-display font-semibold">Dance-Proof Utility</h3>
+        <p class="mt-2 text-sm text-gray-400">An inward, body-facing phone pocket and carabiners load-tested to 45kg, built to move with you all night.</p>
       </div>
     </div>
   </section>
 
-  <!-- ============================== THE PROBLEM ============================== -->
-  <section class="section section-obsidian" id="problem">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">The Night Out, As It Actually Is</span>
-        <h2>Three small frictions nobody talks about.</h2>
+  <!-- ============================== THE FRICTION WE KILL ============================== -->
+  <section class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-acid uppercase">The Friction We Kill</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">A night out shouldn't cost you this much attention.</h2>
       </div>
-      <div class="grid-3">
-        <div class="problem-card reveal">
-          <span class="num">01 / UNATTENDED</span>
-          <h3>The cup you can't put down</h3>
-          <p>Setting a drink down at a bar or festival means watching it, or not drinking it. That's just what a night out costs you right now.</p>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="bg-panel border border-white/10 rounded-2xl p-7">
+          <h3 class="font-display font-semibold text-lg text-gray-400">The Old Festival Nightmare</h3>
+          <ul class="mt-5 space-y-4 text-sm text-gray-400">
+            <li class="flex gap-3"><span class="text-gray-600">✕</span> Babysitting a lukewarm plastic cup instead of dancing</li>
+            <li class="flex gap-3"><span class="text-gray-600">✕</span> Never fully sure a drink you set down is still just a drink</li>
+            <li class="flex gap-3"><span class="text-gray-600">✕</span> A bulky water bottle bouncing around in your bag</li>
+            <li class="flex gap-3"><span class="text-gray-600">✕</span> Loose pockets that pickpockets in a crowd know to check first</li>
+          </ul>
         </div>
-        <div class="problem-card reveal">
-          <span class="num">02 / CLUTTER</span>
-          <h3>The bottle you end up hating</h3>
-          <p>Warm, sticky, half-crushed in a bag, or lost somewhere near the stage. Carrying water for a 10-hour festival day shouldn't be its own chore.</p>
-        </div>
-        <div class="problem-card reveal">
-          <span class="num">03 / WASTE</span>
-          <h3>The pile at the end of the night</h3>
-          <p>One festival weekend, one person, easily a dozen single-use cups and bottles. Multiply that by the crowd and it's a mountain by Sunday.</p>
+        <div class="bg-panel border border-acid/30 rounded-2xl p-7 shadow-glow-acid">
+          <h3 class="font-display font-semibold text-lg text-acid">The Nitevault Standard</h3>
+          <ul class="mt-5 space-y-4 text-sm text-gray-200">
+            <li class="flex gap-3"><span class="text-acid">✓</span> A hermetically sealed clamp holding up to 2 bar</li>
+            <li class="flex gap-3"><span class="text-acid">✓</span> A tamper-evident sip lock, so any breach shows</li>
+            <li class="flex gap-3"><span class="text-acid">✓</span> A concealed anti-theft pocket resting against your torso</li>
+            <li class="flex gap-3"><span class="text-acid">✓</span> Lightweight crossbody comfort built for a full set, not just an hour</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================== HOW IT WORKS ============================== -->
-  <section class="section" id="how-it-works">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">How It Works</span>
-        <h2>Three steps, zero babysitting.</h2>
+  <section id="how-it-works" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">How It Works</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Three steps, zero babysitting.</h2>
       </div>
-      <div class="steps">
-        <div class="step reveal">
-          <div class="step-index">01</div>
-          <h3>Fill &amp; Lock</h3>
-          <p>Drop it under the tap at the 50mm base clamp, seal it shut, and the straw collar locks the sip path closed.</p>
+
+      <div class="mt-12 grid md:grid-cols-3 gap-10 relative">
+        <div class="hidden md:block absolute top-6 left-[10%] right-[10%] h-px bg-gradient-to-r from-acid to-cyber opacity-40"></div>
+
+        <div class="relative">
+          <div class="w-12 h-12 rounded-full bg-panel border border-white/15 flex items-center justify-center font-mono text-acid relative z-10">01</div>
+          <h3 class="mt-5 font-display font-semibold text-lg">Clamp &amp; Fill</h3>
+          <p class="mt-2 text-sm text-gray-400 max-w-xs">The 50mm zero-tool, wide-mouth clamp accepts ice, water, or a carbonated mixed drink without a fight.</p>
         </div>
-        <div class="step reveal">
-          <div class="step-index">02</div>
-          <h3>Wear &amp; Dance</h3>
-          <p>Crossbody or waist belt, your call. Your phone sits in the hidden, inward-facing pocket against your body.</p>
+        <div class="relative">
+          <div class="w-12 h-12 rounded-full bg-panel border border-white/15 flex items-center justify-center font-mono text-cyber relative z-10">02</div>
+          <h3 class="mt-5 font-display font-semibold text-lg">Lock the Sip Collar</h3>
+          <p class="mt-2 text-sm text-gray-400 max-w-xs">A mechanical seal protects the liquid path from bar to mouth, locked and sealed until you open it yourself.</p>
         </div>
-        <div class="step reveal">
-          <div class="step-index">03</div>
-          <h3>Refill &amp; Renew</h3>
-          <p>The compostable bio-film bladder handles carbonated drinks fine, and you refill it as many times as the night needs.</p>
+        <div class="relative">
+          <div class="w-12 h-12 rounded-full bg-panel border border-white/15 flex items-center justify-center font-mono text-acid relative z-10">03</div>
+          <h3 class="mt-5 font-display font-semibold text-lg">Wear, Sip &amp; Toss</h3>
+          <p class="mt-2 text-sm text-gray-400 max-w-xs">Crossbody or waist pack, your call. Swap or toss the bio-film pouch between refills without a second thought.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== SPEC GRID ============================== -->
+  <section id="specs" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-acid uppercase">Technical Deep-Dive</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Built, not just branded.</h2>
+        <p class="mt-3 text-gray-400">The engineering spec sits under every feature, for anyone who wants to see the receipts.</p>
+      </div>
+
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">600D JACQUARD HOLSTER + 2MM NEOPRENE BARRIER</div>
+          <h3 class="mt-3 font-display font-semibold">Cold Drinks, Dry Phone</h3>
+          <p class="mt-2 text-sm text-gray-400">Keeps drinks cold and eliminates condensation soaking into your phone.</p>
+        </div>
+        <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">MICRO-PORE CO2 PRESSURE VALVE, 0.05&ndash;0.10 BAR</div>
+          <h3 class="mt-3 font-display font-semibold">Ready for Bubbles</h3>
+          <p class="mt-2 text-sm text-gray-400">Handles carbonated drinks without expanding, leaking, or going flat.</p>
+        </div>
+        <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">INWARD-FACING ANTI-THEFT PHONE SLEEVE</div>
+          <h3 class="mt-3 font-display font-semibold">Invisible to Pickpockets</h3>
+          <p class="mt-2 text-sm text-gray-400">Your phone rests snug against your ribs, not hanging off you in a crowd.</p>
+        </div>
+        <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">38MM CAM-BUCKLE WEBBING, 680&ndash;1450MM</div>
+          <h3 class="mt-3 font-display font-semibold">One Strap, Two Ways to Wear</h3>
+          <p class="mt-2 text-sm text-gray-400">Converts instantly from a chest sling to a waist belt, fitted to how you move.</p>
+        </div>
+        <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">6061 AEROSPACE-GRADE ALUMINUM HARDWARE</div>
+          <h3 class="mt-3 font-display font-semibold">Built to Move With You</h3>
+          <p class="mt-2 text-sm text-gray-400">Carabiners and D-rings rated to 45kg, so it never snaps mid-drop.</p>
+        </div>
+        <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">COMPOSTABLE BIO-FILM BLADDER INSERT</div>
+          <h3 class="mt-3 font-display font-semibold">Zero Cup Waste, Zero Scrubbing</h3>
+          <p class="mt-2 text-sm text-gray-400">Designed to be compostable, so it's built for organic waste disposal, not a landfill.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================== FEATURE GRID ============================== -->
-  <section class="section section-obsidian" id="features">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Built, Not Just Branded</span>
-        <h2>Every feature earns its spot.</h2>
-        <p class="lede">Benefit first. The engineering spec is right underneath, for anyone who wants it.</p>
+  <!-- ============================== ECO-HYBRID DIFFERENCE ============================== -->
+  <section class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">Category Positioning</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">The eco-hybrid difference.</h2>
       </div>
-      <div class="feature-grid">
 
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M8 11V8a4 4 0 018 0v3" stroke="currentColor" stroke-width="1.7"/></svg></div>
-          <h3>Sealed From Bar to Mouth</h3>
-          <p style="color:var(--mist); font-size:.9rem;">A locked, sealed drink path, so tampering is tamper-evident by design, not just implied.</p>
-          <div class="feature-spec">SPEC: Locking straw collar, 45&deg; port, anti-tamper grip, target food-contact materials</div>
+      <div class="mt-10 grid md:grid-cols-3 gap-6">
+        <div class="bg-panel border border-white/10 rounded-2xl p-7">
+          <h3 class="font-display font-semibold text-gray-300">Why not a silicone cup cap?</h3>
+          <p class="mt-3 text-sm text-gray-400">It stops a straw going in, but it doesn't carry liquid, stop spills, or come with you once your hands are full.</p>
         </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3c2 3 4 5.5 4 8.5A4 4 0 018 11.5C8 8.5 10 6 12 3z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-          <h3>Ready for Bubbles</h3>
-          <p style="color:var(--mist); font-size:.9rem;">A pressure-relief valve means carbonated drinks stay fizzy without ever swelling or popping.</p>
-          <div class="feature-spec">SPEC: Micro-pore CO2 pressure-relief valve, 0.05–0.10 bar</div>
+        <div class="bg-panel border border-white/10 rounded-2xl p-7">
+          <h3 class="font-display font-semibold text-gray-300">Why not a hydration backpack?</h3>
+          <p class="mt-3 text-sm text-gray-400">Built for a trail, not a dancefloor. Bulky, hike-oriented, and with zero answer for drink-tampering security.</p>
         </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-          <h3>Lightning Refills at the Bar</h3>
-          <p style="color:var(--mist); font-size:.9rem;">A wide mouth means no fighting a narrow neck while a queue builds up behind you.</p>
-          <div class="feature-spec">SPEC: 50mm wide-mouth base clamp, tool-free, up to 2 bar hermetic seal</div>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3C8 6 5 9.5 5 13a7 7 0 0014 0c0-3.5-3-7-7-10z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg></div>
-          <h3>Zero Cup Waste, Zero Scrubbing</h3>
-          <p style="color:var(--mist); font-size:.9rem;">Refill and toss the pouch. No 3am sink scrubbing, no bottle graveyard in your bag.</p>
-          <div class="feature-spec">SPEC: Compostable bio-film pouch insert, designed for organic-waste disposal</div>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="2.4" stroke="currentColor" stroke-width="1.7"/><path d="M10 18h4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></div>
-          <h3>Pickpocket-Proof Essentials</h3>
-          <p style="color:var(--mist); font-size:.9rem;">Your phone rides inward-facing against your body, not hanging off you in a crowd.</p>
-          <div class="feature-spec">SPEC: Inward-facing 600D rear pocket, 2mm neoprene condensation barrier</div>
-        </div>
-
-        <div class="feature-card reveal">
-          <div class="feature-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 12h16M8 6l-4 6 4 6M16 6l4 6-4 6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-          <h3>Built to Move With You</h3>
-          <p style="color:var(--mist); font-size:.9rem;">Crossbody or waist belt, adjusted in seconds, fitted to how you actually move.</p>
-          <div class="feature-spec">SPEC: 38mm cam-buckle strap, 680–1450mm, 6061 aerospace-grade aluminum carabiners</div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== SUSTAINABILITY ============================== -->
-  <section class="section" id="sustainability">
-    <div class="container">
-      <div class="eco-wrap">
-        <div class="eco-panel reveal">
-          <span class="eyebrow">The Eco-Hybrid Model</span>
-          <h3>Hardware you keep for years. A pouch you don't.</h3>
-          <p>The straw collar, clamp, buckle, and carabiners are built to last, no yearly upgrade cycle. The only part you ever replace is the bio-film pouch insert, designed to be compostable rather than washed forever like a bottle. It's the part of "eco" that's actually easy to keep doing.</p>
-        </div>
-        <ul class="compare-list reveal">
-          <li>
-            <svg class="x-mark" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#6B7386" stroke-width="1.4"/><path d="M7 7l6 6M13 7l-6 6" stroke="#6B7386" stroke-width="1.4" stroke-linecap="round"/></svg>
-            <span><strong>Silicone cup covers</strong> stop tampering but don't hold, carry, or refill a drink at all.</span>
-          </li>
-          <li>
-            <svg class="x-mark" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#6B7386" stroke-width="1.4"/><path d="M7 7l6 6M13 7l-6 6" stroke="#6B7386" stroke-width="1.4" stroke-linecap="round"/></svg>
-            <span><strong>Bulky hydration packs</strong> solve carry but say nothing about drink safety or waste.</span>
-          </li>
-          <li>
-            <svg class="check-mark" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" stroke="#22C55E" stroke-width="1.4"/><path d="M6 10.5l2.5 2.5L14 7" stroke="#22C55E" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span><strong>Nitevault</strong> sits across both categories at once: sealed, wearable, and designed to leave less behind.</span>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================== FOUNDER NOTE ============================== -->
-  <section class="section section-obsidian" id="founder">
-    <div class="container">
-      <div class="founder-card reveal">
-        <div class="founder-avatar" aria-hidden="true">N</div>
-        <div>
-          <blockquote>"I built the first sketch of Nitevault after one too many festival weekends spent watching friends grip their cups all night instead of dancing. We wanted a night out where you refill, seal, and forget about it, not another gadget to think about."</blockquote>
-          <p class="attribution">FOUNDING NOTE, NITEVAULT</p>
+        <div class="bg-panel border border-acid/30 rounded-2xl p-7 shadow-glow-acid">
+          <h3 class="font-display font-semibold text-acid">Where Nitevault sits</h3>
+          <p class="mt-3 text-sm text-gray-200">Across both categories at once, technical nightlife gear with active drink defense built in, not bolted on.</p>
         </div>
       </div>
     </div>
   </section>
 
   <!-- ============================== FAQ ============================== -->
-  <section class="section" id="faq">
-    <div class="container">
-      <div class="section-head reveal">
-        <span class="eyebrow">Questions</span>
-        <h2>Before you reserve a spot.</h2>
+  <section id="faq" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-acid uppercase">Questions</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Before you reserve a spot.</h2>
       </div>
-      <div class="faq-list" id="faq-list">
-        <div class="faq-item" data-open="false">
-          <button class="faq-question" aria-expanded="false">
-            <span>When does Nitevault ship?</span>
-            <span class="plus" aria-hidden="true"></span>
+
+      <div class="mt-10 max-w-3xl space-y-3">
+        <div class="faq-item bg-panel border border-white/10 rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>When will Nitevault ship?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>We're targeting delivery ahead of next festival season. Founding members are manufactured and shipped first, in order of reservation.</p></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-gray-400">We're targeting the upcoming festival season. Everyone on the waitlist gets access to the earliest production batch, in order of reservation.</p></div></div>
         </div>
-        <div class="faq-item" data-open="false">
-          <button class="faq-question" aria-expanded="false">
-            <span>How much does it cost?</span>
-            <span class="plus" aria-hidden="true"></span>
-          </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>€49.99 as a founding-member reservation, well below the planned retail price once Nitevault is in full production.</p></div></div>
-        </div>
-        <div class="faq-item" data-open="false">
-          <button class="faq-question" aria-expanded="false">
+
+        <div class="faq-item bg-panel border border-white/10 rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Is it really tamper-evident?</span>
-            <span class="plus" aria-hidden="true"></span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>The straw collar and base clamp form a locked, sealed path from bar to mouth. Any attempt to breach it leaves a visible, mechanical sign. We're completing dedicated tamper-testing before making any stronger claim than that.</p></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-gray-400">Yes, in the sense that matters: it's engineered so the drinking port can't be accessed without breaking the mechanical lock, and that breach is visible.</p></div></div>
         </div>
-        <div class="faq-item" data-open="false">
-          <button class="faq-question" aria-expanded="false">
-            <span>What happens to the pouch insert?</span>
-            <span class="plus" aria-hidden="true"></span>
+
+        <div class="faq-item bg-panel border border-white/10 rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>Does it handle fizzy drinks and alcohol?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>The bio-film pouch is engineered to be compostable, designed to break down in organic-waste systems. You refill it as needed and replace it once it's worn out.</p></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-gray-400">Yes. The integrated micro-pore relief valve balances pressure, so carbonated drinks stay fizzy without ever swelling or popping.</p></div></div>
         </div>
-        <div class="faq-item" data-open="false">
-          <button class="faq-question" aria-expanded="false">
-            <span>Does it fit my phone?</span>
-            <span class="plus" aria-hidden="true"></span>
+
+        <div class="faq-item bg-panel border border-white/10 rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>How does the compostable pouch work?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
           </button>
-          <div class="faq-answer"><div class="faq-answer-inner"><p>Yes. The inward-facing rear pocket fits standard and Max/Plus-sized phones, with a neoprene layer between it and the drink side.</p></div></div>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-gray-400">It's durable enough for multi-day festival refills, and designed to be compostable in organic processing once you're done with it.</p></div></div>
+        </div>
+
+        <div class="faq-item bg-panel border border-white/10 rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>Does the phone pocket fit large devices?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-gray-400">Yes, it's engineered to hold Pro and Max-sized smartphones securely against your body, with a neoprene layer between it and the drink side.</p></div></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================== REPEATED CONVERSION / WAITLIST ============================== -->
-  <section class="section section-obsidian" id="waitlist">
-    <div class="container">
-      <div class="waitlist-card reveal">
-        <div class="section-head">
-          <span class="eyebrow">Founding Batch: 500 Spots</span>
-          <h2>Secure your Nitevault before the first batch fills.</h2>
-          <p class="lede" style="margin-left:auto;margin-right:auto;">€49.99 locks in founding-member pricing. Tell us what matters most to you, or skip straight to your email.</p>
+  <!-- ============================== FINAL WAITLIST ============================== -->
+  <section id="waitlist" class="py-16 sm:py-20 bg-obsidian border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-xl mx-auto text-center bg-panelraised border border-white/15 rounded-3xl p-8 sm:p-10 shadow-glow-cyber">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">Founding Batch, 500 Spots</span>
+        <h2 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Secure your Nitevault before the first batch fills.</h2>
+
+        <div class="mt-5 inline-flex flex-wrap items-baseline justify-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
+          <span class="text-acid text-2xl font-display font-bold">€49.99</span>
+          <span class="line-through text-gray-500 font-mono text-sm">€75.00</span>
+          <span class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
         </div>
 
-        <div class="pill-group" id="priority-pills" role="group" aria-label="What matters most to you">
-          <button type="button" class="pill" data-value="Drink Safety & Anti-Tamper" aria-pressed="false">Drink Safety &amp; Anti-Tamper</button>
-          <button type="button" class="pill" data-value="Less Festival Plastic Waste" aria-pressed="false">Less Festival Plastic Waste</button>
-          <button type="button" class="pill" data-value="Hands-Free Dancing Convenience" aria-pressed="false">Hands-Free Dancing Convenience</button>
-        </div>
+        <form id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
+          <input type="hidden" name="form-name" value="waitlist">
+          <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+          <input type="hidden" name="priority" id="priority-input-final" value="">
 
-        <div class="hero-form-wrap">
-          <form class="capture-form" id="waitlist-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-            <input type="hidden" name="form-name" value="waitlist">
-            <input type="hidden" name="priority" id="priority-input" value="">
-            <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-            <label for="waitlist-email" class="visually-hidden">Email address</label>
-            <input class="email-input" id="waitlist-email" type="email" name="email" placeholder="you@email.com" required autocomplete="email">
-            <button type="submit" class="btn btn-primary btn-block">Secure My €49.99 Early-Bird Spot</button>
-          </form>
-          <div class="form-success" id="waitlist-success" role="status" aria-live="polite">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" stroke="#22C55E" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            <span>You're on the list! Watch your inbox for founding batch updates.</span>
+          <div class="flex flex-wrap justify-center gap-2 mb-4" role="group" aria-label="What matters most to you" data-pill-group data-target="priority-input-final">
+            <button type="button" class="priority-pill border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink Tamper Protection" aria-pressed="false">Drink Tamper Protection</button>
+            <button type="button" class="priority-pill border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Less Plastic Waste" aria-pressed="false">Less Plastic Waste</button>
+            <button type="button" class="priority-pill border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Hands-Free Dancing" aria-pressed="false">Hands-Free Dancing</button>
           </div>
-          <p class="form-micro">No spam. 1-click unsubscribe. <strong>Limited to first 500 members.</strong></p>
+
+          <label for="final-email" class="visually-hidden">Email address</label>
+          <input id="final-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com"
+            class="w-full bg-panel border border-white/15 rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-cyber focus:outline-none">
+          <button type="submit" class="mt-3 w-full inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid transition">
+            Reserve My Early-Bird Spot
+          </button>
+        </form>
+
+        <div id="waitlist-success" role="status" aria-live="polite" class="hidden mt-6 items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm text-left">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#22C55E" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#22C55E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>You're on the list! Watch your inbox for founding batch updates.</span>
         </div>
+
+        <p class="mt-4 text-xs text-gray-500">No payment collected today. Instant reservation for the first production run.</p>
       </div>
     </div>
   </section>
@@ -767,12 +460,12 @@
 </main>
 
 <!-- ============================== FOOTER ============================== -->
-<footer class="site-footer">
-  <div class="container">
-    <span>&copy; 2026 Nitevault. Designed in Europe.</span>
-    <div class="footer-links">
-      <a href="mailto:hello@nitevault.com">hello@nitevault.com</a>
-      <span>We only use your email for founding-batch updates. No third-party sharing, unsubscribe anytime.</span>
+<footer class="py-10 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5 flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
+    <span>&copy; 2026 Nitevault.com. Designed for European Festivals.</span>
+    <div class="flex flex-wrap gap-4">
+      <a href="mailto:hello@nitevault.com" class="text-gray-400 hover:text-acid underline underline-offset-2">hello@nitevault.com</a>
+      <span>Concept-test page. No product has shipped yet, and no orders are being charged today.</span>
     </div>
   </div>
 </footer>
@@ -780,47 +473,6 @@
 <script>
 (function(){
   "use strict";
-
-  /* ---------- Sticky header shadow on scroll ---------- */
-  var header = document.getElementById('site-header');
-  var onScroll = function(){
-    if(window.scrollY > 8){ header.classList.add('is-scrolled'); }
-    else{ header.classList.remove('is-scrolled'); }
-  };
-  document.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  /* ---------- Reveal-on-scroll ---------- */
-  var revealEls = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(entry){
-        if(entry.isIntersecting){
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(function(el){ io.observe(el); });
-  } else {
-    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
-  }
-
-  /* ---------- Hero device tilt (desktop pointer only) ---------- */
-  var visual = document.querySelector('.hero-visual');
-  var device = document.getElementById('device');
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(visual && device && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion){
-    visual.addEventListener('mousemove', function(e){
-      var rect = visual.getBoundingClientRect();
-      var x = (e.clientX - rect.left) / rect.width - 0.5;
-      var y = (e.clientY - rect.top) / rect.height - 0.5;
-      device.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (y * -10) + 'deg)';
-    });
-    visual.addEventListener('mouseleave', function(){
-      device.style.transform = 'rotateY(0deg) rotateX(0deg)';
-    });
-  }
 
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item').forEach(function(item){
@@ -832,39 +484,49 @@
     });
   });
 
-  /* ---------- Segmentation pill selector (single-select) ---------- */
-  var pillGroup = document.getElementById('priority-pills');
-  var priorityInput = document.getElementById('priority-input');
-  if(pillGroup){
-    pillGroup.querySelectorAll('.pill').forEach(function(pill){
+  /* ---------- Priority pill selectors (single-select per group) ---------- */
+  document.querySelectorAll('[data-pill-group]').forEach(function(group){
+    var target = document.getElementById(group.getAttribute('data-target'));
+    group.querySelectorAll('.priority-pill').forEach(function(pill){
       pill.addEventListener('click', function(){
         var alreadyActive = pill.getAttribute('aria-pressed') === 'true';
-        pillGroup.querySelectorAll('.pill').forEach(function(p){ p.setAttribute('aria-pressed', 'false'); });
+        group.querySelectorAll('.priority-pill').forEach(function(p){ p.setAttribute('aria-pressed', 'false'); });
         if(!alreadyActive){
           pill.setAttribute('aria-pressed', 'true');
-          priorityInput.value = pill.getAttribute('data-value');
+          target.value = pill.getAttribute('data-value');
         } else {
-          priorityInput.value = '';
+          target.value = '';
         }
       });
+    });
+  });
+
+  /* ---------- Hero device tilt (desktop pointer only) ---------- */
+  var device = document.getElementById('device');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(device && window.matchMedia('(hover: hover) and (pointer: fine)').matches && !reduceMotion){
+    var stage = device.closest('.hero-stage');
+    stage.addEventListener('mousemove', function(e){
+      var rect = stage.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      device.style.transform = 'rotateY(' + (x * 10) + 'deg) rotateX(' + (y * -10) + 'deg)';
+    });
+    stage.addEventListener('mouseleave', function(){
+      device.style.transform = 'rotateY(0deg) rotateX(0deg)';
     });
   }
 
   /* ---------- Waitlist form submission ----------
-     Attempts a real Netlify Forms AJAX submit (works once deployed on Netlify).
-     Always resolves to the success state so the concept-test flow is never blocked
-     by network conditions in preview environments. See README for the real
-     Netlify Forms setup this depends on. */
+     Real Netlify Forms AJAX submit once deployed; always resolves to the
+     success state so the concept-test flow works in any preview too. */
   function encodeForm(form){
     var data = new FormData(form);
     var params = new URLSearchParams();
     data.forEach(function(value, key){ params.append(key, value); });
     return params.toString();
   }
-
-  function isValidEmail(value){
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-  }
+  function isValidEmail(value){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
 
   function wireForm(formId, successId){
     var form = document.getElementById(formId);
@@ -876,7 +538,7 @@
       var email = form.querySelector('input[type="email"]');
       if(!email || !isValidEmail(email.value)){
         email.focus();
-        email.style.borderColor = '#ef4444';
+        email.classList.add('border-red-500');
         return;
       }
 
@@ -889,12 +551,11 @@
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encodeForm(form)
-      }).catch(function(){
-        /* Swallow errors from non-Netlify environments (local preview, artifact
-           preview) so the concept-test UI still demonstrates the intended flow. */
-      }).finally(function(){
-        form.classList.add('is-hidden');
-        success.classList.add('is-visible');
+      }).catch(function(){ /* swallow: still show success in any preview context */ })
+      .finally(function(){
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        success.classList.add('flex');
         button.disabled = false;
         button.textContent = originalLabel;
       });
