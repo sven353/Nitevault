@@ -180,12 +180,23 @@
           <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
             <!-- Tab toggle -->
             <div class="flex gap-2 mb-4" role="tablist" aria-label="Product view">
-              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="true" data-view="bag">View The Holster Sling</button>
-              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="false" data-view="pouch">View The Core Pouch</button>
+              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="true" data-view="action">In Action</button>
+              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="false" data-view="bag">Holster Sling</button>
+              <button type="button" class="view-tab flex-1 rounded-full text-xs sm:text-sm font-mono font-medium px-3 py-2.5" role="tab" aria-selected="false" data-view="pouch">Core Pouch</button>
+            </div>
+
+            <!-- In Action panel -->
+            <div class="view-panel" data-active="true" data-panel="action">
+              <div class="bg-white rounded-2xl overflow-hidden aspect-square">
+                <img src="in-action.png" alt="A festival-goer drinking hands-free straight from a Nitevault pouch" class="w-full h-full object-cover" data-fallback="in-action.png">
+              </div>
+              <div class="mt-3 inline-flex items-center gap-2 bg-void/60 border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">
+                Sipped hands-free, mid-set, no cup in sight
+              </div>
             </div>
 
             <!-- Bag panel -->
-            <div class="view-panel" data-active="true" data-panel="bag">
+            <div class="view-panel" data-active="false" data-panel="bag">
               <div class="bg-white rounded-2xl overflow-hidden aspect-square">
                 <img src="bag-closed.png" alt="Nitevault holster bag, closed" class="w-full h-full object-cover" data-fallback="bag-closed.png">
               </div>
