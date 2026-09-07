@@ -85,11 +85,10 @@
     box-shadow:0 0 20px -4px rgba(16,185,129,.6);
   }
 
-  /* ---------- Founding Reservation Tier cards: subtle ring on whichever
-     tier is currently reflected in the waitlist card below ---------- */
-  .tier-card[data-selected="true"]{
-    box-shadow:0 0 0 2px #34D399, 0 0 30px -6px rgba(16,185,129,.5);
-  }
+  /* ---------- Founding Reservation Tier cards: The Crew Trio keeps the
+     only permanent green highlight (it's the "Most Popular" tier); other
+     cards don't pick up a green ring just because they're the currently
+     selected tier, so there's never more than one green box on screen. ---------- */
 
   /* ---------- Scarcity progress bar: an indeterminate neon shimmer rather than a
      specific fill percentage, since this concept-test page has no real reservation
@@ -286,8 +285,8 @@
           <h3 class="mt-2 font-display font-bold text-xl">Locked and sealed system</h3>
           <ul class="mt-5 space-y-3 text-sm text-gray-300">
             <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Mechanical liquid lockdown, bar to mouth</li>
-            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Leak-free twist-lock bite valve</li>
             <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Inward-facing phone protection</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Leak-free twist-lock bite valve</li>
             <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Compostable-format pouch, zero plastic guilt</li>
           </ul>
         </div>
@@ -641,7 +640,7 @@
           <ul class="mt-6 space-y-3 text-sm text-gray-300 flex-1">
             <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> Custom Serialized Anodized Hardware (01/25 laser-engraved)</li>
             <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> All 3 City Editions (Complete Tri-Pack)</li>
-            <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> Lifetime Pouch Supply (20 free refills every season)</li>
+            <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> 3 years Pouch Supply (20 free refills every season)</li>
             <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> Private Founder Advisory Channel &amp; VIP Event Access</li>
           </ul>
           <button type="button" class="tier-select-btn mt-8 w-full rounded-full py-3 text-sm font-semibold border border-slate-400/50 text-white hover:border-white hover:bg-white/5 transition" data-tier-id="patron">Apply for Patron Spot</button>
@@ -667,17 +666,6 @@
             <div class="scarcity-fill h-full rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
           </div>
           <p class="mt-2 text-[11px] font-mono text-gray-500">Founding Batch 01 &middot; 500 spots &middot; reservations open now</p>
-        </div>
-
-        <div class="mt-5 inline-flex flex-wrap items-baseline justify-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
-          <span id="price-current" class="text-3xl font-black text-emerald-400">€49.99</span>
-          <span id="price-strike" class="text-sm line-through text-slate-500 ml-2">€69.00</span>
-          <span id="price-label" class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
-        </div>
-
-        <div class="mt-3 flex flex-col items-center gap-2">
-          <p id="bundle-includes" class="text-slate-300 text-sm font-medium">Includes: 1&times; Nitevault Sling (your selected City Edition) &bull; 1&times; Modular Waist Belt &bull; 5&times; Compost-Ready Bio-Film Pouches &bull; Batch 01 Numbered Access</p>
-          <span id="savings-badge" class="inline-flex items-center gap-1 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Save 28% (Planned Retail €69.00)</span>
         </div>
 
         <form id="waitlist-form" name="founding-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
@@ -872,7 +860,7 @@
       strike: '',
       priceLabel: 'Strictly 25 Units',
       badge: 'Ultra Limited &middot; 25 Spots Worldwide',
-      bundle: 'Includes: Custom Serialized Anodized Hardware (01/25 laser-engraved) &bull; All 3 City Editions (Complete Tri-Pack) &bull; Lifetime Pouch Supply (20 free refills every season) &bull; Private Founder Advisory Channel &amp; VIP Event Access',
+      bundle: 'Includes: Custom Serialized Anodized Hardware (01/25 laser-engraved) &bull; All 3 City Editions (Complete Tri-Pack) &bull; 3 years Pouch Supply (20 free refills every season) &bull; Private Founder Advisory Channel &amp; VIP Event Access',
       showCityPicker: false,
       submitLabel: function(){ return 'Submit My Founding Patron Application'; }
     }
@@ -888,18 +876,6 @@
 
     document.getElementById('tier-summary-name').textContent = t.name;
     document.getElementById('tier-summary-price').textContent = t.price;
-    document.getElementById('price-current').textContent = t.price;
-
-    var strikeEl = document.getElementById('price-strike');
-    if(t.strike){
-      strikeEl.textContent = t.strike;
-      strikeEl.classList.remove('hidden');
-    } else {
-      strikeEl.classList.add('hidden');
-    }
-    document.getElementById('price-label').textContent = t.priceLabel;
-    document.getElementById('bundle-includes').innerHTML = t.bundle;
-    document.getElementById('savings-badge').innerHTML = t.badge;
     tierInput.value = t.name;
 
     var submitLabelEl = document.getElementById('submit-btn-label');
