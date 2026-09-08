@@ -138,11 +138,40 @@
 <!-- ============================== NAV ============================== -->
 <header class="sticky top-[33px] sm:top-[37px] z-50 bg-void/80 backdrop-blur border-b border-white/10">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
-    <a href="#top" class="flex items-center gap-2 font-display text-lg">
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M10 13v-2.5a6 6 0 0 1 12 0V13" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
-        <path d="M6.5 13h19l2 4.5V25a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2v-7.5l2-4.5Z" fill="#0B0D14" stroke="#34D399" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M11 17.5l5 6 5-6" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <a href="#top" class="group flex items-center gap-2.5 font-display text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md">
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-7 h-7 shrink-0 transition-transform group-hover:scale-105 duration-200"
+        aria-hidden="true"
+      >
+        <!-- Padlock Shackle -->
+        <path
+          d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14"
+          stroke="#F8FAFC"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        />
+        <!-- Outer Body Frame -->
+        <rect
+          x="6"
+          y="13"
+          width="20"
+          height="15"
+          rx="4"
+          stroke="#10B981"
+          stroke-width="2.5"
+          fill="#020617"
+        />
+        <!-- Inner "V" Vault Keyway Chevron -->
+        <path
+          d="M12 18L16 23L20 18"
+          stroke="#10B981"
+          stroke-width="2.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
       <span class="flex items-baseline">
         <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
@@ -731,11 +760,11 @@
 <!-- ============================== FOOTER ============================== -->
 <footer class="py-10 border-t border-white/10">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex items-center gap-2 mb-5">
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M10 13v-2.5a6 6 0 0 1 12 0V13" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
-        <path d="M6.5 13h19l2 4.5V25a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2v-7.5l2-4.5Z" fill="#0B0D14" stroke="#34D399" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M11 17.5l5 6 5-6" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="flex items-center gap-2 mb-5 text-slate-400">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" aria-hidden="true">
+        <path d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="6" y="13" width="20" height="15" rx="4" stroke="#10B981" stroke-width="2.5" fill="#020617"/>
+        <path d="M12 18L16 23L20 18" stroke="#10B981" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span class="flex items-baseline text-sm font-display">
         <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
