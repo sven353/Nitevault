@@ -85,11 +85,10 @@
     box-shadow:0 0 20px -4px rgba(16,185,129,.6);
   }
 
-  /* ---------- Founding Reservation Tier cards: subtle ring on whichever
-     tier is currently reflected in the waitlist card below ---------- */
-  .tier-card[data-selected="true"]{
-    box-shadow:0 0 0 2px #34D399, 0 0 30px -6px rgba(16,185,129,.5);
-  }
+  /* ---------- Founding Reservation Tier cards: The Crew Trio keeps the
+     only permanent green highlight (it's the "Most Popular" tier); other
+     cards don't pick up a green ring just because they're the currently
+     selected tier, so there's never more than one green box on screen. ---------- */
 
   /* ---------- Scarcity progress bar: an indeterminate neon shimmer rather than a
      specific fill percentage, since this concept-test page has no real reservation
@@ -129,21 +128,50 @@
 <!-- ============================== ANNOUNCEMENT TICKER ============================== -->
 <div class="sticky top-0 z-[60] bg-gradient-to-r from-acid to-cyber text-void font-mono text-xs sm:text-sm font-semibold overflow-hidden">
   <div class="ticker-track py-2 whitespace-nowrap">
-    <span class="px-8">⚡ FOUNDING BATCH RESERVATION: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-    <span class="px-8">⚡ FOUNDING BATCH RESERVATION: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-    <span class="px-8">⚡ FOUNDING BATCH RESERVATION: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-    <span class="px-8">⚡ FOUNDING BATCH RESERVATION: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
+    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
   </div>
 </div>
 
 <!-- ============================== NAV ============================== -->
 <header class="sticky top-[33px] sm:top-[37px] z-50 bg-void/80 backdrop-blur border-b border-white/10">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
-    <a href="#top" class="flex items-center gap-2 font-display text-lg">
-      <svg width="28" height="28" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M10 13v-2.5a6 6 0 0 1 12 0V13" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
-        <path d="M6.5 13h19l2 4.5V25a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2v-7.5l2-4.5Z" fill="#0B0D14" stroke="#34D399" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M11 17.5l5 6 5-6" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <a href="#top" class="group flex items-center gap-2.5 font-display text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md">
+      <svg
+        viewBox="0 0 32 32"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-7 h-7 shrink-0 transition-transform group-hover:scale-105 duration-200"
+        aria-hidden="true"
+      >
+        <!-- Padlock Shackle -->
+        <path
+          d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14"
+          stroke="#F8FAFC"
+          stroke-width="2.5"
+          stroke-linecap="round"
+        />
+        <!-- Outer Body Frame -->
+        <rect
+          x="6"
+          y="13"
+          width="20"
+          height="15"
+          rx="4"
+          stroke="#10B981"
+          stroke-width="2.5"
+          fill="#020617"
+        />
+        <!-- Inner "V" Vault Keyway Chevron -->
+        <path
+          d="M12 18L16 23L20 18"
+          stroke="#10B981"
+          stroke-width="2.25"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
       </svg>
       <span class="flex items-baseline">
         <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
@@ -225,11 +253,11 @@
         </div>
 
         <h1 class="font-display font-bold text-4xl sm:text-5xl leading-[1.1] tracking-tight">
-          It takes three seconds to ruin your night. Stop guarding an <span class="text-acid">open cup</span>.
+          Stop Babysitting Your <span class="text-acid">Cup</span>. Own the Festival Dancefloor.
         </h1>
 
         <p class="mt-5 text-gray-300 text-lg max-w-lg">
-          You came for the music, not to spend eight hours holding a sticky plastic cup with your palm over the top. Nitevault locks your drink from bar to mouth behind a sealed mechanical collar and a 2-bar hermetic clamp. Once it's shut, tampering leaves an unmistakable trace. Lock it down, hit the crowd, and dance <span class="text-cyber">hands-free</span>.
+          12-hour sets, crowded beach clubs, and massive open-air crowds demand hands-free freedom. Nitevault locks your drink tamper-proof behind a hermetic mechanical seal while shielding your phone from pickpockets and moisture, from first bass drop to <span class="text-cyber">sunrise</span>.
         </p>
 
         <div class="mt-6 inline-flex flex-wrap items-baseline gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
@@ -262,6 +290,37 @@
     </div>
   </section>
 
+  <!-- ============================== WHY EXISTING SOLUTIONS FAIL ============================== -->
+  <section id="comparison" class="py-16 sm:py-20 bg-slate-950 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">Head-to-Head</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">You Already Know Why You Don't Use "Drink Covers".</h2>
+        <p class="mt-4 text-gray-400">Drink-spiking prevention only works if you actually want to use it. Here is why the old hacks stay at home:</p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <span class="inline-flex self-start items-center bg-white/5 border border-slate-700 text-gray-400 text-[10px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Fail // High Friction</span>
+          <h3 class="mt-4 font-display font-bold text-lg text-gray-300">Fabric Cup Scrunchies &amp; Silicone Lids</h3>
+          <p class="mt-3 text-sm text-gray-400 flex-1">They look awkward, stretch out, get soaked in sticky alcohol, and slip off the moment someone bumps you in the crowd. Plus, they do nothing to stop spills or pickpockets.</p>
+        </div>
+
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <span class="inline-flex self-start items-center bg-white/5 border border-slate-700 text-gray-400 text-[10px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Fail // Zero Real-World Compliance</span>
+          <h3 class="mt-4 font-display font-bold text-lg text-gray-300">Chemical Test Strips &amp; Coasters</h3>
+          <p class="mt-3 text-sm text-gray-400 flex-1">Nobody tests their drink at 2 AM with wet hands under strobe lights. They don't prevent tampering, they only give you anxiety after the fact, and only test for a tiny fraction of substances.</p>
+        </div>
+
+        <div class="bg-panel border border-emerald-400/40 rounded-2xl p-8 flex flex-col shadow-glow-acid">
+          <span class="inline-flex self-start items-center bg-emerald-500/10 border border-emerald-400/40 text-emerald-300 text-[10px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">The Festival Standard</span>
+          <h3 class="mt-4 font-display font-bold text-lg">The Nitevault System</h3>
+          <p class="mt-3 text-sm text-gray-300 flex-1">One mechanical lock at the bar. Carried securely on your chest or waist. Zero awkward rituals, zero spills, zero chance of pills or powders getting in, and an isolated anti-theft pocket that keeps your phone dry and guarded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================== THE REALITY CHECK ============================== -->
   <section id="threat" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
     <div class="max-w-7xl mx-auto px-5">
@@ -273,22 +332,22 @@
       <div class="mt-10 grid md:grid-cols-2 gap-6">
         <div class="bg-panel border border-white/10 rounded-2xl p-8">
           <span class="font-mono text-xs tracking-widest text-gray-500 uppercase">The Open Cup Gamble</span>
-          <h3 class="mt-2 font-display font-bold text-xl text-gray-300">Business as usual</h3>
+          <h3 class="mt-2 font-display font-bold text-xl text-gray-300">Unsealed and unwatched</h3>
           <ul class="mt-5 space-y-3 text-sm text-gray-400">
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Unattended drinks on a crowded dancefloor</li>
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Constant distraction instead of dancing</li>
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Warm, watered-down, and spilled cocktails</li>
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> A mountain of single-use plastic by Sunday</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Drinks left unattended, open to drug spiking</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Constant phone-watching instead of dancing</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Bar queues just to refill</li>
+            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Warm, watered-down, or spilled cocktails</li>
           </ul>
         </div>
         <div class="bg-panel border border-acid/40 rounded-2xl p-8 shadow-glow-acid">
           <span class="font-mono text-xs tracking-widest text-acid uppercase">The Nitevault Standard</span>
           <h3 class="mt-2 font-display font-bold text-xl">Locked and sealed system</h3>
           <ul class="mt-5 space-y-3 text-sm text-gray-300">
-            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Mechanical liquid lockdown, bar to mouth</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Sealed bar-to-mouth, nothing gets in unnoticed</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Torso-shielded phone vault (guarded against pickpockets &amp; iced-drink sweat)</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> 5-second rapid bar pour (wide 50mm mouth fits draft taps, ice &amp; shakers with zero spills)</li>
             <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Leak-free twist-lock bite valve</li>
-            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Inward-facing phone protection</li>
-            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Compostable-format pouch, zero plastic guilt</li>
           </ul>
         </div>
       </div>
@@ -303,9 +362,10 @@
         <!-- Visual anchor: the core pouch -->
         <div class="flex flex-col items-center gap-3 shrink-0">
           <div class="max-w-[140px] md:max-w-[180px] h-auto bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-sm shadow-[0_0_30px_rgba(16,185,129,0.1)]">
-            <img src="pouch.png" alt="The Nitevault core pouch, sealed and ready to fill" class="w-full h-auto object-contain" data-fallback="pouch.png">
+            <img src="pouch-cutout.png" alt="The Nitevault core pouch, sealed and ready to fill" class="w-full h-auto object-contain" data-fallback="pouch-cutout.png">
           </div>
           <span class="text-[10px] tracking-widest text-emerald-400 font-bold uppercase">The Core Vault</span>
+          <p class="text-xs text-gray-400 text-center max-w-[160px]">One disposable pouch. Four systems built in.</p>
         </div>
 
         <!-- 4 core specs -->
@@ -336,6 +396,40 @@
     </div>
   </section>
 
+  <!-- ============================== PACKS FLAT UNTIL THE DROP ============================== -->
+  <section id="packable" class="py-16 sm:py-20 bg-slate-950 border-y border-slate-800">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div>
+          <span class="font-mono text-xs tracking-widest text-emerald-400 uppercase">Pre-Drinks &amp; Transit</span>
+          <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Zero Bulk on the Way In. Locks Down on the Dancefloor.</h2>
+          <p class="mt-4 text-gray-400">Heading to pre-drinks or taking the shuttle to the festival? Don't carry dead weight. When empty, Nitevault bio-pouches fold flat as a passport. Slide them into your pocket, jacket, or handbag. You only fill and lock them when you step onto the festival grounds.</p>
+          <div class="mt-6 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-mono rounded-full px-4 py-2">
+            Ultra-Packable: 15g pouch weight | 2mm flat-fold profile
+          </div>
+        </div>
+
+        <div class="flex justify-center">
+          <div class="relative w-full max-w-xs aspect-square rounded-3xl bg-panel border border-slate-800 flex flex-col items-center justify-center gap-4 p-8">
+            <div class="absolute -inset-4 bg-emerald-500/10 blur-2xl rounded-[2rem]" aria-hidden="true"></div>
+            <div class="relative flex items-center gap-3">
+              <div class="w-16 h-24 rounded-lg border border-slate-700 bg-slate-900 flex items-center justify-center">
+                <span class="text-[9px] font-mono text-slate-500 text-center leading-tight">FLAT<br>2mm</span>
+              </div>
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" class="text-emerald-400 shrink-0" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <div class="w-12 h-16 rounded-md border border-slate-700 bg-slate-900/60 flex items-center justify-center">
+                <span class="text-[9px] font-mono text-slate-500">Pocket</span>
+              </div>
+            </div>
+            <span class="relative font-mono text-[10px] tracking-widest text-emerald-400 uppercase">Folds Flat &amp; Slides In</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ============================== HOW IT WORKS ============================== -->
   <section id="how-it-works" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
     <div class="max-w-7xl mx-auto px-5">
@@ -358,22 +452,22 @@
           <div class="flex gap-4">
             <span class="shrink-0 w-9 h-9 rounded-full bg-acid/15 border border-acid/40 text-acid font-mono text-sm font-semibold flex items-center justify-center">01</span>
             <div>
-              <h3 class="font-display font-bold text-lg">Order &amp; Pour</h3>
-              <p class="mt-1.5 text-sm text-gray-400">Hand the pouch to the bartender. The 50mm mouth accepts standard ice cubes, draft beer, or cocktail pours without messy funnels.</p>
+              <h3 class="font-display font-bold text-lg">Order &amp; Direct Pour</h3>
+              <p class="mt-1.5 text-sm text-gray-400">Get your drink and fill it into the pouch in seconds. The wide 50mm opening accepts draft taps, cocktail pours, and standard festival ice cubes instantly, no messy funnels or extra bar steps needed.</p>
             </div>
           </div>
           <div class="flex gap-4">
             <span class="shrink-0 w-9 h-9 rounded-full bg-acid/15 border border-acid/40 text-acid font-mono text-sm font-semibold flex items-center justify-center">02</span>
             <div>
               <h3 class="font-display font-bold text-lg">Lock the Tamper-Evident Collar</h3>
-              <p class="mt-1.5 text-sm text-gray-400">Snap the 2-bar hermetic seal and top collar. The sip path is mechanically sealed from bar to mouth. Any tampering leaves an instant trace.</p>
+              <p class="mt-1.5 text-sm text-gray-400">Snap the 2-bar hermetic seal and top collar. The sip path is mechanically sealed from bar to mouth. Impossible to slip a pill or powder into your drink.</p>
             </div>
           </div>
           <div class="flex gap-4">
             <span class="shrink-0 w-9 h-9 rounded-full bg-acid/15 border border-acid/40 text-acid font-mono text-sm font-semibold flex items-center justify-center">03</span>
             <div>
-              <h3 class="font-display font-bold text-lg">Sling On &amp; Dance Hands-Free</h3>
-              <p class="mt-1.5 text-sm text-gray-400">Drop the sealed core into your holster sling. Sip on demand through the twist-lock bite valve while your phone rests safe against your torso.</p>
+              <h3 class="font-display font-bold text-lg">Cross-Sling &amp; Dance Hands-Free</h3>
+              <p class="mt-1.5 text-sm text-gray-400">Slip the sealed core into your chest sling or drop it into your handbag. Sip hands-free on demand via the twist-lock bite valve while your phone rests safe and bone-dry against your ribs.</p>
             </div>
           </div>
         </div>
@@ -449,8 +543,8 @@
 
       <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
-          <div class="font-mono text-xs text-gray-500 leading-relaxed">600D JACQUARD + 2MM NEOPRENE BARRIER</div>
-          <p class="mt-3 text-sm text-gray-300">Keeps drinks cold and insulates your smartphone from condensation.</p>
+          <div class="font-mono text-xs text-gray-500 leading-relaxed">600D JACQUARD &amp; 2MM NEOPRENE MOISTURE SHIELD</div>
+          <p class="mt-3 text-sm text-gray-300">Dual-zone barrier keeps iced drinks cold and keeps your smartphone 100% bone-dry: zero condensation sweat between chambers, guaranteed.</p>
         </div>
         <div class="bg-panel border border-white/10 rounded-2xl p-6 hover:border-white/25 transition">
           <div class="font-mono text-xs text-gray-500 leading-relaxed">MICRO-PORE CO2 PRESSURE VALVE, 0.05&ndash;0.10 BAR</div>
@@ -481,11 +575,17 @@
     <div class="max-w-7xl mx-auto px-5">
       <div class="max-w-2xl">
         <span class="font-mono text-xs tracking-widest text-acid uppercase">Sustainability &amp; Impact</span>
-        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Engineered for the Music. Built for the Planet.</h2>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Engineered for the Music.<br>Built for the Planet.</h2>
         <p class="mt-3 text-gray-400">The hardware is built to outlast the season. The pouch is built to disappear responsibly. Here's what that means in practice.</p>
       </div>
 
-      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="mt-10 bg-panel border border-acid/30 rounded-3xl p-8 sm:p-10 shadow-glow-acid text-center">
+        <span class="font-mono text-xs tracking-widest text-acid uppercase">The Circular Model</span>
+        <h3 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Hardware you keep forever. A pouch you don't.</h3>
+        <p class="mt-4 text-gray-300 max-w-2xl mx-auto">Keep the 600D jacquard holster for years. Refill and toss the compostable-format bio-film pouches into organic waste when you're done. No dishwashing at 3am.</p>
+      </div>
+
+      <div class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
         <div class="bg-panel border border-white/10 rounded-2xl p-6">
           <div class="text-2xl">🌱</div>
           <h3 class="mt-3 font-display font-semibold">Pending B Corp Status</h3>
@@ -493,7 +593,7 @@
         </div>
         <div class="bg-panel border border-white/10 rounded-2xl p-6">
           <div class="text-2xl">♻️</div>
-          <h3 class="mt-3 font-display font-semibold">12&times; Cup Displacement</h3>
+          <h3 class="mt-3 font-display font-semibold">8-12&times; Cup Displacement</h3>
           <p class="mt-2 text-sm text-gray-400">One Nitevault pouch insert replaces an average of 8 to 12 single-use polypropylene festival cups over a single weekend.</p>
         </div>
         <div class="bg-panel border border-white/10 rounded-2xl p-6">
@@ -506,12 +606,6 @@
           <h3 class="mt-3 font-display font-semibold">EU 10/2011 Food-Contact Safe</h3>
           <p class="mt-2 text-sm text-gray-400">BPA-free, PFAS-free, and phthalate-free by design, engineered to meet EU 10/2011 and FDA food-contact standards.</p>
         </div>
-      </div>
-
-      <div class="mt-8 bg-panel border border-acid/30 rounded-3xl p-8 sm:p-10 shadow-glow-acid max-w-3xl mx-auto text-center">
-        <span class="font-mono text-xs tracking-widest text-acid uppercase">The Circular Model</span>
-        <h3 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Hardware you keep forever. A pouch you don't.</h3>
-        <p class="mt-4 text-gray-300">Keep the 6061 aerospace-grade carabiners and the 600D jacquard holster for years. Refill and toss the compostable-format bio-film pouches into organic waste when you're done. No dishwashing at 3am.</p>
       </div>
     </div>
   </section>
@@ -531,6 +625,22 @@
             <span class="faq-plus text-acid text-xl leading-none">+</span>
           </button>
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">We're targeting the upcoming festival season. Everyone on the waitlist gets access to the earliest production batch, in order of reservation.</p></div></div>
+        </div>
+
+        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>Is this meant for everyday bar nights or casual clubs?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Nitevault is purpose-built for festival scale: multi-day open airs, beach clubs, marathon electronic events, and all-day outdoor stages. It solves the problems unique to these environments, surging crowds, aggressive pickpocket rings, dusty fields, expensive bar queues, and hours of continuous dancing without a table to rest your drink on.</p></div></div>
+        </div>
+
+        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>Why not just use a drink scrunchie or testing strip?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Because real people don't use them. Scrunchies get wet, look clunky, and fall off plastic festival cups. Test strips are impractical in the middle of a set. Nitevault removes open liquid entirely behind a tamper-evident mechanical clamp, making spiking physically impossible rather than something you test for later.</p></div></div>
         </div>
 
         <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
@@ -563,6 +673,22 @@
             <span class="faq-plus text-acid text-xl leading-none">+</span>
           </button>
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">It's durable enough for multi-day festival refills, and the film is formulated to target EN 13432 and ASTM D6400 industrial compostability standards once you're done with it. It's designed to be compostable, not landfill plastic in disguise.</p></div></div>
+        </div>
+
+        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>What if I switch drinks during the night? Do I need to rinse it?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Zero bathroom sink washing required. Nitevault bio-pouches pack flat as paper when empty. Keep 1&ndash;2 folded spares in your holster's slim side sleeve. When switching from cider to a cocktail, simply compost or stow your used pouch and hand a fresh one to the bartender. Clean pour, fresh taste, under 5 seconds.</p></div></div>
+        </div>
+
+        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+          <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
+            <span>Do I have to wear it as a waist belt / fanny pack?</span>
+            <span class="faq-plus text-acid text-xl leading-none">+</span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">No. The adjustable 38mm strap is designed primarily as a high cross-body chest sling, a streetwear festival fit. Alternatively, unhook the sealed drink pouch entirely: its hermetic 2-bar clamp ensures zero leakage, so you can slide it directly inside your own handbag, purse, or jacket pocket.</p></div></div>
         </div>
 
         <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
@@ -641,25 +767,17 @@
           <ul class="mt-6 space-y-3 text-sm text-gray-300 flex-1">
             <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> Custom Serialized Anodized Hardware (01/25 laser-engraved)</li>
             <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> All 3 City Editions (Complete Tri-Pack)</li>
-            <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> Lifetime Pouch Supply (20 free refills every season)</li>
+            <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> 3 years Pouch Supply (20 free refills every season)</li>
             <li class="flex items-start gap-2"><span class="text-slate-300 mt-0.5">✓</span> Private Founder Advisory Channel &amp; VIP Event Access</li>
           </ul>
           <button type="button" class="tier-select-btn mt-8 w-full rounded-full py-3 text-sm font-semibold border border-slate-400/50 text-white hover:border-white hover:bg-white/5 transition" data-tier-id="patron">Apply for Patron Spot</button>
         </div>
 
       </div>
-    </div>
-  </section>
 
-  <!-- ============================== FINAL WAITLIST ============================== -->
-  <section id="waitlist" class="py-16 sm:py-20">
-    <div class="max-w-7xl mx-auto px-5">
-      <div class="max-w-xl mx-auto text-center bg-panelraised border border-white/15 rounded-3xl p-8 sm:p-10 shadow-glow-cyber">
-        <span class="font-mono text-xs tracking-widest text-cyber uppercase">Founding Batch, 500 Spots</span>
-        <h2 class="mt-3 font-display font-bold text-2xl sm:text-3xl">Secure your Nitevault before the first batch fills.</h2>
-
-        <p class="mt-4 inline-flex flex-wrap items-center justify-center gap-1.5 bg-panel border border-white/15 rounded-full px-4 py-1.5 text-xs font-mono text-emerald-300">
-          Reserving: <span id="tier-summary-name">Solo Backer</span> &middot; <span id="tier-summary-price">€49.99</span>
+      <div id="waitlist" class="mt-14 max-w-xl mx-auto text-center border-t border-white/10 pt-10">
+        <p class="inline-flex flex-wrap items-center justify-center gap-1.5 bg-panel border border-white/15 rounded-full px-4 py-1.5 text-xs font-mono text-emerald-300">
+          Reserving: <span id="tier-summary-name">Solo Backer</span> &middot; <span id="tier-summary-price">€49.99</span><span id="tier-summary-suffix"></span>
         </p>
 
         <div class="mt-5 max-w-xs mx-auto">
@@ -669,25 +787,14 @@
           <p class="mt-2 text-[11px] font-mono text-gray-500">Founding Batch 01 &middot; 500 spots &middot; reservations open now</p>
         </div>
 
-        <div class="mt-5 inline-flex flex-wrap items-baseline justify-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4">
-          <span id="price-current" class="text-3xl font-black text-emerald-400">€49.99</span>
-          <span id="price-strike" class="text-sm line-through text-slate-500 ml-2">€69.00</span>
-          <span id="price-label" class="text-gray-400 text-xs font-mono">Founding Member Pricing</span>
-        </div>
-
-        <div class="mt-3 flex flex-col items-center gap-2">
-          <p id="bundle-includes" class="text-slate-300 text-sm font-medium">Includes: 1&times; Nitevault Sling (your selected City Edition) &bull; 1&times; Modular Waist Belt &bull; 5&times; Compost-Ready Bio-Film Pouches &bull; Batch 01 Numbered Access</p>
-          <span id="savings-badge" class="inline-flex items-center gap-1 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-[11px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Save 28% (Planned Retail €69.00)</span>
-        </div>
-
         <form id="waitlist-form" name="founding-waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-6" novalidate>
           <input type="hidden" name="form-name" value="founding-waitlist" />
           <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-          <input type="hidden" name="selected_tier" id="selected-tier-input" value="Solo Backer">
-          <input type="hidden" name="selected_city" id="selected-city-input" value="Barcelona">
+          <input type="hidden" name="tier" id="selected-tier-input" value="Solo Backer (€49.99)">
+          <input type="hidden" name="edition" id="selected-city-input" value="Barcelona">
           <div class="visually-hidden">
             <input type="checkbox" name="interests[]" value="Drink Tamper Protection" id="interest-tamper">
-            <input type="checkbox" name="interests[]" value="Less Single-Use Plastic" id="interest-plastic">
+            <input type="checkbox" name="interests[]" value="Drink, phone and more in a single bag" id="interest-plastic">
             <input type="checkbox" name="interests[]" value="Hands-Free Dancing" id="interest-hands-free">
           </div>
 
@@ -699,12 +806,14 @@
               <button type="button" class="edition-pill bg-white/5 border border-white/10 rounded-full px-4 py-2 text-xs font-mono text-gray-300 hover:border-white/30 transition" data-edition="Ibiza" aria-pressed="false">Ibiza</button>
             </div>
           </div>
-          <p id="all-editions-note" class="hidden text-xs text-emerald-300 font-mono mb-5">All 3 City Editions included, no need to pick one.</p>
+          <div id="edition-badge-wrap" class="hidden justify-center mb-5">
+            <span id="edition-badge" class="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-emerald-400/30 text-emerald-200 text-xs font-mono rounded-full px-4 py-2 text-center"></span>
+          </div>
 
           <p class="text-xs text-gray-500 font-mono mb-2">What matters most to you? (optional, select all that apply)</p>
           <div class="flex flex-wrap justify-center gap-2 mb-5" role="group" aria-label="What matters most to you">
             <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink Tamper Protection" data-interest-id="interest-tamper" aria-pressed="false">Drink Tamper Protection</button>
-            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Less Single-Use Plastic" data-interest-id="interest-plastic" aria-pressed="false">Less Single-Use Plastic</button>
+            <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Drink, phone and more in a single bag" data-interest-id="interest-plastic" aria-pressed="false">Drink, phone and more in a single bag</button>
             <button type="button" class="pill-choice border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono text-gray-300 hover:border-cyber transition" data-value="Hands-Free Dancing" data-interest-id="interest-hands-free" aria-pressed="false">Hands-Free Dancing</button>
           </div>
 
@@ -713,7 +822,7 @@
             class="w-full border border-white/20 bg-[#12151E] text-white rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 focus:outline-none transition">
           <p id="final-email-error" class="hidden mt-2 text-xs text-amber-400" role="alert">Enter a valid email to continue.</p>
           <button type="submit" class="mt-3 w-full inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid hover:scale-[1.02] active:scale-[0.99] transition">
-            <span id="submit-btn-label">Claim My €49.99 Early-Bird Spot</span>
+            <span id="submit-btn-label">Claim Solo Backer Spot (€49.99)</span>
           </button>
         </form>
 
@@ -732,20 +841,19 @@
 <!-- ============================== FOOTER ============================== -->
 <footer class="py-10 border-t border-white/10">
   <div class="max-w-7xl mx-auto px-5">
-    <div class="flex items-center gap-2 mb-5">
-      <svg width="22" height="22" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M10 13v-2.5a6 6 0 0 1 12 0V13" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round"/>
-        <path d="M6.5 13h19l2 4.5V25a2 2 0 0 1-2 2h-19a2 2 0 0 1-2-2v-7.5l2-4.5Z" fill="#0B0D14" stroke="#34D399" stroke-width="1.4" stroke-linejoin="round"/>
-        <path d="M11 17.5l5 6 5-6" stroke="#34D399" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+    <div class="flex items-center gap-2 mb-5 text-slate-400">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" aria-hidden="true">
+        <path d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="6" y="13" width="20" height="15" rx="4" stroke="#10B981" stroke-width="2.5" fill="#020617"/>
+        <path d="M12 18L16 23L20 18" stroke="#10B981" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span class="flex items-baseline text-sm font-display">
         <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
       </span>
     </div>
     <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
-      <span>&copy; 2026 Nitevault.com. Designed in Europe.</span>
+      <span>&copy; 2026 Nitevault.com. Designed in Barcelona with love.</span>
       <div class="flex flex-wrap gap-4">
-        <a href="mailto:hello@nitevault.com" class="text-gray-400 hover:text-acid underline underline-offset-2">hello@nitevault.com</a>
         <span>Concept-validation page. No product has shipped yet, and no orders are being charged today.</span>
       </div>
     </div>
@@ -854,7 +962,7 @@
       badge: 'Save 28% (Planned Retail €69.00)',
       bundle: 'Includes: 1&times; Nitevault Sling (your selected City Edition) &bull; 1&times; Modular Waist Belt &bull; 5&times; Compost-Ready Bio-Film Pouches &bull; Batch 01 Numbered Access',
       showCityPicker: true,
-      submitLabel: function(price){ return 'Claim My ' + price + ' Early-Bird Spot'; }
+      submitLabel: function(price){ return 'Claim Solo Backer Spot (' + price + ')'; }
     },
     crew: {
       name: 'The Crew Trio',
@@ -864,7 +972,9 @@
       badge: 'Save 28% (Planned Retail €207.00)',
       bundle: 'Includes: All 3 City Editions (Barcelona, Berlin, Ibiza) &bull; 3&times; Modular Belts &amp; Tactical Hardware &bull; 20&times; Compost-Ready Bio-Film Pouches (Full Season Cover) &bull; Priority Dispatch &amp; Free EU Shipping',
       showCityPicker: false,
-      submitLabel: function(price){ return 'Claim My ' + price + ' Early-Bird Spot'; }
+      editionBadgeText: '⚡ All 3 City Editions Included (Barcelona • Berlin • Ibiza)',
+      editionValue: 'All Three (Trio)',
+      submitLabel: function(price){ return 'Claim Crew Trio Spot (' + price + ')'; }
     },
     patron: {
       name: 'Founding Patron',
@@ -872,15 +982,19 @@
       strike: '',
       priceLabel: 'Strictly 25 Units',
       badge: 'Ultra Limited &middot; 25 Spots Worldwide',
-      bundle: 'Includes: Custom Serialized Anodized Hardware (01/25 laser-engraved) &bull; All 3 City Editions (Complete Tri-Pack) &bull; Lifetime Pouch Supply (20 free refills every season) &bull; Private Founder Advisory Channel &amp; VIP Event Access',
+      bundle: 'Includes: Custom Serialized Anodized Hardware (01/25 laser-engraved) &bull; All 3 City Editions (Complete Tri-Pack) &bull; 3 years Pouch Supply (20 free refills every season) &bull; Private Founder Advisory Channel &amp; VIP Event Access',
       showCityPicker: false,
-      submitLabel: function(){ return 'Submit My Founding Patron Application'; }
+      editionBadgeText: '✦ Custom Serialized Hardware + All 3 Editions + 3-Year Refills',
+      editionValue: 'Patron Bundle',
+      badgeSuffix: ' (Limited to 25)',
+      submitLabel: function(price){ return 'Apply for Patron Spot (' + price + ')'; }
     }
   };
 
   var tierInput = document.getElementById('selected-tier-input');
   var cityPickerWrap = document.getElementById('city-picker-wrap');
-  var allEditionsNote = document.getElementById('all-editions-note');
+  var editionBadgeWrap = document.getElementById('edition-badge-wrap');
+  var editionBadgeEl = document.getElementById('edition-badge');
 
   function setTier(tierId){
     var t = TIERS[tierId];
@@ -888,31 +1002,23 @@
 
     document.getElementById('tier-summary-name').textContent = t.name;
     document.getElementById('tier-summary-price').textContent = t.price;
-    document.getElementById('price-current').textContent = t.price;
-
-    var strikeEl = document.getElementById('price-strike');
-    if(t.strike){
-      strikeEl.textContent = t.strike;
-      strikeEl.classList.remove('hidden');
-    } else {
-      strikeEl.classList.add('hidden');
-    }
-    document.getElementById('price-label').textContent = t.priceLabel;
-    document.getElementById('bundle-includes').innerHTML = t.bundle;
-    document.getElementById('savings-badge').innerHTML = t.badge;
-    tierInput.value = t.name;
+    document.getElementById('tier-summary-suffix').textContent = t.badgeSuffix || '';
+    tierInput.value = t.name + ' (' + t.price + ')';
 
     var submitLabelEl = document.getElementById('submit-btn-label');
     if(submitLabelEl) submitLabelEl.textContent = t.submitLabel(t.price);
 
     if(t.showCityPicker){
       cityPickerWrap.classList.remove('hidden');
-      allEditionsNote.classList.add('hidden');
+      editionBadgeWrap.classList.add('hidden');
+      editionBadgeWrap.classList.remove('flex');
       setEdition(lastSelectedCity || 'Barcelona');
     } else {
       cityPickerWrap.classList.add('hidden');
-      allEditionsNote.classList.remove('hidden');
-      cityInput.value = 'All 3 Editions';
+      editionBadgeWrap.classList.remove('hidden');
+      editionBadgeWrap.classList.add('flex');
+      editionBadgeEl.textContent = t.editionBadgeText;
+      cityInput.value = t.editionValue;
     }
 
     document.querySelectorAll('.tier-card').forEach(function(card){
@@ -924,6 +1030,8 @@
     btn.addEventListener('click', function(){
       setTier(btn.getAttribute('data-tier-id'));
       document.getElementById('waitlist').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      var emailInput = document.getElementById('final-email');
+      if(emailInput) emailInput.focus({ preventScroll: true });
     });
   });
 
