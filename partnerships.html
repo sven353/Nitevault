@@ -310,20 +310,9 @@
               <input id="partner-name" type="text" name="full_name" required autocomplete="name" placeholder="Jane Doe" class="b2b-field">
             </div>
             <div>
-              <label for="partner-title" class="block text-xs font-mono text-gray-400 mb-2">Job Title</label>
-              <input id="partner-title" type="text" name="job_title" required autocomplete="organization-title" placeholder="Head of Sponsorship" class="b2b-field">
-            </div>
-          </div>
-
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
               <label for="partner-email" class="block text-xs font-mono text-gray-400 mb-2">Work Email</label>
               <input id="partner-email" type="email" name="work_email" required autocomplete="email" placeholder="jane@festival.com" class="b2b-field">
               <p id="partner-email-error" class="hidden mt-1.5 text-xs text-amber-400" role="alert">Enter a valid work email to continue.</p>
-            </div>
-            <div>
-              <label for="partner-phone" class="block text-xs font-mono text-gray-400 mb-2">Phone Number</label>
-              <input id="partner-phone" type="tel" name="phone" required autocomplete="tel" placeholder="+1 555 000 0000" class="b2b-field">
             </div>
           </div>
 
@@ -346,10 +335,12 @@
             <div>
               <label for="partner-volume" class="block text-xs font-mono text-gray-400 mb-2">Expected Event Scale / Pouch Volume</label>
               <select id="partner-volume" name="expected_volume" required class="b2b-field">
-                <option value="" disabled selected>Select one&hellip;</option>
-                <option value="1,000 - 5,000 units">1,000 &ndash; 5,000 units</option>
-                <option value="5,000 - 20,000 units">5,000 &ndash; 20,000 units</option>
-                <option value="20,000 - 100,000+ units (Multi-day Major)">20,000 &ndash; 100,000+ units (Multi-day Major)</option>
+                <option value="100-250">100 &ndash; 250 units</option>
+                <option value="250-500">250 &ndash; 500 units</option>
+                <option value="500-1000">500 &ndash; 1,000 units</option>
+                <option value="1000-2500" selected>1,000 &ndash; 2,500 units</option>
+                <option value="2500-5000">2,500 &ndash; 5,000 units</option>
+                <option value="5000+">5,000+ units (Major Activation)</option>
               </select>
             </div>
           </div>
