@@ -111,12 +111,6 @@
   .carousel-dot:hover{ background:#64748b; }
   .carousel-dot[aria-selected="true"]{ width:20px; background:#34d399; }
 
-  /* ---------- Founding Patron Trilogy card: 3-image auto cross-fade (3.5s), pauses on hover ---------- */
-  .patron-carousel-img{ opacity:0; transition:opacity .5s ease; }
-  .patron-carousel-img[data-active="true"]{ opacity:1; }
-  .patron-carousel-dot{ display:inline-block; width:5px; height:5px; border-radius:9999px; background:#475569; transition:background .2s ease; }
-  .patron-carousel-dot[data-active="true"]{ background:#34d399; }
-
   /* ---------- City edition cards: In Action / Unpacking toggle (one independent instance per card) ---------- */
   .lineup-view-tab{ transition:all .18s ease; }
   .lineup-view-tab[aria-selected="true"]{ background:#10B981; color:#052716; }
@@ -807,16 +801,25 @@
 
         <!-- Tier 3: Founding Patron Trilogy -->
         <div class="tier-card bg-[#0B0D14] border border-slate-400/30 rounded-2xl p-8 flex flex-col shadow-[0_0_40px_-10px_rgba(148,163,184,0.15)]" data-tier-id="patron">
-          <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-slate-700" id="patron-carousel">
-            <img src="berlin-unpacking.png" alt="Unboxing the Berlin Edition Nitevault kit" class="patron-carousel-img absolute inset-0 w-full h-full object-cover" data-slide="0" data-active="true" data-fallback="berlin-unpacking.png">
-            <img src="ibiza-unpacking.png" alt="Unboxing the Ibiza Edition Nitevault kit" class="patron-carousel-img absolute inset-0 w-full h-full object-cover" data-slide="1" data-active="false" data-fallback="ibiza-unpacking.png">
-            <img src="barcelona-unpacking.png" alt="Unboxing the Barcelona Edition Nitevault kit" class="patron-carousel-img absolute inset-0 w-full h-full object-cover" data-slide="2" data-active="false" data-fallback="barcelona-unpacking.png">
-            <div class="absolute bottom-2.5 right-2.5 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md border border-white/10 rounded-full pl-3 pr-2.5 py-1.5 text-[10px] font-mono text-slate-300">
-              <span>Showing All 3 Editions</span>
-              <span class="flex items-center gap-1">
-                <span class="patron-carousel-dot" data-dot="0" data-active="true"></span>
-                <span class="patron-carousel-dot" data-dot="1" data-active="false"></span>
-                <span class="patron-carousel-dot" data-dot="2" data-active="false"></span>
+          <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-slate-700 bg-slate-950 group" id="patron-carousel">
+
+            <!-- Image stage: one img, src/alt swapped on navigation with an opacity crossfade -->
+            <img id="patron-carousel-img" src="barcelona-unpacking.png" alt="Unboxing Barcelona Edition Holster and 5 bio-pouches" class="w-full h-full object-cover object-center transition-opacity duration-300 ease-out" loading="lazy" data-fallback="barcelona-unpacking.png">
+
+            <button type="button" id="patron-prev-btn" aria-label="Previous Edition" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 md:w-8 md:h-8 rounded-full bg-slate-950/75 hover:bg-slate-900 active:scale-95 text-slate-200 hover:text-white border border-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-lg opacity-90 group-hover:opacity-100">
+              <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+            </button>
+
+            <button type="button" id="patron-next-btn" aria-label="Next Edition" class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-7 h-7 md:w-8 md:h-8 rounded-full bg-slate-950/75 hover:bg-slate-900 active:scale-95 text-slate-200 hover:text-white border border-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-lg opacity-90 group-hover:opacity-100">
+              <svg class="w-3.5 h-3.5 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+            </button>
+
+            <div class="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md border border-white/10 rounded-full pl-3 pr-2.5 py-1.5 text-[10px] font-mono text-slate-300">
+              <span id="patron-carousel-label">Showing 1 of 3: Barcelona</span>
+              <span class="flex items-center gap-1 ml-1" id="patron-carousel-dots">
+                <button type="button" class="patron-dot h-1.5 rounded-full bg-emerald-400 w-3 transition-all" data-index="0" aria-label="Slide 1: Barcelona"></button>
+                <button type="button" class="patron-dot h-1.5 rounded-full bg-slate-600 hover:bg-slate-400 w-1.5 transition-all" data-index="1" aria-label="Slide 2: Berlin"></button>
+                <button type="button" class="patron-dot h-1.5 rounded-full bg-slate-600 hover:bg-slate-400 w-1.5 transition-all" data-index="2" aria-label="Slide 3: Ibiza"></button>
               </span>
             </div>
           </div>
@@ -1068,32 +1071,86 @@
     }, { passive: true });
   })();
 
-  /* ---------- Founding Patron Trilogy card: auto-rotate the 3 city
-     unpacking photos every 3.5s, pausing on hover / when tab is hidden ---------- */
+  /* ---------- Founding Patron Trilogy card: manual arrow/dot edition switcher,
+     with a soft 4s auto-rotate that stops for good once the user takes control ---------- */
   (function(){
     var root = document.getElementById('patron-carousel');
     if(!root) return;
-    var imgs = root.querySelectorAll('.patron-carousel-img');
-    var dots = root.querySelectorAll('.patron-carousel-dot');
-    var idx = 0;
+    var patronSlides = [
+      { edition: 'Barcelona', image: 'barcelona-unpacking.png', alt: 'Unboxing Barcelona Edition Holster and 5 bio-pouches' },
+      { edition: 'Berlin', image: 'berlin-unpacking.png', alt: 'Unboxing Berlin Edition Holster and 5 bio-pouches' },
+      { edition: 'Ibiza', image: 'ibiza-unpacking.png', alt: 'Unboxing Ibiza Edition Holster and 5 bio-pouches' }
+    ];
+    var imgEl = document.getElementById('patron-carousel-img');
+    var labelEl = document.getElementById('patron-carousel-label');
+    var dots = root.querySelectorAll('.patron-dot');
+    var prevBtn = document.getElementById('patron-prev-btn');
+    var nextBtn = document.getElementById('patron-next-btn');
+    var current = 0;
     var timer = null;
     var hovered = false;
+    var autoStopped = false;
+    var fadeTimeout = null;
+
     function render(){
-      imgs.forEach(function(img){ img.setAttribute('data-active', String(Number(img.getAttribute('data-slide')) === idx)); });
-      dots.forEach(function(dot){ dot.setAttribute('data-active', String(Number(dot.getAttribute('data-dot')) === idx)); });
+      var slide = patronSlides[current];
+      imgEl.classList.add('opacity-0');
+      clearTimeout(fadeTimeout);
+      fadeTimeout = setTimeout(function(){
+        imgEl.setAttribute('src', slide.image);
+        imgEl.setAttribute('alt', slide.alt);
+        imgEl.setAttribute('data-fallback', slide.image);
+        imgEl.classList.remove('opacity-0');
+      }, 300);
+      labelEl.textContent = 'Showing ' + (current + 1) + ' of ' + patronSlides.length + ': ' + slide.edition;
+      dots.forEach(function(dot){
+        var isActive = Number(dot.getAttribute('data-index')) === current;
+        dot.classList.toggle('bg-emerald-400', isActive);
+        dot.classList.toggle('w-3', isActive);
+        dot.classList.toggle('bg-slate-600', !isActive);
+        dot.classList.toggle('w-1.5', !isActive);
+      });
     }
     function schedule(){
       clearTimeout(timer);
-      if(hovered || document.visibilityState === 'hidden') return;
-      timer = setTimeout(function(){ idx = (idx + 1) % imgs.length; render(); schedule(); }, 3500);
+      if(hovered || autoStopped || document.visibilityState === 'hidden') return;
+      timer = setTimeout(function(){ current = (current + 1) % patronSlides.length; render(); schedule(); }, 4000);
     }
+    function goTo(index){
+      var n = patronSlides.length;
+      current = ((index % n) + n) % n;
+      render();
+    }
+
     render();
     schedule();
+
+    prevBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      autoStopped = true;
+      clearTimeout(timer);
+      goTo(current - 1);
+    });
+    nextBtn.addEventListener('click', function(e){
+      e.stopPropagation();
+      autoStopped = true;
+      clearTimeout(timer);
+      goTo(current + 1);
+    });
+    dots.forEach(function(dot){
+      dot.addEventListener('click', function(e){
+        e.stopPropagation();
+        autoStopped = true;
+        clearTimeout(timer);
+        goTo(Number(dot.getAttribute('data-index')));
+      });
+    });
+
     root.addEventListener('mouseenter', function(){ hovered = true; clearTimeout(timer); });
     root.addEventListener('mouseleave', function(){ hovered = false; schedule(); });
     document.addEventListener('visibilitychange', function(){
       if(document.visibilityState === 'hidden'){ clearTimeout(timer); }
-      else if(!hovered){ schedule(); }
+      else if(!hovered && !autoStopped){ schedule(); }
     });
   })();
 
