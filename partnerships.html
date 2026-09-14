@@ -50,14 +50,14 @@
 
   section[id]{ scroll-margin-top:88px; }
 
-  /* ---------- Co-branded showcase carousel (auto-advancing, 5s), same pattern as
-     the Founding Patron Trilogy carousel on index.html: one img, src swapped on
-     navigation with an opacity crossfade, dots + arrows, autoplay stops for good
-     once the user manually navigates ---------- */
+  /* ---------- Co-branded showcase carousel (auto-advancing, 4.5s loop, 5 slides):
+     one img, src swapped on navigation with an opacity crossfade, arrows + dots +
+     a bottom progress line, autoplay stops for good once the user takes manual
+     control (arrow click or swipe); hover pauses/resumes independently ---------- */
   #partner-carousel-img{ transition:opacity .3s ease-out; }
-  .partner-dot{ height:6px; width:6px; border-radius:9999px; background:#334155; border:none; padding:0; cursor:pointer; transition:all .2s ease; }
-  .partner-dot:hover{ background:#64748b; }
-  .partner-dot[aria-selected="true"]{ width:20px; background:#34d399; }
+  #partner-carousel-progress{ transition:width 4500ms linear; }
+  #partner-carousel-progress.no-transition{ transition:none; }
+  .partner-dot{ border:none; padding:0; cursor:pointer; }
 
   /* ---------- Image placeholder fallback (shown if an asset filename hasn't been added yet) ---------- */
   .img-fallback{
@@ -122,7 +122,7 @@
           <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
             <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group" id="partner-carousel">
 
-              <img id="partner-carousel-img" src="tanqueray.png" alt="Tanqueray London Dry Gin co-branded Nitevault pouch" class="w-full h-full object-cover object-center" loading="lazy" data-fallback="tanqueray.png">
+              <img id="partner-carousel-img" src="ushuaia.png" alt="Ushuaïa Ibiza Beach Club co-branded Nitevault pouch at golden hour, logo placement on the vessel" class="w-full h-full object-cover object-center" loading="lazy" data-fallback="ushuaia.png">
 
               <button type="button" id="partner-prev-btn" aria-label="Previous co-branding example" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/75 hover:bg-slate-900 active:scale-95 text-slate-200 hover:text-white border border-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-lg opacity-90 group-hover:opacity-100">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
@@ -132,14 +132,20 @@
               </button>
 
               <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-xl text-xs font-mono text-slate-200 whitespace-nowrap" id="partner-carousel-label">
-                Tanqueray Festival Edition
+                Ushuaïa Ibiza Club Activation
+              </div>
+
+              <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 z-10">
+                <div id="partner-carousel-progress" class="h-full bg-emerald-400 w-0"></div>
               </div>
             </div>
 
             <div class="flex items-center justify-center gap-1.5 mt-3" id="partner-carousel-dots" role="tablist" aria-label="Co-branding examples">
-              <button type="button" class="partner-dot" data-index="0" role="tab" aria-selected="true" aria-label="Tanqueray London Dry Gin"></button>
-              <button type="button" class="partner-dot" data-index="1" role="tab" aria-selected="false" aria-label="Bacardi Rum"></button>
-              <button type="button" class="partner-dot" data-index="2" role="tab" aria-selected="false" aria-label="Ushuaïa Ibiza Beach Club"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-emerald-400 w-5 transition-all" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1: Ushuaïa Ibiza Club Activation"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2: Bartender Pouring Activation"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3: Bacardi Brand Takeover"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="3" role="tab" aria-selected="false" aria-label="Slide 4: Tanqueray Gin Activation"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="4" role="tab" aria-selected="false" aria-label="Slide 5: Consumer Use &amp; Style"></button>
             </div>
           </div>
         </div>
@@ -415,20 +421,25 @@
     }
   });
 
-  /* ---------- Co-branded showcase carousel: single image, src swapped with an
-     opacity crossfade, dynamic caption pill, dot + arrow navigation, soft 5s
-     auto-rotate that stops for good once the user takes manual control
-     (same interaction pattern as the Patron Trilogy carousel on index.html) ---------- */
+  /* ---------- Co-branded showcase carousel: 5 slides, auto-advancing on a 4.5s
+     loop with an animated progress line, single image src swapped with an
+     opacity crossfade, dynamic caption pill, arrow + dot + swipe navigation.
+     Hover pauses/resumes autoplay; an arrow click or a swipe stops it for good
+     since the visitor has taken manual control. ---------- */
   (function(){
     var root = document.getElementById('partner-carousel');
     if(!root) return;
     var slides = [
-      { image: 'tanqueray.png', alt: 'Tanqueray London Dry Gin co-branded Nitevault pouch', label: 'Tanqueray Festival Edition' },
-      { image: 'bacardi.png', alt: 'Bacardi Rum co-branded Nitevault pouch', label: 'Bacardi Beach Club Takeover' },
-      { image: 'ushuaia.png', alt: 'Ushuaïa Ibiza Beach Club co-branded Nitevault pouch', label: 'Ushuaïa Ibiza Club Activation' }
+      { image: 'ushuaia.png', alt: 'Ushuaïa Ibiza Beach Club co-branded Nitevault pouch at golden hour, logo placement on the vessel', label: 'Ushuaïa Ibiza Club Activation' },
+      { image: 'bar-refill.png', alt: 'Bartender pouring a cocktail into a co-branded Nitevault pouch at the speed rail', label: 'Bartender Pouring Activation' },
+      { image: 'bacardi.png', alt: 'Bacardi Rum co-branded Nitevault pouch with volume fill lines', label: 'Bacardi Brand Takeover' },
+      { image: 'tanqueray.png', alt: 'Tanqueray London Dry Gin co-branded Nitevault pouch with a custom 50mm wide mouth', label: 'Tanqueray Gin Activation' },
+      { image: 'in-action.png', alt: 'Festival attendee sipping hands-free from a branded Nitevault pouch mid-set', label: 'Consumer Use & Style' }
     ];
+    var AUTOPLAY_MS = 4500;
     var imgEl = document.getElementById('partner-carousel-img');
     var labelEl = document.getElementById('partner-carousel-label');
+    var progressEl = document.getElementById('partner-carousel-progress');
     var dots = root.parentElement.querySelectorAll('.partner-dot');
     var prevBtn = document.getElementById('partner-prev-btn');
     var nextBtn = document.getElementById('partner-next-btn');
@@ -437,6 +448,19 @@
     var hovered = false;
     var autoStopped = false;
     var fadeTimeout = null;
+
+    function resetProgress(){
+      progressEl.classList.add('no-transition');
+      progressEl.style.width = '0%';
+      void progressEl.offsetWidth;
+      progressEl.classList.remove('no-transition');
+    }
+    function startProgress(){
+      resetProgress();
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ progressEl.style.width = '100%'; });
+      });
+    }
 
     function render(){
       var slide = slides[current];
@@ -450,35 +474,57 @@
       }, 250);
       labelEl.textContent = slide.label;
       dots.forEach(function(dot){
-        dot.setAttribute('aria-selected', String(Number(dot.getAttribute('data-index')) === current));
+        var isActive = Number(dot.getAttribute('data-index')) === current;
+        dot.setAttribute('aria-selected', String(isActive));
+        dot.classList.toggle('bg-emerald-400', isActive);
+        dot.classList.toggle('w-5', isActive);
+        dot.classList.toggle('bg-slate-700', !isActive);
+        dot.classList.toggle('w-1.5', !isActive);
       });
     }
     function schedule(){
       clearTimeout(timer);
-      if(hovered || autoStopped || document.visibilityState === 'hidden') return;
-      timer = setTimeout(function(){ current = (current + 1) % slides.length; render(); schedule(); }, 5000);
+      if(hovered || autoStopped || document.visibilityState === 'hidden'){ resetProgress(); return; }
+      startProgress();
+      timer = setTimeout(function(){ current = (current + 1) % slides.length; render(); schedule(); }, AUTOPLAY_MS);
     }
     function goTo(index){
       var n = slides.length;
       current = ((index % n) + n) % n;
       render();
     }
+    function manualStop(){
+      autoStopped = true;
+      clearTimeout(timer);
+      resetProgress();
+    }
 
     render();
     schedule();
 
-    prevBtn.addEventListener('click', function(e){ e.stopPropagation(); autoStopped = true; clearTimeout(timer); goTo(current - 1); });
-    nextBtn.addEventListener('click', function(e){ e.stopPropagation(); autoStopped = true; clearTimeout(timer); goTo(current + 1); });
+    prevBtn.addEventListener('click', function(e){ e.stopPropagation(); manualStop(); goTo(current - 1); });
+    nextBtn.addEventListener('click', function(e){ e.stopPropagation(); manualStop(); goTo(current + 1); });
     dots.forEach(function(dot){
-      dot.addEventListener('click', function(e){ e.stopPropagation(); autoStopped = true; clearTimeout(timer); goTo(Number(dot.getAttribute('data-index'))); });
+      dot.addEventListener('click', function(e){ e.stopPropagation(); manualStop(); goTo(Number(dot.getAttribute('data-index'))); });
     });
 
-    root.addEventListener('mouseenter', function(){ hovered = true; clearTimeout(timer); });
+    root.addEventListener('mouseenter', function(){ hovered = true; clearTimeout(timer); resetProgress(); });
     root.addEventListener('mouseleave', function(){ hovered = false; schedule(); });
     document.addEventListener('visibilitychange', function(){
       if(document.visibilityState === 'hidden'){ clearTimeout(timer); }
       else if(!hovered && !autoStopped){ schedule(); }
     });
+
+    var touchStartX = null;
+    root.addEventListener('touchstart', function(e){ touchStartX = e.changedTouches[0].clientX; }, { passive: true });
+    root.addEventListener('touchend', function(e){
+      if(touchStartX === null) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if(Math.abs(dx) < 30) return;
+      manualStop();
+      goTo(dx < 0 ? current + 1 : current - 1);
+    }, { passive: true });
   })();
 
   /* ---------- Lead capture form submission ----------
