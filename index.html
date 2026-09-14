@@ -126,11 +126,7 @@
     *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
   }
 
-  section[id]{ scroll-margin-top:104px; }
-
-  /* ---------- Ticker ---------- */
-  .ticker-track{ display:flex; width:max-content; animation:ticker 24s linear infinite; }
-  @keyframes ticker{ from{ transform:translateX(0); } to{ transform:translateX(-50%); } }
+  section[id]{ scroll-margin-top:80px; }
 
   /* ---------- FAQ accordion ---------- */
   .faq-answer{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
@@ -218,18 +214,8 @@
 </head>
 <body class="bg-void text-white font-sans antialiased">
 
-<!-- ============================== ANNOUNCEMENT TICKER ============================== -->
-<div class="sticky top-0 z-[60] bg-gradient-to-r from-acid to-cyber text-void font-mono text-xs sm:text-sm font-semibold overflow-hidden">
-  <div class="ticker-track py-2 whitespace-nowrap">
-    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-    <span class="px-8">⚡ ENGINEERED FOR MULTI-DAY FESTIVALS, OPEN AIRS &amp; BEACH CLUBS: FIRST 500 MEMBERS GET 35% OFF + 3&times; EXTRA COMPOSTABLE POUCHES</span>
-  </div>
-</div>
-
 <!-- ============================== NAV ============================== -->
-<header class="sticky top-[33px] sm:top-[37px] z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+<header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-6">
 
     <!-- LEFT: Brand logo + status pill -->
