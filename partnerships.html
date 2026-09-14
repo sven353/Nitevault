@@ -569,6 +569,7 @@
     var hovered = false;
     var autoStopped = false;
     var fadeTimeout = null;
+    var isTransitioning = false;
 
     function resetProgress(){
       progressEl.classList.add('no-transition');
@@ -583,8 +584,17 @@
       });
     }
 
+    function setInteractionLocked(locked){
+      isTransitioning = locked;
+      [prevBtn, nextBtn].forEach(function(btn){
+        btn.classList.toggle('pointer-events-none', locked);
+        btn.classList.toggle('opacity-40', locked);
+      });
+      dots.forEach(function(dot){ dot.classList.toggle('pointer-events-none', locked); });
+    }
     function render(){
       var slide = slides[current];
+      setInteractionLocked(true);
       imgEl.style.opacity = '0';
       clearTimeout(fadeTimeout);
       fadeTimeout = setTimeout(function(){
@@ -592,6 +602,7 @@
         imgEl.setAttribute('alt', slide.alt);
         imgEl.setAttribute('data-fallback', slide.image);
         imgEl.style.opacity = '1';
+        setInteractionLocked(false);
       }, 250);
       dots.forEach(function(dot){
         var isActive = Number(dot.getAttribute('data-index')) === current;
@@ -609,6 +620,7 @@
       timer = setTimeout(function(){ current = (current + 1) % slides.length; render(); schedule(); }, AUTOPLAY_MS);
     }
     function goTo(index){
+      if(isTransitioning) return;
       var n = slides.length;
       current = ((index % n) + n) % n;
       render();
