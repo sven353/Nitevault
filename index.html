@@ -109,6 +109,14 @@
   .view-panel{ display:none; }
   .view-panel[data-active="true"]{ display:block; }
 
+  /* ---------- City edition cards: In Action / Unpacking toggle (one independent instance per card) ---------- */
+  .lineup-view-tab{ transition:all .18s ease; }
+  .lineup-view-tab[aria-selected="true"]{ background:#10B981; color:#052716; }
+  .lineup-view-tab[aria-selected="false"]{ background:transparent; color:#9CA3AF; }
+  .lineup-view-img{ transition:opacity .3s ease; }
+  .lineup-view-img[data-active="false"]{ opacity:0; pointer-events:none; }
+  .lineup-view-img[data-active="true"]{ opacity:1; }
+
   /* ---------- Image placeholder fallback (shown if an asset filename hasn't been added yet) ---------- */
   .img-fallback{
     display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
@@ -506,37 +514,52 @@
       <div class="mt-10 grid md:grid-cols-3 gap-6">
 
         <div class="city-card cursor-pointer bg-panel rounded-2xl overflow-hidden flex flex-col transition-all" data-city-card="Barcelona" data-active="true">
-          <div class="relative bg-white aspect-[4/3]">
-            <img src="barcelona.png" alt="The Barcelona edition, mega-club and discotheque colorway" class="w-full h-full object-cover" data-fallback="barcelona.png">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50">
+            <img src="holster-sling.png" alt="The Barcelona edition sling worn crossbody at a festival, in action" class="lineup-view-img absolute inset-0 w-full h-full object-cover object-center" data-lineup-view="action" data-active="true" data-fallback="holster-sling.png">
+            <img src="barcelona-unpacking.png" alt="Unboxing the Barcelona edition sling with its five bio-pouches on the counter" class="lineup-view-img absolute inset-0 w-full h-full object-cover object-center" data-lineup-view="unpacking" data-active="false" data-fallback="barcelona-unpacking.png">
+            <div class="absolute top-3 right-3 z-10 flex items-center gap-1 p-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-lg text-[11px] font-mono">
+              <button type="button" class="lineup-view-tab px-2.5 py-1 rounded-full font-semibold" role="tab" aria-selected="true" data-view="action">In Action</button>
+              <button type="button" class="lineup-view-tab px-2.5 py-1 rounded-full font-semibold" role="tab" aria-selected="false" data-view="unpacking">Unpacking</button>
+            </div>
           </div>
           <div class="p-6 flex flex-col flex-1">
-            <span class="font-mono text-[10px] tracking-widest text-acid uppercase">Mega-Club &amp; Discotheque</span>
+            <span class="font-mono text-[10px] tracking-widest text-acid uppercase">Mega-Club &amp; Bohemian Festival</span>
             <h3 class="mt-2 font-display font-bold text-xl">Barcelona</h3>
-            <p class="mt-3 text-sm text-gray-400 flex-1">Deep obsidian fabric with subtle chromatic sheen and polished chrome accents. High-glam protection from VIP lounges to main-room laser rigs.</p>
+            <p class="mt-3 text-sm text-gray-400 flex-1">Tan studded festival leatherette with fringe detailing and warm metallic accents. Boho-chic protection from sunset sessions to outdoor mainstages.</p>
             <button type="button" class="select-style-btn city-reserve-btn mt-4 w-full rounded-full py-2.5 text-sm font-semibold transition-all" data-edition="Barcelona">Select Style &amp; Continue</button>
           </div>
         </div>
 
         <div class="city-card cursor-pointer bg-panel rounded-2xl overflow-hidden flex flex-col transition-all" data-city-card="Berlin" data-active="false">
-          <div class="relative bg-white aspect-[4/3]">
-            <img src="berlin.png" alt="The Berlin edition, industrial rave and underground techno colorway" class="w-full h-full object-cover" data-fallback="berlin.png">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50">
+            <img src="berlin-action.png" alt="The Berlin edition sling worn crossbody under stage lighting, in action" class="lineup-view-img absolute inset-0 w-full h-full object-cover object-center" data-lineup-view="action" data-active="true" data-fallback="berlin-action.png">
+            <img src="berlin-unpacking.png" alt="Unboxing the Berlin edition sling with its five bio-pouches on the counter" class="lineup-view-img absolute inset-0 w-full h-full object-cover object-center" data-lineup-view="unpacking" data-active="false" data-fallback="berlin-unpacking.png">
+            <div class="absolute top-3 right-3 z-10 flex items-center gap-1 p-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-lg text-[11px] font-mono">
+              <button type="button" class="lineup-view-tab px-2.5 py-1 rounded-full font-semibold" role="tab" aria-selected="true" data-view="action">In Action</button>
+              <button type="button" class="lineup-view-tab px-2.5 py-1 rounded-full font-semibold" role="tab" aria-selected="false" data-view="unpacking">Unpacking</button>
+            </div>
           </div>
           <div class="p-6 flex flex-col flex-1">
             <span class="font-mono text-[10px] tracking-widest text-cyber uppercase">Industrial Rave &amp; Underground Techno</span>
             <h3 class="mt-2 font-display font-bold text-xl">Berlin</h3>
-            <p class="mt-3 text-sm text-gray-400 flex-1">Ballistic matte-black 600D jacquard with blackout gunmetal hardware. Zero glare, pure stealth for warehouse marathons.</p>
+            <p class="mt-3 text-sm text-gray-400 flex-1">Ballistic matte-black jacquard with blackout hardware. Zero glare, pure stealth, built for warehouse marathons and all-night techno sets.</p>
             <button type="button" class="select-style-btn city-reserve-btn mt-4 w-full rounded-full py-2.5 text-sm font-semibold transition-all" data-edition="Berlin">Select Style &amp; Continue</button>
           </div>
         </div>
 
         <div class="city-card cursor-pointer bg-panel rounded-2xl overflow-hidden flex flex-col transition-all" data-city-card="Ibiza" data-active="false">
-          <div class="relative bg-white aspect-[4/3]">
-            <img src="ibiza.png" alt="The Ibiza edition, sunset and open-air festival colorway" class="w-full h-full object-cover" data-fallback="ibiza.png">
+          <div class="relative aspect-[4/5] overflow-hidden rounded-2xl border border-slate-800 bg-slate-900/50">
+            <img src="ibiza-action.png" alt="The Ibiza edition sling worn crossbody at a beach club sunset session, in action" class="lineup-view-img absolute inset-0 w-full h-full object-cover object-center" data-lineup-view="action" data-active="true" data-fallback="ibiza-action.png">
+            <img src="ibiza-unpacking.png" alt="Unboxing the Ibiza edition sling with its five bio-pouches on the table" class="lineup-view-img absolute inset-0 w-full h-full object-cover object-center" data-lineup-view="unpacking" data-active="false" data-fallback="ibiza-unpacking.png">
+            <div class="absolute top-3 right-3 z-10 flex items-center gap-1 p-1 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-lg text-[11px] font-mono">
+              <button type="button" class="lineup-view-tab px-2.5 py-1 rounded-full font-semibold" role="tab" aria-selected="true" data-view="action">In Action</button>
+              <button type="button" class="lineup-view-tab px-2.5 py-1 rounded-full font-semibold" role="tab" aria-selected="false" data-view="unpacking">Unpacking</button>
+            </div>
           </div>
           <div class="p-6 flex flex-col flex-1">
             <span class="font-mono text-[10px] tracking-widest text-acid uppercase">Sunset &amp; Open-Air Festival</span>
             <h3 class="mt-2 font-display font-bold text-xl">Ibiza</h3>
-            <p class="mt-3 text-sm text-gray-400 flex-1">Terracotta and sun-warmed sand ripstop nylon over breathable air-mesh backing. Built for open-air beach clubs, sunset sessions, and marathon festival days.</p>
+            <p class="mt-3 text-sm text-gray-400 flex-1">Warm sand-beige ripstop over breathable air-mesh backing with polished gold accents. Built for beach clubs, golden hour sets, and open-air daylight dancing.</p>
             <button type="button" class="select-style-btn city-reserve-btn mt-4 w-full rounded-full py-2.5 text-sm font-semibold transition-all" data-edition="Ibiza">Select Style &amp; Continue</button>
           </div>
         </div>
@@ -958,6 +981,23 @@
     card.addEventListener('click', function(){
       setEdition(card.getAttribute('data-city-card'));
       document.getElementById('pricing-tiers').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  /* ---------- City edition cards: In Action / Unpacking toggle. Scoped per
+     card so each one keeps its own independent state, and stops the click
+     from bubbling up to the city-card's own select-this-style handler
+     above. ---------- */
+  document.querySelectorAll('.city-card').forEach(function(card){
+    var lineupTabs = card.querySelectorAll('.lineup-view-tab');
+    var lineupImgs = card.querySelectorAll('.lineup-view-img');
+    lineupTabs.forEach(function(tab){
+      tab.addEventListener('click', function(e){
+        e.stopPropagation();
+        var view = tab.getAttribute('data-view');
+        lineupTabs.forEach(function(t){ t.setAttribute('aria-selected', String(t === tab)); });
+        lineupImgs.forEach(function(img){ img.setAttribute('data-active', String(img.getAttribute('data-lineup-view') === view)); });
+      });
     });
   });
 
