@@ -61,6 +61,11 @@
   .faq-item[data-open="true"] .faq-plus{ transform:rotate(45deg); }
   .faq-plus{ transition:transform .25s ease; }
 
+  /* ---------- Mobile nav drawer (same grid-rows collapse technique as the FAQ accordion) ---------- */
+  .mobile-drawer{ display:grid; grid-template-rows:0fr; transition:grid-template-rows .3s ease; }
+  .mobile-drawer[data-open="true"]{ grid-template-rows:1fr; }
+  .mobile-drawer-inner{ overflow:hidden; }
+
   /* ---------- Pills ---------- */
   .pill-choice[aria-pressed="true"]{ background:#06B6D4; border-color:#06B6D4; color:#052730; }
   .edition-pill{ transition:all .18s ease; }
@@ -147,7 +152,7 @@
 
 <!-- ============================== NAV ============================== -->
 <header class="sticky top-[33px] sm:top-[37px] z-50 bg-void/80 backdrop-blur border-b border-white/10">
-  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+  <div class="max-w-7xl mx-auto px-5 py-4 flex items-center justify-between gap-6">
     <a href="#top" class="group flex items-center gap-2.5 font-display text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md">
       <svg
         viewBox="0 0 32 32"
@@ -186,26 +191,53 @@
       <span class="flex items-baseline">
         <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
       </span>
-      <span class="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-gray-300 border border-white/15 rounded-full px-2 py-1 ml-1">
+      <span class="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-gray-300 border border-white/15 rounded-full px-2 py-0.5 ml-1">
         <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Batch 01 Open
       </span>
     </a>
-    <nav class="hidden lg:flex items-center gap-7 text-sm text-gray-300 font-medium">
-      <a href="#threat" class="hover:text-white transition">The Threat</a>
-      <a href="#system" class="hover:text-white transition">The System</a>
-      <a href="#editions" class="hover:text-white transition">City Editions</a>
-      <a href="#sustainability" class="hover:text-white transition">Sustainability</a>
-      <a href="#specs" class="hover:text-white transition">Specs</a>
-      <a href="#faq" class="hover:text-white transition">FAQ</a>
+
+    <nav class="hidden lg:flex items-center gap-8 text-sm text-white font-medium tracking-wide">
+      <a href="#how-it-works" class="hover:text-emerald-300 transition">How It Works</a>
+      <a href="#editions" class="hover:text-emerald-300 transition">Editions</a>
+      <a href="#specs" class="hover:text-emerald-300 transition">Specs</a>
+      <a href="#faq" class="hover:text-emerald-300 transition">FAQ</a>
     </nav>
-    <div class="flex items-center gap-3">
-      <a href="partnerships.html" class="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-slate-900/80 border border-slate-700/80 hover:border-emerald-500/50 text-xs font-mono text-slate-300 hover:text-white transition">
-        <span>For Festivals &amp; Brands</span>
-        <span class="text-emerald-400">&rarr;</span>
+
+    <div class="hidden lg:flex items-center gap-5">
+      <a href="partnerships.html" class="inline-flex items-center px-4 py-1.5 rounded-full bg-slate-900/80 border border-emerald-500/40 text-[11px] font-mono text-emerald-400 hover:border-emerald-300 transition-colors whitespace-nowrap">
+        Festivals &amp; Brands &rarr;
       </a>
-      <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold text-sm px-4 py-2.5 sm:px-5 hover:shadow-glow-acid transition whitespace-nowrap">
-        Claim Early Access (From €19.99)
+      <a href="#waitlist" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold text-sm px-5 py-2.5 hover:shadow-glow-acid transition whitespace-nowrap">
+        Reserve Early-Bird Spot
       </a>
+    </div>
+
+    <!-- Mobile hamburger toggle: only the logo shows above lg, so this is the sole
+         way to reach nav links, the B2B pill, and the CTA on phones/tablets -->
+    <button type="button" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/15 text-white hover:border-emerald-400/50 transition shrink-0">
+      <svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      <svg id="mobile-menu-icon-close" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+    </button>
+  </div>
+
+  <!-- Mobile drawer: B2C nav links first, then a labeled divider, then the B2B
+       link and the primary CTA, so intent stays clearly separated on phones too -->
+  <div id="mobile-drawer" class="mobile-drawer lg:hidden border-t border-white/10" data-open="false">
+    <div class="mobile-drawer-inner">
+      <div class="max-w-7xl mx-auto px-5 py-5 flex flex-col gap-1">
+        <a href="#how-it-works" class="mobile-drawer-link px-2 py-2.5 rounded-lg text-white text-sm font-medium tracking-wide hover:bg-white/5 transition">How It Works</a>
+        <a href="#editions" class="mobile-drawer-link px-2 py-2.5 rounded-lg text-white text-sm font-medium tracking-wide hover:bg-white/5 transition">Editions</a>
+        <a href="#specs" class="mobile-drawer-link px-2 py-2.5 rounded-lg text-white text-sm font-medium tracking-wide hover:bg-white/5 transition">Specs</a>
+        <a href="#faq" class="mobile-drawer-link px-2 py-2.5 rounded-lg text-white text-sm font-medium tracking-wide hover:bg-white/5 transition">FAQ</a>
+
+        <div class="my-3 border-t border-white/10"></div>
+        <p class="px-2 text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">For Business</p>
+        <a href="partnerships.html" class="mobile-drawer-link inline-flex items-center gap-1.5 px-2 py-2.5 rounded-lg text-emerald-400 text-sm font-mono hover:bg-emerald-400/5 transition">Festivals &amp; Brands &rarr;</a>
+
+        <a href="#waitlist" class="mobile-drawer-link mt-3 inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold text-sm px-5 py-3 hover:shadow-glow-acid transition">
+          Reserve Early-Bird Spot
+        </a>
+      </div>
     </div>
   </div>
 </header>
@@ -1004,7 +1036,8 @@
     </div>
     <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
       <span>&copy; 2026 Nitevault.com. Designed in Barcelona with love.</span>
-      <div class="flex flex-wrap gap-4">
+      <div class="flex flex-wrap items-center gap-4">
+        <a href="#sustainability" class="hover:text-emerald-400 transition">Sustainability &amp; Impact</a>
         <span>Concept-validation page. No product has shipped yet, and no orders are being charged today.</span>
       </div>
     </div>
@@ -1014,6 +1047,33 @@
 <script>
 (function(){
   "use strict";
+
+  /* ---------- Mobile nav drawer: hamburger toggle, closes on link click or Escape.
+     No lg+ breakpoint has a menu button (nav is inline there), so this is scoped
+     entirely to the <lg mobile/tablet view. ---------- */
+  (function(){
+    var btn = document.getElementById('mobile-menu-btn');
+    var drawer = document.getElementById('mobile-drawer');
+    if(!btn || !drawer) return;
+    var iconOpen = document.getElementById('mobile-menu-icon-open');
+    var iconClose = document.getElementById('mobile-menu-icon-close');
+    function setOpen(open){
+      drawer.setAttribute('data-open', String(open));
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      iconOpen.classList.toggle('hidden', open);
+      iconClose.classList.toggle('hidden', !open);
+    }
+    btn.addEventListener('click', function(){
+      setOpen(drawer.getAttribute('data-open') !== 'true');
+    });
+    drawer.querySelectorAll('.mobile-drawer-link').forEach(function(link){
+      link.addEventListener('click', function(){ setOpen(false); });
+    });
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape') setOpen(false);
+    });
+  })();
 
   /* ---------- Image fallback: shows a labeled placeholder instead of a broken-image icon
      for any asset filename (bag-closed.png, pouch.png, barcelona.png, berlin.png, ibiza.png)
