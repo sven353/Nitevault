@@ -102,12 +102,14 @@
     100%{ transform:translateX(220%); }
   }
 
-  /* ---------- Hero dual-view tabs ---------- */
-  .view-tab{ transition:all .18s ease; }
-  .view-tab[aria-selected="true"]{ background:#10B981; color:#052716; }
-  .view-tab[aria-selected="false"]{ background:transparent; color:#9CA3AF; }
-  .view-panel{ display:none; }
-  .view-panel[data-active="true"]{ display:block; }
+  /* ---------- Hero product story carousel (auto-advancing, 5s) ---------- */
+  .carousel-slide-img{ opacity:0; transition:opacity .3s ease-out; }
+  .carousel-slide-img[data-active="true"]{ opacity:1; }
+  #carousel-progress{ transition:width 5000ms linear; }
+  #carousel-progress.no-transition{ transition:none; }
+  .carousel-dot{ height:6px; width:6px; border-radius:9999px; background:#334155; border:none; padding:0; cursor:pointer; transition:all .2s ease; }
+  .carousel-dot:hover{ background:#64748b; }
+  .carousel-dot[aria-selected="true"]{ width:20px; background:#34d399; }
 
   /* ---------- City edition cards: In Action / Unpacking toggle (one independent instance per card) ---------- */
   .lineup-view-tab{ transition:all .18s ease; }
@@ -214,62 +216,45 @@
           <div class="absolute -inset-6 bg-gradient-to-br from-acid/25 to-cyber/25 blur-2xl rounded-[2rem]" aria-hidden="true"></div>
 
           <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
-            <!-- Tab toggle -->
-            <div class="grid grid-cols-3 gap-1.5 mb-4" role="tablist" aria-label="Product view">
-              <button type="button" class="view-tab rounded-full text-[10px] sm:text-xs font-mono font-medium px-2 py-2 sm:px-3 sm:py-2.5" role="tab" aria-selected="true" data-view="action">In Action</button>
-              <button type="button" class="view-tab rounded-full text-[10px] sm:text-xs font-mono font-medium px-2 py-2 sm:px-3 sm:py-2.5" role="tab" aria-selected="false" data-view="pouring">Pouring</button>
-              <button type="button" class="view-tab rounded-full text-[10px] sm:text-xs font-mono font-medium px-2 py-2 sm:px-3 sm:py-2.5" role="tab" aria-selected="false" data-view="bag">Holster Sling</button>
-              <button type="button" class="view-tab rounded-full text-[10px] sm:text-xs font-mono font-medium px-2 py-2 sm:px-3 sm:py-2.5" role="tab" aria-selected="false" data-view="pouch">Core Pouch</button>
-              <button type="button" class="view-tab rounded-full text-[10px] sm:text-xs font-mono font-medium px-2 py-2 sm:px-3 sm:py-2.5" role="tab" aria-selected="false" data-view="unpacking">Unpacking</button>
-            </div>
-
-            <!-- In Action panel -->
-            <div class="view-panel" data-active="true" data-panel="action">
-              <div class="bg-white rounded-2xl overflow-hidden aspect-square">
-                <img src="in-action.png" alt="A festival-goer sipping hands-free from a Nitevault pouch, mid-set" class="w-full h-full object-cover" data-fallback="in-action.png">
+            <!-- Product story carousel (auto-advances every 5s) -->
+            <div id="hero-carousel" class="hero-carousel">
+              <div class="flex items-center justify-between gap-2">
+                <div class="flex items-center gap-2 min-w-0">
+                  <span class="text-[11px] font-mono font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 rounded-md shrink-0" id="carousel-step">01 / 05</span>
+                  <h4 class="text-sm md:text-base font-semibold text-white tracking-wide truncate" id="carousel-title">In Action</h4>
+                </div>
+                <div class="flex items-center gap-1.5 shrink-0">
+                  <button type="button" id="carousel-prev" aria-label="Previous slide" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+                  </button>
+                  <button type="button" id="carousel-next" aria-label="Next slide" class="w-8 h-8 rounded-full bg-slate-800/80 hover:bg-slate-700 active:scale-95 text-slate-300 hover:text-white flex items-center justify-center border border-slate-700 transition">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+                  </button>
+                </div>
               </div>
-              <div class="mt-3 inline-flex items-center gap-2 bg-void/60 border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">
+
+              <div class="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-slate-900 border border-slate-800 mt-3">
+                <img src="in-action.png" alt="A festival-goer sipping hands-free from a Nitevault pouch, mid-set" class="carousel-slide-img absolute inset-0 w-full h-full object-cover" data-slide="0" data-active="true" data-fallback="in-action.png">
+                <img src="bar-refill.png" alt="A bartender pouring a cocktail directly into the Nitevault pouch's 50mm wide mouth" class="carousel-slide-img absolute inset-0 w-full h-full object-cover" data-slide="1" data-active="false" data-fallback="bar-refill.png">
+                <img src="holster-sling.png" alt="A woman wearing the Nitevault crossbody festival sling at an outdoor stage" class="carousel-slide-img absolute inset-0 w-full h-full object-cover" data-slide="2" data-active="false" data-fallback="holster-sling.png">
+                <img src="pouch.png" alt="The Nitevault core pouch with printed volume markings and its mechanical seal" class="carousel-slide-img absolute inset-0 w-full h-full object-cover" data-slide="3" data-active="false" data-fallback="pouch.png">
+                <img src="unpacking.png" alt="Unboxing the complete Nitevault kit with five extra bio-pouches" class="carousel-slide-img absolute inset-0 w-full h-full object-cover" data-slide="4" data-active="false" data-fallback="unpacking.png">
+              </div>
+
+              <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-3">
+                <div id="carousel-progress" class="h-full bg-emerald-400 w-0"></div>
+              </div>
+
+              <div class="mt-2.5 text-xs font-mono text-slate-300 bg-slate-950/80 px-3.5 py-2 rounded-xl border border-slate-800 w-full text-center truncate" id="carousel-caption">
                 Sipped hands-free, mid-set, no cup in sight
               </div>
-            </div>
 
-            <!-- Pouring panel -->
-            <div class="view-panel" data-active="false" data-panel="pouring">
-              <div class="bg-white rounded-2xl overflow-hidden aspect-square">
-                <img src="pouring.png" alt="A bartender pouring a cocktail directly into the Nitevault pouch's 50mm wide mouth" class="w-full h-full object-cover" data-fallback="pouring.png">
-              </div>
-              <div class="mt-3 inline-flex items-center gap-2 bg-void/60 border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">
-                50mm Rapid Pour: Fits draft taps, shakers &amp; full ice cubes
-              </div>
-            </div>
-
-            <!-- Bag panel -->
-            <div class="view-panel" data-active="false" data-panel="bag">
-              <div class="bg-white rounded-2xl overflow-hidden aspect-square">
-                <img src="holster-sling.png" alt="A woman wearing the Nitevault crossbody festival sling at an outdoor stage" class="w-full h-full object-cover" data-fallback="holster-sling.png">
-              </div>
-              <div class="mt-3 inline-flex items-center gap-2 bg-void/60 border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">
-                Crossbody Festival Sling + Inward Anti-Theft Phone Sleeve
-              </div>
-            </div>
-
-            <!-- Pouch panel -->
-            <div class="view-panel" data-active="false" data-panel="pouch">
-              <div class="bg-white rounded-2xl overflow-hidden aspect-square">
-                <img src="pouch.png" alt="The Nitevault core pouch with printed volume markings and its mechanical seal" class="w-full h-full object-cover" data-fallback="pouch.png">
-              </div>
-              <div class="mt-3 inline-flex items-center gap-2 bg-void/60 border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">
-                Bio-Film Pouch + 50mm Rapid Ice Port + Twist-Lock Valve
-              </div>
-            </div>
-
-            <!-- Unpacking panel -->
-            <div class="view-panel" data-active="false" data-panel="unpacking">
-              <div class="bg-white rounded-2xl overflow-hidden aspect-square">
-                <img src="unpacking.png" alt="Unboxing the complete Nitevault kit with five extra bio-pouches" class="w-full h-full object-cover" data-fallback="unpacking.png">
-              </div>
-              <div class="mt-3 inline-flex items-center gap-2 bg-void/60 border border-white/15 rounded-full px-3 py-1.5 text-xs font-mono">
-                Complete Kit: 1x Holster Sling + 5x Flat-Fold Bio-Pouches
+              <div class="flex items-center justify-center gap-1.5 mt-3" id="carousel-dots" role="tablist" aria-label="Product story slides">
+                <button type="button" class="carousel-dot" data-dot="0" role="tab" aria-selected="true" aria-label="Slide 1: In Action"></button>
+                <button type="button" class="carousel-dot" data-dot="1" role="tab" aria-selected="false" aria-label="Slide 2: Rapid Bar Pour"></button>
+                <button type="button" class="carousel-dot" data-dot="2" role="tab" aria-selected="false" aria-label="Slide 3: Crossbody Festival Sling"></button>
+                <button type="button" class="carousel-dot" data-dot="3" role="tab" aria-selected="false" aria-label="Slide 4: Core Vault Pouch"></button>
+                <button type="button" class="carousel-dot" data-dot="4" role="tab" aria-selected="false" aria-label="Slide 5: Complete Unboxing Kit"></button>
               </div>
             </div>
           </div>
@@ -919,17 +904,127 @@
     }
   });
 
-  /* ---------- Hero dual-view tabs ---------- */
-  var tabs = document.querySelectorAll('.view-tab');
-  tabs.forEach(function(tab){
-    tab.addEventListener('click', function(){
-      var view = tab.getAttribute('data-view');
-      tabs.forEach(function(t){ t.setAttribute('aria-selected', String(t === tab)); });
-      document.querySelectorAll('.view-panel').forEach(function(panel){
-        panel.setAttribute('data-active', String(panel.getAttribute('data-panel') === view));
+  /* ---------- Hero product story carousel: 5s auto-advance, animated
+     progress bar, arrow + dot controls, hover pause, tab-visibility pause,
+     and touch swipe. All 5 images are already in the DOM (opacity-toggled)
+     so nothing needs to preload before the first cross-fade. ---------- */
+  (function(){
+    var root = document.getElementById('hero-carousel');
+    if(!root) return;
+
+    var heroSlides = [
+      { title: 'In Action', caption: 'Sipped hands-free, mid-set, no cup in sight' },
+      { title: 'Rapid Bar Pour', caption: '50mm Rapid Pour: Fits draft taps, shakers & full ice cubes' },
+      { title: 'Crossbody Festival Sling', caption: 'Worn bounce-free across the chest + inward phone armor' },
+      { title: 'Core Vault Pouch', caption: 'Bio-Film Pouch + 50mm Rapid Ice Port + Twist-Lock Valve' },
+      { title: 'Complete Unboxing Kit', caption: 'Complete Kit: 1x Holster Sling + 5x Flat-Fold Bio-Pouches' }
+    ];
+    var AUTOPLAY_MS = 5000;
+
+    var stepEl = document.getElementById('carousel-step');
+    var titleEl = document.getElementById('carousel-title');
+    var captionEl = document.getElementById('carousel-caption');
+    var progressEl = document.getElementById('carousel-progress');
+    var slideImgs = root.querySelectorAll('.carousel-slide-img');
+    var dots = root.querySelectorAll('.carousel-dot');
+    var prevBtn = document.getElementById('carousel-prev');
+    var nextBtn = document.getElementById('carousel-next');
+
+    var current = 0;
+    var timer = null;
+    var hoverPaused = false;
+
+    function clearTimer(){
+      if(timer){ clearTimeout(timer); timer = null; }
+    }
+
+    function resetProgress(){
+      progressEl.classList.add('no-transition');
+      progressEl.style.width = '0%';
+      void progressEl.offsetWidth; // force reflow so the reset takes before re-enabling the transition
+      progressEl.classList.remove('no-transition');
+    }
+
+    function startProgress(){
+      resetProgress();
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          progressEl.style.width = '100%';
+        });
       });
+    }
+
+    function render(){
+      var n = heroSlides.length;
+      var slide = heroSlides[current];
+      stepEl.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(n).padStart(2, '0');
+      titleEl.textContent = slide.title;
+      captionEl.textContent = slide.caption;
+      slideImgs.forEach(function(img){
+        img.setAttribute('data-active', String(Number(img.getAttribute('data-slide')) === current));
+      });
+      dots.forEach(function(dot){
+        dot.setAttribute('aria-selected', String(Number(dot.getAttribute('data-dot')) === current));
+      });
+    }
+
+    function schedule(){
+      clearTimer();
+      if(hoverPaused || document.visibilityState === 'hidden'){
+        resetProgress();
+        return;
+      }
+      startProgress();
+      timer = setTimeout(function(){ goTo(current + 1); }, AUTOPLAY_MS);
+    }
+
+    function goTo(index){
+      var n = heroSlides.length;
+      current = ((index % n) + n) % n;
+      render();
+      schedule();
+    }
+
+    render();
+    schedule();
+
+    prevBtn.addEventListener('click', function(){ goTo(current - 1); });
+    nextBtn.addEventListener('click', function(){ goTo(current + 1); });
+    dots.forEach(function(dot){
+      dot.addEventListener('click', function(){ goTo(Number(dot.getAttribute('data-dot'))); });
     });
-  });
+
+    root.addEventListener('mouseenter', function(){
+      hoverPaused = true;
+      clearTimer();
+      resetProgress();
+    });
+    root.addEventListener('mouseleave', function(){
+      hoverPaused = false;
+      schedule();
+    });
+
+    document.addEventListener('visibilitychange', function(){
+      if(document.visibilityState === 'hidden'){
+        clearTimer();
+        resetProgress();
+      } else if(!hoverPaused){
+        schedule();
+      }
+    });
+
+    var touchStartX = null;
+    root.addEventListener('touchstart', function(e){
+      touchStartX = e.changedTouches[0].clientX;
+    }, { passive: true });
+    root.addEventListener('touchend', function(e){
+      if(touchStartX === null) return;
+      var dx = e.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if(Math.abs(dx) < 30) return;
+      goTo(dx < 0 ? current + 1 : current - 1);
+    }, { passive: true });
+  })();
 
   /* ---------- FAQ accordion ---------- */
   document.querySelectorAll('.faq-item').forEach(function(item){
