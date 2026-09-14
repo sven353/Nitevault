@@ -739,78 +739,10 @@
 
       <div class="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-        <!-- LEFT: Dark blueprint interactive specification stage -->
+        <!-- LEFT: Dimensions Visual Card -->
         <div class="lg:col-span-5 w-full flex justify-center">
-          <div class="relative w-full max-w-md rounded-3xl bg-slate-900/30 border border-slate-800/80 p-6 sm:p-8 shadow-2xl overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(16,185,129,0.12)_0%,transparent_70%)] pointer-events-none"></div>
-
-            <div class="relative w-full flex items-center justify-between border-b border-slate-800/60 pb-3 mb-6">
-              <span class="text-[10px] font-mono uppercase tracking-widest text-acid font-semibold">Scale &amp; Dimensions</span>
-              <span class="text-[10px] font-mono text-slate-500">1:1 Physical Ratio</span>
-            </div>
-
-            <div class="relative w-full aspect-[4/5] flex items-center justify-center px-7 sm:px-9">
-              <div class="relative z-10 flex items-end justify-center gap-5 sm:gap-7">
-                <div class="relative h-[78%] sm:h-[82%]">
-                  <img src="pouch-cutout.png" alt="Nitevault 500ml pouch, transparent product cutout" class="h-full w-auto object-contain drop-shadow-[0_15px_25px_rgba(0,0,0,0.8)]" loading="lazy" data-fallback="pouch-cutout.png">
-
-                  <!-- Hotspot: bite valve / spout -->
-                  <div class="absolute top-[10%] left-[20%] -translate-x-1/2 z-20 group">
-                    <span tabindex="0" role="button" aria-label="Bite Valve &amp; Mechanical Lock" class="relative flex h-3 w-3 cursor-pointer outline-none">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                    <div class="absolute left-1/2 -top-9 -translate-x-1/2 hidden group-hover:block group-focus-within:block bg-slate-900 border border-slate-700 text-[10px] font-mono text-emerald-300 py-1 px-2 rounded-md shadow-lg whitespace-nowrap pointer-events-none">
-                      Bite Valve &amp; Mechanical Lock
-                    </div>
-                  </div>
-
-                  <!-- Hotspot: 50mm rapid fill clamp -->
-                  <div class="absolute top-[9%] left-[64%] -translate-x-1/2 z-20 group">
-                    <span tabindex="0" role="button" aria-label="50mm Rapid Ice Port" class="relative flex h-3 w-3 cursor-pointer outline-none">
-                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                      <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
-                    </span>
-                    <div class="absolute left-1/2 -top-9 -translate-x-1/2 hidden group-hover:block group-focus-within:block bg-slate-900 border border-slate-700 text-[10px] font-mono text-emerald-300 py-1 px-2 rounded-md shadow-lg whitespace-nowrap pointer-events-none">
-                      50mm Rapid Ice Port
-                    </div>
-                  </div>
-                </div>
-
-                <div class="h-[55%] sm:h-[58%] flex flex-col justify-center shrink-0">
-                  <div class="w-14 sm:w-16 h-full rounded-2xl border-2 border-dashed border-slate-700/80 bg-slate-950/40 flex flex-col items-center justify-center gap-1 p-2 text-center">
-                    <span class="text-[9px] font-mono text-emerald-400/80 uppercase tracking-widest">Scale Ref</span>
-                    <span class="text-[9px] font-mono text-slate-400 leading-tight">iPhone<br>16 Pro</span>
-                    <span class="text-[9px] font-mono text-slate-600">14.9&times;7.1cm</span>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Height dimension pin -->
-              <div class="absolute left-1 top-[8%] bottom-[10%] w-px bg-emerald-500/40">
-                <span class="absolute -top-px -left-1 w-2 h-px bg-emerald-400"></span>
-                <span class="absolute -bottom-px -left-1 w-2 h-px bg-emerald-400"></span>
-              </div>
-              <div class="absolute left-4 top-1/2 -translate-y-1/2 text-[10px] font-mono text-emerald-300 font-medium bg-slate-950/80 border border-slate-800 rounded px-1.5 py-1 leading-tight whitespace-nowrap">
-                20 cm<span class="block text-slate-500">(7.9 in)</span>
-              </div>
-            </div>
-
-            <div class="relative w-full mt-6 pt-4 border-t border-slate-800/60 grid grid-cols-2 gap-4 text-center">
-              <div class="flex flex-col items-center">
-                <span class="text-[10px] font-mono text-slate-500 uppercase tracking-widest">Width &times; Depth</span>
-                <span class="text-xs font-mono font-bold text-slate-200 mt-1">12 cm &times; 4.5 cm</span>
-                <span class="text-[10px] font-mono text-slate-600 mt-0.5">(4.7 in &times; 1.8 in)</span>
-              </div>
-              <div class="flex flex-col items-center border-l border-slate-800/60">
-                <div class="flex items-center gap-1.5 justify-center">
-                  <svg class="w-3.5 h-3.5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C12 2 5 10.5 5 15a7 7 0 0 0 14 0c0-4.5-7-13-7-13z"/></svg>
-                  <span class="text-[10px] font-mono text-emerald-400 uppercase tracking-widest">Max Capacity</span>
-                </div>
-                <span class="text-xl font-mono font-bold text-white mt-1">500 ml</span>
-                <span class="text-xs font-mono text-slate-400">(17 oz)</span>
-              </div>
-            </div>
+          <div class="relative w-full max-w-md rounded-3xl bg-slate-900/40 border border-slate-800/80 p-4 sm:p-6 backdrop-blur-sm shadow-2xl flex items-center justify-center overflow-hidden">
+            <img src="dimensions.png" alt="Nitevault 500ml technical dimensions size comparison with iPhone 16 Pro" class="w-full h-auto max-h-[520px] object-contain rounded-2xl" loading="lazy" data-fallback="dimensions.png">
           </div>
         </div>
 
