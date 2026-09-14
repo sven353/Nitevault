@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nitevault for Festivals & Brands: Co-Branded Drink Vessel Partnerships</title>
+<meta name="description" content="Turn every drink into an unspillable brand activation. Custom-branded, tamper-proof Nitevault vessels for festival bars, beverage sponsors, and venue merchandising. Request wholesale rates and a spec kit.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS via CDN, configured with the Nitevault brand tokens (same config as index.html) -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          void: '#08090D',
+          obsidian: '#12141D',
+          panel: '#171A24',
+          panelraised: '#1C2030',
+          acid: '#10B981',
+          cyber: '#06B6D4',
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          sans: ['Inter', 'sans-serif'],
+          mono: ['"IBM Plex Mono"', 'monospace'],
+        },
+        boxShadow: {
+          'glow-acid': '0 0 30px -5px rgba(16,185,129,.45)',
+          'glow-cyber': '0 0 30px -5px rgba(6,182,212,.45)',
+        }
+      }
+    }
+  }
+</script>
+
+<style>
+  html{ scroll-behavior:smooth; }
+  body{ background:#08090D; }
+  ::selection{ background:#10B981; color:#08090D; }
+  :focus-visible{ outline:2px solid #06B6D4; outline-offset:3px; border-radius:4px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *,*::before,*::after{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important; }
+  }
+
+  section[id]{ scroll-margin-top:88px; }
+
+  /* ---------- Co-branded showcase carousel (auto-advancing, 5s), same pattern as
+     the Founding Patron Trilogy carousel on index.html: one img, src swapped on
+     navigation with an opacity crossfade, dots + arrows, autoplay stops for good
+     once the user manually navigates ---------- */
+  #partner-carousel-img{ transition:opacity .3s ease-out; }
+  .partner-dot{ height:6px; width:6px; border-radius:9999px; background:#334155; border:none; padding:0; cursor:pointer; transition:all .2s ease; }
+  .partner-dot:hover{ background:#64748b; }
+  .partner-dot[aria-selected="true"]{ width:20px; background:#34d399; }
+
+  /* ---------- Image placeholder fallback (shown if an asset filename hasn't been added yet) ---------- */
+  .img-fallback{
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px;
+    background:repeating-linear-gradient(135deg, #171A24, #171A24 10px, #1C2030 10px, #1C2030 20px);
+    border:1px dashed rgba(255,255,255,.2); color:#6B7386;
+    font-family:'IBM Plex Mono',monospace; font-size:.7rem; text-align:center; padding:1rem;
+  }
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+    overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+  }
+
+  /* ---------- B2B form fields: boxy inputs (vs. the consumer page's pill inputs),
+     matching a professional intake-form look ---------- */
+  .b2b-field{
+    width:100%; background:#12151E; border:1px solid rgba(255,255,255,.15); color:#fff;
+    border-radius:.75rem; padding:.85rem 1rem; font-size:.875rem;
+  }
+  .b2b-field::placeholder{ color:#6B7280; }
+  .b2b-field:focus{ outline:none; border-color:#34D399; box-shadow:0 0 0 1px #34D399; }
+  .b2b-field option{ background:#12151E; color:#fff; }
+</style>
+</head>
+<body class="bg-void text-white font-sans antialiased">
+
+<!-- ============================== NAV ============================== -->
+<header class="sticky top-0 z-50 bg-void/80 backdrop-blur border-b border-white/10">
+  <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-4">
+    <a href="index.html" class="group flex items-center gap-2.5 font-display text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 shrink-0 transition-transform group-hover:scale-105 duration-200" aria-hidden="true">
+        <path d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="6" y="13" width="20" height="15" rx="4" stroke="#10B981" stroke-width="2.5" fill="#020617"/>
+        <path d="M12 18L16 23L20 18" stroke="#10B981" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="flex items-baseline">
+        <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
+      </span>
+      <span class="hidden sm:inline-flex items-center gap-1.5 font-mono text-[10px] tracking-wider text-gray-300 border border-white/15 rounded-full px-2 py-1 ml-1">
+        For Festivals &amp; Brands
+      </span>
+    </a>
+    <a href="index.html" class="text-xs font-mono text-slate-400 hover:text-emerald-400 transition whitespace-nowrap">&larr; <span class="hidden sm:inline">Back to Attendee Store</span><span class="sm:hidden">Store</span></a>
+    <a href="#partner-form" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold text-sm px-4 py-2.5 sm:px-5 hover:shadow-glow-acid transition whitespace-nowrap">
+      Request Spec Kit
+    </a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============================== HERO ============================== -->
+  <section class="pt-14 pb-16 sm:pt-20 sm:pb-24">
+    <div class="max-w-7xl mx-auto px-5 grid lg:grid-cols-2 gap-14 items-center">
+
+      <!-- Left: co-branded showcase carousel -->
+      <div class="order-2 lg:order-1">
+        <div class="relative max-w-md mx-auto">
+          <div class="absolute -inset-6 bg-gradient-to-br from-acid/25 to-cyber/25 blur-2xl rounded-[2rem]" aria-hidden="true"></div>
+
+          <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
+            <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group" id="partner-carousel">
+
+              <img id="partner-carousel-img" src="tanqueray.png" alt="Tanqueray London Dry Gin co-branded Nitevault pouch" class="w-full h-full object-cover object-center" loading="lazy" data-fallback="tanqueray.png">
+
+              <button type="button" id="partner-prev-btn" aria-label="Previous co-branding example" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/75 hover:bg-slate-900 active:scale-95 text-slate-200 hover:text-white border border-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-lg opacity-90 group-hover:opacity-100">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
+              </button>
+              <button type="button" id="partner-next-btn" aria-label="Next co-branding example" class="absolute right-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/75 hover:bg-slate-900 active:scale-95 text-slate-200 hover:text-white border border-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-lg opacity-90 group-hover:opacity-100">
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+              </button>
+
+              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-xl text-xs font-mono text-slate-200 whitespace-nowrap" id="partner-carousel-label">
+                Tanqueray Festival Edition
+              </div>
+            </div>
+
+            <div class="flex items-center justify-center gap-1.5 mt-3" id="partner-carousel-dots" role="tablist" aria-label="Co-branding examples">
+              <button type="button" class="partner-dot" data-index="0" role="tab" aria-selected="true" aria-label="Tanqueray London Dry Gin"></button>
+              <button type="button" class="partner-dot" data-index="1" role="tab" aria-selected="false" aria-label="Bacardi Rum"></button>
+              <button type="button" class="partner-dot" data-index="2" role="tab" aria-selected="false" aria-label="Ushuaïa Ibiza Beach Club"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: value proposition + CTA -->
+      <div class="order-1 lg:order-2">
+        <div class="inline-flex items-center gap-2 bg-panel border border-white/15 rounded-full px-4 py-2 text-xs font-mono text-cyber mb-6">
+          B2B PARTNERSHIPS &amp; FESTIVAL INTEGRATIONS
+        </div>
+
+        <h1 class="font-display font-bold text-4xl sm:text-5xl leading-[1.1] tracking-tight">
+          Turn Every Drink into an <span class="text-acid">Unspillable Brand Activation.</span>
+        </h1>
+
+        <p class="mt-5 text-gray-300 text-lg max-w-lg">
+          Replace single-use plastic waste and open-cup liability with custom-branded, tamper-proof drink vessels. Built for high-volume festival bars, massive social reach, and zero floor debris.
+        </p>
+
+        <div class="mt-6 inline-flex flex-wrap items-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4 font-mono text-sm">
+          <span class="text-acid font-display font-bold text-lg">100+ Festivals</span>
+          <span class="text-gray-400 text-xs">Ready-to-White-Label</span>
+          <span class="text-gray-600">|</span>
+          <span class="text-acid font-display font-bold text-lg">500ml</span>
+          <span class="text-gray-400 text-xs">Standard Capacity</span>
+        </div>
+
+        <div class="mt-7 max-w-lg">
+          <a href="#partner-form" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid transition whitespace-nowrap">
+            Request Co-Branded Spec Kit &amp; Wholesale Rates
+          </a>
+        </div>
+
+        <p class="mt-4 text-xs text-gray-500">Tailored sample kit and unit pricing within 24 hours. No commitment required to inquire.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============================== ENTERPRISE VALUE PILLARS ============================== -->
+  <section id="value" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">Why Venues &amp; Sponsors Switch</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Three reasons Nitevault outperforms disposable cups.</h2>
+      </div>
+
+      <div class="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <div class="text-2xl">⚡</div>
+          <h3 class="mt-4 font-display font-bold text-lg">Accelerated Bar Service</h3>
+          <p class="mt-1 text-xs font-mono text-acid uppercase tracking-wide">Zero Bottlenecks</p>
+          <p class="mt-3 text-sm text-gray-400 flex-1">The 50mm rapid-fill port accepts high-speed bar guns, draft beer taps, full cocktail shakers, and standard ice cubes directly. Bartenders seal and hand off drinks in under 5 seconds with zero messy funnels.</p>
+        </div>
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <div class="text-2xl">📸</div>
+          <h3 class="mt-4 font-display font-bold text-lg">All-Day Brand Exposure</h3>
+          <p class="mt-1 text-xs font-mono text-acid uppercase tracking-wide">Social Reach</p>
+          <p class="mt-3 text-sm text-gray-400 flex-1">Unlike disposable cups tossed into bins after 10 minutes, attendees wear and carry their branded Nitevault vessel all day across the grounds, placing your sponsor logo into thousands of user social posts and festival photos.</p>
+        </div>
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <div class="text-2xl">♻️</div>
+          <h3 class="mt-4 font-display font-bold text-lg">Harm Reduction &amp; ESG</h3>
+          <p class="mt-1 text-xs font-mono text-acid uppercase tracking-wide">Compliance</p>
+          <p class="mt-3 text-sm text-gray-400 flex-1">100% mechanical tamper-proof closure lowers venue liability and protects guests from drink spiking. Replaces tens of thousands of single-use plastic cups, preventing dancefloor trash accumulation and post-event cleanup costs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== BAR WALKTHROUGH & PROOF ============================== -->
+  <section id="bar-proof" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+        <div class="order-2 lg:order-1">
+          <span class="font-mono text-xs tracking-widest text-emerald-400 uppercase">Built for Slammed Festival Bars</span>
+          <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Proven at the rail, not just on the spec sheet.</h2>
+          <p class="mt-4 text-gray-400">The same wide-mouth, mechanically-sealed system attendees already trust, engineered to keep your bar's line moving during the busiest set changes of the night.</p>
+
+          <ul class="mt-8 space-y-5">
+            <li class="flex items-start gap-4">
+              <span class="shrink-0 w-9 h-9 rounded-full bg-acid/15 border border-acid/40 text-acid font-mono text-sm font-semibold flex items-center justify-center">⚡</span>
+              <div>
+                <h3 class="font-display font-semibold">5-Second Fill Time</h3>
+                <p class="mt-1 text-sm text-gray-400">Compatible with commercial ice machines and speed rails.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="shrink-0 w-9 h-9 rounded-full bg-acid/15 border border-acid/40 text-acid font-mono text-sm font-semibold flex items-center justify-center">♻️</span>
+              <div>
+                <h3 class="font-display font-semibold">Zero Floor Waste</h3>
+                <p class="mt-1 text-sm text-gray-400">Eliminates crushed plastic cups and wet dancefloor slips.</p>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="shrink-0 w-9 h-9 rounded-full bg-acid/15 border border-acid/40 text-acid font-mono text-sm font-semibold flex items-center justify-center">🔒</span>
+              <div>
+                <h3 class="font-display font-semibold">Hermetic Locking</h3>
+                <p class="mt-1 text-sm text-gray-400">Cuts bartender spills during high-rush transition sets.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="order-1 lg:order-2">
+          <img src="bar-refill.png" alt="Bartender pouring a cocktail directly into the wide 50mm opening of a Nitevault drink pouch at a festival bar" class="w-full h-full object-cover object-center rounded-3xl border border-white/10 shadow-2xl" data-fallback="bar-refill.png">
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== COMMERCIAL ACTIVATION MODELS ============================== -->
+  <section id="models" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl">
+        <span class="font-mono text-xs tracking-widest text-cyber uppercase">How Partners Work With Us</span>
+        <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Two ways to activate Nitevault at your event.</h2>
+      </div>
+
+      <div class="mt-10 grid md:grid-cols-2 gap-6">
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <div class="text-2xl">🎪</div>
+          <h3 class="mt-4 font-display font-bold text-xl">Festival &amp; Venue Merchandising</h3>
+          <ul class="mt-5 space-y-3 text-sm text-gray-300 flex-1">
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Official festival logo co-branding</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Sold as VIP ticket add-ons, entrance package upgrades, or at merchandise booths</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Unit sizes: 500ml standard capacity</li>
+          </ul>
+        </div>
+        <div class="bg-panel border border-slate-800 rounded-2xl p-8 flex flex-col">
+          <div class="text-2xl">🥂</div>
+          <h3 class="mt-4 font-display font-bold text-xl">Beverage Sponsor Brand Activations</h3>
+          <ul class="mt-5 space-y-3 text-sm text-gray-300 flex-1">
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Turnkey beverage brand sponsorships (gin, rum, tequila, RTD cocktails, energy drinks)</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Custom pantone hardware and printed company logos</li>
+            <li class="flex items-start gap-3"><span class="text-acid mt-0.5">✓</span> Volume fill lines calibrated to your signature festival serves</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================== LEAD CAPTURE FORM ============================== -->
+  <section id="partner-form" class="py-16 sm:py-20">
+    <div class="max-w-7xl mx-auto px-5">
+      <div class="max-w-2xl mx-auto p-8 rounded-3xl bg-slate-900/60 border border-slate-800 shadow-2xl">
+
+        <div class="text-center">
+          <h2 class="font-display font-bold text-2xl sm:text-3xl">Request a Custom Co-Branded Spec Kit</h2>
+          <p class="mt-3 text-sm text-gray-400">Get wholesale pricing, technical fill-spec sheets, and physical samples for your next event.</p>
+        </div>
+
+        <form id="partner-inquiry-form" name="partner-inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="mt-8 space-y-5">
+          <input type="hidden" name="form-name" value="partner-inquiry" />
+          <p class="visually-hidden"><label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="partner-name" class="block text-xs font-mono text-gray-400 mb-2">Full Name</label>
+              <input id="partner-name" type="text" name="full_name" required autocomplete="name" placeholder="Jane Doe" class="b2b-field">
+            </div>
+            <div>
+              <label for="partner-title" class="block text-xs font-mono text-gray-400 mb-2">Job Title</label>
+              <input id="partner-title" type="text" name="job_title" required autocomplete="organization-title" placeholder="Head of Sponsorship" class="b2b-field">
+            </div>
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="partner-email" class="block text-xs font-mono text-gray-400 mb-2">Work Email</label>
+              <input id="partner-email" type="email" name="work_email" required autocomplete="email" placeholder="jane@festival.com" class="b2b-field">
+              <p id="partner-email-error" class="hidden mt-1.5 text-xs text-amber-400" role="alert">Enter a valid work email to continue.</p>
+            </div>
+            <div>
+              <label for="partner-phone" class="block text-xs font-mono text-gray-400 mb-2">Phone Number</label>
+              <input id="partner-phone" type="tel" name="phone" required autocomplete="tel" placeholder="+1 555 000 0000" class="b2b-field">
+            </div>
+          </div>
+
+          <div>
+            <label for="partner-company" class="block text-xs font-mono text-gray-400 mb-2">Company / Festival / Venue Name</label>
+            <input id="partner-company" type="text" name="company" required autocomplete="organization" placeholder="e.g. Ushuaïa Ibiza" class="b2b-field">
+          </div>
+
+          <div class="grid sm:grid-cols-2 gap-5">
+            <div>
+              <label for="partner-org-type" class="block text-xs font-mono text-gray-400 mb-2">Organization Type</label>
+              <select id="partner-org-type" name="organization_type" required class="b2b-field">
+                <option value="" disabled selected>Select one&hellip;</option>
+                <option value="Music Festival / Open-Air Promoter">Music Festival / Open-Air Promoter</option>
+                <option value="Nightclub / Day Club / Beach Club">Nightclub / Day Club / Beach Club</option>
+                <option value="Beverage Brand / Alcohol Sponsor">Beverage Brand / Alcohol Sponsor</option>
+                <option value="Merchandising & Event Production Agency">Merchandising &amp; Event Production Agency</option>
+              </select>
+            </div>
+            <div>
+              <label for="partner-volume" class="block text-xs font-mono text-gray-400 mb-2">Expected Event Scale / Pouch Volume</label>
+              <select id="partner-volume" name="expected_volume" required class="b2b-field">
+                <option value="" disabled selected>Select one&hellip;</option>
+                <option value="1,000 - 5,000 units">1,000 &ndash; 5,000 units</option>
+                <option value="5,000 - 20,000 units">5,000 &ndash; 20,000 units</option>
+                <option value="20,000 - 100,000+ units (Multi-day Major)">20,000 &ndash; 100,000+ units (Multi-day Major)</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="partner-timeline" class="block text-xs font-mono text-gray-400 mb-2">Next Event Date / Launch Timeline</label>
+            <input id="partner-timeline" type="text" name="launch_timeline" required placeholder="e.g. Summer 2026" class="b2b-field">
+          </div>
+
+          <button type="submit" class="w-full bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold py-3.5 rounded-xl transition duration-200">
+            <span id="partner-submit-label">Submit Wholesale Inquiry</span>
+          </button>
+
+          <p class="text-center text-xs text-gray-500">🔒 Inquiries receive a tailored physical sample kit and unit pricing within 24 hours.</p>
+        </form>
+
+        <div id="partner-form-success" role="status" aria-live="polite" class="hidden mt-6 items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm text-left">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#10B981" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span>Thanks! Your inquiry is in. Expect a tailored spec kit and wholesale pricing in your inbox within 24 hours.</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================== FOOTER ============================== -->
+<footer class="py-10 border-t border-white/10">
+  <div class="max-w-7xl mx-auto px-5">
+    <div class="flex items-center gap-2 mb-5 text-slate-400">
+      <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" aria-hidden="true">
+        <path d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
+        <rect x="6" y="13" width="20" height="15" rx="4" stroke="#10B981" stroke-width="2.5" fill="#020617"/>
+        <path d="M12 18L16 23L20 18" stroke="#10B981" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span class="flex items-baseline text-sm font-display">
+        <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
+      </span>
+    </div>
+    <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
+      <span>&copy; 2026 Nitevault.com. Designed in Barcelona with love.</span>
+      <div class="flex flex-wrap gap-4">
+        <a href="index.html" class="hover:text-emerald-400 transition">Attendee Store</a>
+        <span>Concept-validation page. No product has shipped yet, and no orders are being charged today.</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Image fallback: shows a labeled placeholder instead of a broken-image icon
+     for any asset filename that hasn't been added to the repo yet (same pattern as index.html) ---------- */
+  document.querySelectorAll('img[data-fallback]').forEach(function(img){
+    function swapForFallback(){
+      var label = img.getAttribute('data-fallback');
+      var box = document.createElement('div');
+      box.className = 'img-fallback w-full h-full';
+      box.innerHTML = '<span style="font-size:1.4rem">🖼️</span><span>' + label + '<br>not added yet</span>';
+      img.replaceWith(box);
+    }
+    if (img.complete && img.naturalWidth === 0){
+      swapForFallback();
+    } else {
+      img.addEventListener('error', swapForFallback, { once: true });
+    }
+  });
+
+  /* ---------- Co-branded showcase carousel: single image, src swapped with an
+     opacity crossfade, dynamic caption pill, dot + arrow navigation, soft 5s
+     auto-rotate that stops for good once the user takes manual control
+     (same interaction pattern as the Patron Trilogy carousel on index.html) ---------- */
+  (function(){
+    var root = document.getElementById('partner-carousel');
+    if(!root) return;
+    var slides = [
+      { image: 'tanqueray.png', alt: 'Tanqueray London Dry Gin co-branded Nitevault pouch', label: 'Tanqueray Festival Edition' },
+      { image: 'bacardi.png', alt: 'Bacardi Rum co-branded Nitevault pouch', label: 'Bacardi Beach Club Takeover' },
+      { image: 'ushuaia.png', alt: 'Ushuaïa Ibiza Beach Club co-branded Nitevault pouch', label: 'Ushuaïa Ibiza Club Activation' }
+    ];
+    var imgEl = document.getElementById('partner-carousel-img');
+    var labelEl = document.getElementById('partner-carousel-label');
+    var dots = root.parentElement.querySelectorAll('.partner-dot');
+    var prevBtn = document.getElementById('partner-prev-btn');
+    var nextBtn = document.getElementById('partner-next-btn');
+    var current = 0;
+    var timer = null;
+    var hovered = false;
+    var autoStopped = false;
+    var fadeTimeout = null;
+
+    function render(){
+      var slide = slides[current];
+      imgEl.style.opacity = '0';
+      clearTimeout(fadeTimeout);
+      fadeTimeout = setTimeout(function(){
+        imgEl.setAttribute('src', slide.image);
+        imgEl.setAttribute('alt', slide.alt);
+        imgEl.setAttribute('data-fallback', slide.image);
+        imgEl.style.opacity = '1';
+      }, 250);
+      labelEl.textContent = slide.label;
+      dots.forEach(function(dot){
+        dot.setAttribute('aria-selected', String(Number(dot.getAttribute('data-index')) === current));
+      });
+    }
+    function schedule(){
+      clearTimeout(timer);
+      if(hovered || autoStopped || document.visibilityState === 'hidden') return;
+      timer = setTimeout(function(){ current = (current + 1) % slides.length; render(); schedule(); }, 5000);
+    }
+    function goTo(index){
+      var n = slides.length;
+      current = ((index % n) + n) % n;
+      render();
+    }
+
+    render();
+    schedule();
+
+    prevBtn.addEventListener('click', function(e){ e.stopPropagation(); autoStopped = true; clearTimeout(timer); goTo(current - 1); });
+    nextBtn.addEventListener('click', function(e){ e.stopPropagation(); autoStopped = true; clearTimeout(timer); goTo(current + 1); });
+    dots.forEach(function(dot){
+      dot.addEventListener('click', function(e){ e.stopPropagation(); autoStopped = true; clearTimeout(timer); goTo(Number(dot.getAttribute('data-index'))); });
+    });
+
+    root.addEventListener('mouseenter', function(){ hovered = true; clearTimeout(timer); });
+    root.addEventListener('mouseleave', function(){ hovered = false; schedule(); });
+    document.addEventListener('visibilitychange', function(){
+      if(document.visibilityState === 'hidden'){ clearTimeout(timer); }
+      else if(!hovered && !autoStopped){ schedule(); }
+    });
+  })();
+
+  /* ---------- Lead capture form submission ----------
+     Real Netlify Forms AJAX submit once deployed; always resolves to the
+     success state so the concept-test flow works in any preview too. */
+  function encodeForm(form){
+    var data = new FormData(form);
+    var params = new URLSearchParams();
+    data.forEach(function(value, key){ params.append(key, value); });
+    return params.toString();
+  }
+  function isValidEmail(value){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value); }
+
+  var form = document.getElementById('partner-inquiry-form');
+  var success = document.getElementById('partner-form-success');
+  var emailErrorEl = document.getElementById('partner-email-error');
+
+  if(form){
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+
+      // Native required-field validation first (name, title, phone, company, dropdowns, timeline)
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+
+      var email = document.getElementById('partner-email');
+      if(!isValidEmail(email.value)){
+        email.focus();
+        email.setAttribute('aria-invalid', 'true');
+        emailErrorEl.classList.remove('hidden');
+        return;
+      }
+      email.removeAttribute('aria-invalid');
+      emailErrorEl.classList.add('hidden');
+
+      var button = form.querySelector('button[type="submit"]');
+      var labelEl = document.getElementById('partner-submit-label');
+      var originalLabel = labelEl.textContent;
+      button.disabled = true;
+      labelEl.textContent = 'Sending inquiry…';
+
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeForm(form)
+      }).catch(function(){ /* swallow: still show success in any preview context */ })
+      .finally(function(){
+        form.classList.add('hidden');
+        success.classList.remove('hidden');
+        success.classList.add('flex');
+        button.disabled = false;
+        labelEl.textContent = originalLabel;
+      });
+    });
+  }
+
+})();
+</script>
+</body>
+</html>
