@@ -40,6 +40,11 @@
           "@type": "PropertyValue",
           "name": "Food Contact Material Certification",
           "value": "FDA 21 CFR & LFGB certified bio-polymer, 100% BPA/BPS/phthalate-free, alcohol-resistant up to 40% ABV"
+        },
+        {
+          "@type": "PropertyValue",
+          "name": "Core Vault Pouch Systems",
+          "value": "Locked Sip Collar, Micro-Pore CO2 Vent, 50mm Ice-Speed Port, Certified Food-Grade Bio-Polymer. Inward Phone Armor is a separate feature exclusive to the wearable holster harness, not the pouch."
         }
       ],
       "offers": [
@@ -507,41 +512,71 @@
   <!-- ============================== FEATURE BAR ============================== -->
   <section id="system" class="py-14 border-y border-white/10 bg-obsidian">
     <div class="max-w-7xl mx-auto px-5">
-      <div class="flex flex-col lg:flex-row items-center gap-10 lg:gap-12">
+      <div class="p-6 sm:p-8 rounded-3xl bg-panel border border-white/10 shadow-2xl">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-        <!-- Visual anchor: the core pouch -->
-        <div class="flex flex-col items-center gap-3 shrink-0">
-          <div class="max-w-[140px] md:max-w-[180px] h-auto bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-sm shadow-[0_0_30px_rgba(16,185,129,0.1)]">
-            <img src="pouch-cutout.png" alt="The Nitevault core pouch, sealed and ready to fill" class="w-full h-auto object-contain" data-fallback="pouch-cutout.png">
+          <!-- LEFT: Pouch visual + identification -->
+          <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-center gap-5 text-center sm:text-left lg:text-center lg:border-r lg:border-white/10 lg:pr-8">
+            <div class="w-36 h-44 sm:w-40 sm:h-48 shrink-0 bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-sm shadow-[0_0_30px_rgba(16,185,129,0.1)] flex items-center justify-center">
+              <img src="pouch-cutout.png" alt="The Nitevault core pouch, sealed and ready to fill" class="w-full h-full object-contain" data-fallback="pouch-cutout.png">
+            </div>
+            <div>
+              <span class="font-mono text-[10px] sm:text-xs tracking-widest text-acid uppercase font-bold">The Core Vault // 500ml Bio-Polymer Vessel</span>
+              <p class="mt-3 text-xs text-gray-400 max-w-[220px] sm:max-w-[200px] lg:max-w-[220px] mx-auto sm:mx-0 lg:mx-auto leading-relaxed">Engineered from nozzle to base for festival bar speed and zero tampering.</p>
+            </div>
           </div>
-          <span class="text-[10px] tracking-widest text-emerald-400 font-bold uppercase">The Core Vault</span>
-          <p class="text-xs text-gray-400 text-center max-w-[160px]">One disposable pouch. Four systems built in.</p>
+
+          <!-- RIGHT: The 4 pouch systems -->
+          <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold">Locked Sip Collar</h3>
+                <p class="mt-2 text-sm text-gray-400">Tamper-evident twist-lock valve blocks unauthorized drink access and stops dancefloor spills.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M12 8v4l2.5 2.5"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold">Micro-Pore CO2 Vent</h3>
+                <p class="mt-2 text-sm text-gray-400">Balances pressure from carbonated mixers (0.05&ndash;0.10 bar) so fizzy drinks stay fizzy.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold">50mm Ice-Speed Refill</h3>
+                <p class="mt-2 text-sm text-gray-400">A wide-mouth base clamp fills in seconds, even at a crowded festival bar.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+                <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <h3 class="font-display font-semibold">Certified Food-Grade Bio-Film</h3>
+                <p class="mt-2 text-sm text-gray-400">BPA-free and LFGB/EU 10/2011 compliant, alcohol-resistant up to 40% ABV, and industrial compostable (EN 13432).</p>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <!-- 4 core specs -->
-        <div class="flex-1 w-full grid sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:border-l lg:border-white/10 lg:pl-12">
-          <div>
-            <div class="text-2xl">🔒</div>
-            <h3 class="mt-3 font-display font-semibold">Locked Sip Collar</h3>
-            <p class="mt-2 text-sm text-gray-400">A mechanical seal blocks unauthorized drink access, tamper-evident by design.</p>
-          </div>
-          <div>
-            <div class="text-2xl">🫧</div>
-            <h3 class="mt-3 font-display font-semibold">Ready for Carbonation</h3>
-            <p class="mt-2 text-sm text-gray-400">A micro-pore CO2 valve balances pressure so fizzy mixers stay fizzy.</p>
-          </div>
-          <div>
-            <div class="text-2xl">⚡</div>
-            <h3 class="mt-3 font-display font-semibold">50mm Ice-Speed Refill</h3>
-            <p class="mt-2 text-sm text-gray-400">A wide-mouth base clamp fills in seconds, even at a crowded festival bar.</p>
-          </div>
-          <div>
-            <div class="text-2xl">📱</div>
-            <h3 class="mt-3 font-display font-semibold">Inward Phone Armor</h3>
-            <p class="mt-2 text-sm text-gray-400">A concealed, torso-facing pocket keeps your phone out of reach in a crowd.</p>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>

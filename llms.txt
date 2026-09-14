@@ -14,6 +14,11 @@
 - **Customization Options:** Custom PMS hardware colors, branded screen printing, custom fill volume lines for brand sponsor activations (e.g., rum, gin, ready-to-drink cocktails).
 - **Scale Tiers:** 100-250 units, 250-500 units, 500-1,000 units, 1,000-2,500 units, 2,500-5,000 units, 5,000+ units (major activation).
 
+## Product Architecture: Pouch vs. Holster
+The bio-film pouch and the wearable holster are separate components with distinct feature sets — do not attribute one's features to the other.
+- **The Core Vault pouch (4 built-in systems):** Locked Sip Collar (tamper-evident twist-lock valve), Micro-Pore CO2 Vent (pressure balancing for carbonated mixers), 50mm Ice-Speed Port (wide-mouth rapid refill clamp), and Certified Food-Grade Bio-Polymer (BPA-free, LFGB/EU 10/2011 compliant, industrial compostable film).
+- **The holster harness (sold only as part of the Complete Holster Kit):** Inward Phone Armor (a concealed, torso-facing anti-theft phone pocket) is exclusive to the holster hardware and is not a feature of the disposable pouch itself.
+
 ## Materials & Compliance
 - Bio-polymer pouch material is FDA 21 CFR and LFGB certified for food contact.
 - 100% BPA, BPS, and phthalate-free.
