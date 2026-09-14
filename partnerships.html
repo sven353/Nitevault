@@ -122,7 +122,7 @@
           <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
             <div class="relative w-full aspect-[4/5] rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 group" id="partner-carousel">
 
-              <img id="partner-carousel-img" src="ushuaia.png" alt="Ushuaïa Ibiza Beach Club co-branded Nitevault pouch at golden hour, logo placement on the vessel" class="w-full h-full object-cover object-center" loading="lazy" data-fallback="ushuaia.png">
+              <img id="partner-carousel-img" src="ushuaia.png" alt="Ushuaïa Ibiza co-branded Nitevault pouch activation" class="w-full h-full object-cover object-center" loading="lazy" data-fallback="ushuaia.png">
 
               <button type="button" id="partner-prev-btn" aria-label="Previous co-branding example" class="absolute left-2.5 top-1/2 -translate-y-1/2 z-20 w-8 h-8 rounded-full bg-slate-950/75 hover:bg-slate-900 active:scale-95 text-slate-200 hover:text-white border border-white/10 backdrop-blur-md flex items-center justify-center transition-all shadow-lg opacity-90 group-hover:opacity-100">
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M15 19l-7-7 7-7"/></svg>
@@ -131,10 +131,6 @@
                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
               </button>
 
-              <div class="absolute bottom-3 left-1/2 -translate-x-1/2 z-10 px-3.5 py-1.5 rounded-full bg-slate-950/80 backdrop-blur-md border border-white/10 shadow-xl text-xs font-mono text-slate-200 whitespace-nowrap" id="partner-carousel-label">
-                Ushuaïa Ibiza Club Activation
-              </div>
-
               <div class="absolute bottom-0 left-0 right-0 h-0.5 bg-white/10 z-10">
                 <div id="partner-carousel-progress" class="h-full bg-emerald-400 w-0"></div>
               </div>
@@ -142,10 +138,11 @@
 
             <div class="flex items-center justify-center gap-1.5 mt-3" id="partner-carousel-dots" role="tablist" aria-label="Co-branding examples">
               <button type="button" class="partner-dot h-1.5 rounded-full bg-emerald-400 w-5 transition-all" data-index="0" role="tab" aria-selected="true" aria-label="Slide 1: Ushuaïa Ibiza Club Activation"></button>
-              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2: Consumer Use &amp; Style"></button>
-              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3: Bartender Pouring Activation"></button>
-              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="3" role="tab" aria-selected="false" aria-label="Slide 4: Tanqueray Gin Activation"></button>
-              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="4" role="tab" aria-selected="false" aria-label="Slide 5: Bacardi Beach Club Takeover"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="1" role="tab" aria-selected="false" aria-label="Slide 2: Bartender Pouring Activation"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="2" role="tab" aria-selected="false" aria-label="Slide 3: Bacardi Beach Club Takeover"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="3" role="tab" aria-selected="false" aria-label="Slide 4: Fever Ibiza Activation"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="4" role="tab" aria-selected="false" aria-label="Slide 5: Tanqueray Gin Activation"></button>
+              <button type="button" class="partner-dot h-1.5 rounded-full bg-slate-700 hover:bg-slate-500 w-1.5 transition-all" data-index="5" role="tab" aria-selected="false" aria-label="Slide 6: Consumer Use &amp; Style"></button>
             </div>
           </div>
         </div>
@@ -475,24 +472,25 @@
     }
   });
 
-  /* ---------- Co-branded showcase carousel: 5 slides, auto-advancing on a 4.5s
+  /* ---------- Co-branded showcase carousel: 6 slides, auto-advancing on a 4.5s
      loop with an animated progress line, single image src swapped with an
-     opacity crossfade, dynamic caption pill, arrow + dot + swipe navigation.
-     Hover pauses/resumes autoplay; an arrow click or a swipe stops it for good
-     since the visitor has taken manual control. ---------- */
+     opacity crossfade, arrow + dot + swipe navigation. No caption overlay,
+     just the image stage, arrows and dots. Hover pauses/resumes autoplay;
+     an arrow click or a swipe stops it for good since the visitor has taken
+     manual control. ---------- */
   (function(){
     var root = document.getElementById('partner-carousel');
     if(!root) return;
     var slides = [
-      { image: 'ushuaia.png', alt: 'Ushuaïa Ibiza Beach Club co-branded Nitevault pouch at golden hour, logo placement on the vessel', label: 'Ushuaïa Ibiza Club Activation' },
-      { image: 'in-action.png', alt: 'Festival attendee sipping hands-free from a branded Nitevault pouch mid-set', label: 'Consumer Use & Style' },
-      { image: 'bar-refill.png', alt: 'Bartender pouring a cocktail into a co-branded Nitevault pouch at the speed rail', label: 'Bartender Pouring Activation' },
-      { image: 'tanqueray.png', alt: 'Tanqueray London Dry Gin co-branded Nitevault pouch with a custom 50mm wide mouth', label: 'Tanqueray Gin Activation' },
-      { image: 'bacardi.png', alt: 'Bacardi Rum co-branded Nitevault pouch with volume fill lines', label: 'Bacardi Beach Club Takeover' }
+      { image: 'ushuaia.png', alt: 'Ushuaïa Ibiza co-branded Nitevault pouch activation' },
+      { image: 'bar-refill.png', alt: 'Bartender pouring a cocktail into a co-branded Nitevault pouch at the speed rail' },
+      { image: 'bacardi.png', alt: 'Bacardi co-branded Nitevault festival pouch activation' },
+      { image: 'dancing-ibiza.png', alt: 'Festival attendee wearing the Nitevault holster, dancing hands-free at Fever Ibiza' },
+      { image: 'tanqueray.png', alt: 'Tanqueray London Dry Gin co-branded Nitevault pouch' },
+      { image: 'in-action.png', alt: 'Festival attendee sipping hands-free from a branded Nitevault pouch mid-crowd' }
     ];
     var AUTOPLAY_MS = 4500;
     var imgEl = document.getElementById('partner-carousel-img');
-    var labelEl = document.getElementById('partner-carousel-label');
     var progressEl = document.getElementById('partner-carousel-progress');
     var dots = root.parentElement.querySelectorAll('.partner-dot');
     var prevBtn = document.getElementById('partner-prev-btn');
@@ -526,7 +524,6 @@
         imgEl.setAttribute('data-fallback', slide.image);
         imgEl.style.opacity = '1';
       }, 250);
-      labelEl.textContent = slide.label;
       dots.forEach(function(dot){
         var isActive = Number(dot.getAttribute('data-index')) === current;
         dot.setAttribute('aria-selected', String(isActive));
