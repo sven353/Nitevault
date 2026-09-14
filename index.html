@@ -112,11 +112,11 @@
     theme: {
       extend: {
         colors: {
-          void: '#08090D',
+          void: '#0B0B0E',
           obsidian: '#12141D',
-          panel: '#171A24',
+          panel: '#16151A',
           panelraised: '#1C2030',
-          acid: '#10B981',
+          acid: '#E5C687',
           cyber: '#06B6D4',
         },
         fontFamily: {
@@ -125,7 +125,7 @@
           mono: ['"IBM Plex Mono"', 'monospace'],
         },
         boxShadow: {
-          'glow-acid': '0 0 30px -5px rgba(16,185,129,.45)',
+          'glow-acid': '0 0 30px -5px rgba(229,198,135,.45)',
           'glow-cyber': '0 0 30px -5px rgba(6,182,212,.45)',
         }
       }
@@ -135,8 +135,8 @@
 
 <style>
   html{ scroll-behavior:smooth; }
-  body{ background:#08090D; }
-  ::selection{ background:#10B981; color:#08090D; }
+  body{ background:#0B0B0E; }
+  ::selection{ background:#E5C687; color:#0B0B0E; }
   :focus-visible{ outline:2px solid #06B6D4; outline-offset:3px; border-radius:4px; }
 
   @media (prefers-reduced-motion: reduce){
@@ -162,23 +162,23 @@
   .edition-pill{ transition:all .18s ease; }
   .edition-pill[aria-pressed="true"],
   .edition-pill[aria-pressed="true"]:hover{
-    border-color:#34D399; color:#34D399;
-    background:rgba(52,211,153,.12);
-    box-shadow:0 0 16px -3px rgba(52,211,153,.6);
+    border-color:#F0D69E; color:#F0D69E;
+    background:rgba(240,214,158,.12);
+    box-shadow:0 0 16px -3px rgba(240,214,158,.6);
   }
 
   /* ---------- City edition cards: active/inactive selection state ---------- */
   .city-card{ border:1px solid rgba(255,255,255,.1); }
-  .city-card:hover{ border-color:rgba(52,211,153,.5); }
+  .city-card:hover{ border-color:rgba(240,214,158,.5); }
   .city-card[data-active="true"]{
-    border-color:#34D399;
-    box-shadow:0 0 0 1px #34D399, 0 0 20px rgba(16,185,129,.15);
+    border-color:#F0D69E;
+    box-shadow:0 0 0 1px #F0D69E, 0 0 20px rgba(229,198,135,.15);
   }
   .city-reserve-btn{ border:1px solid rgba(255,255,255,.15); background:transparent; color:#fff; }
-  .city-reserve-btn:hover{ border-color:rgba(52,211,153,.5); }
+  .city-reserve-btn:hover{ border-color:rgba(240,214,158,.5); }
   .city-card[data-active="true"] .city-reserve-btn{
-    background:#10B981; border-color:#10B981; color:#052716;
-    box-shadow:0 0 20px -4px rgba(16,185,129,.6);
+    background:#E5C687; border-color:#E5C687; color:#0B0B0E;
+    box-shadow:0 0 20px -4px rgba(229,198,135,.6);
   }
 
   /* ---------- Founding Reservation Tier cards: the Complete Holster Kit keeps the
@@ -205,11 +205,11 @@
   #carousel-progress.no-transition{ transition:none; }
   .carousel-dot{ height:6px; width:6px; border-radius:9999px; background:#334155; border:none; padding:0; cursor:pointer; transition:all .2s ease; }
   .carousel-dot:hover{ background:#64748b; }
-  .carousel-dot[aria-selected="true"]{ width:20px; background:#34d399; }
+  .carousel-dot[aria-selected="true"]{ width:20px; background:#F0D69E; }
 
   /* ---------- City edition cards: In Action / Unpacking toggle (one independent instance per card) ---------- */
   .lineup-view-tab{ transition:all .18s ease; }
-  .lineup-view-tab[aria-selected="true"]{ background:#10B981; color:#052716; }
+  .lineup-view-tab[aria-selected="true"]{ background:#E5C687; color:#0B0B0E; }
   .lineup-view-tab[aria-selected="false"]{ background:transparent; color:#9CA3AF; }
   .lineup-view-img{ transition:opacity .3s ease; }
   .lineup-view-img[data-active="false"]{ opacity:0; pointer-events:none; }
@@ -232,12 +232,12 @@
 <body class="bg-void text-white font-sans antialiased">
 
 <!-- ============================== NAV ============================== -->
-<header class="sticky top-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80">
+<header class="sticky top-0 z-50 bg-[#0B0B0E]/85 backdrop-blur-md border-b border-[#2A2730]">
   <div class="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between gap-6">
 
     <!-- LEFT: Brand logo + status pill -->
     <div class="flex items-center gap-3.5">
-      <a href="#top" class="group flex items-center gap-2.5 font-display text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-md">
+      <a href="#top" class="group flex items-center gap-2.5 font-display text-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E5C687] rounded-md">
         <svg
           viewBox="0 0 32 32"
           fill="none"
@@ -259,51 +259,51 @@
             width="20"
             height="15"
             rx="4"
-            stroke="#10B981"
+            stroke="#E5C687"
             stroke-width="2.5"
             fill="#020617"
           />
           <!-- Inner "V" Vault Keyway Chevron -->
           <path
             d="M12 18L16 23L20 18"
-            stroke="#10B981"
+            stroke="#E5C687"
             stroke-width="2.25"
             stroke-linecap="round"
             stroke-linejoin="round"
           />
         </svg>
         <span class="flex items-baseline">
-          <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
+          <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-[#E5C687] font-black tracking-widest">VAULT</span>
         </span>
       </a>
-      <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700/80 shadow-sm text-xs font-mono font-medium">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span class="text-slate-200">Batch 01 Open</span>
+      <div class="hidden sm:inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#1A1820] border border-[#E5C687]/30 shadow-sm text-xs font-mono font-medium">
+        <span class="w-2 h-2 rounded-full bg-[#E5C687] animate-pulse"></span>
+        <span class="text-[#E5C687]">Batch 01 Open</span>
       </div>
     </div>
 
     <!-- CENTER: Consumer nav (solid high-contrast white/slate-200 text) -->
     <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold tracking-wide">
-      <a href="#how-it-works" class="text-slate-200 hover:text-white transition">How It Works</a>
-      <a href="#editions" class="text-slate-200 hover:text-white transition">Editions</a>
-      <a href="#specs" class="text-slate-200 hover:text-white transition">Specs</a>
-      <a href="#faq" class="text-slate-200 hover:text-white transition">FAQ</a>
+      <a href="#how-it-works" class="text-[#9E9AA7] hover:text-[#F4EFEA] transition">How It Works</a>
+      <a href="#editions" class="text-[#9E9AA7] hover:text-[#F4EFEA] transition">Editions</a>
+      <a href="#specs" class="text-[#9E9AA7] hover:text-[#F4EFEA] transition">Specs</a>
+      <a href="#faq" class="text-[#9E9AA7] hover:text-[#F4EFEA] transition">FAQ</a>
     </nav>
 
     <!-- RIGHT: B2B portal pill + primary CTA -->
     <div class="hidden lg:flex items-center gap-4">
-      <a href="partnerships.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-emerald-950/40 border border-emerald-500/50 hover:border-emerald-400 text-xs font-mono font-semibold text-emerald-300 hover:text-emerald-200 transition-colors shadow-sm whitespace-nowrap">
+      <a href="partnerships.html" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#16151A] text-[#E5C687] border border-[#E5C687]/40 hover:bg-[#E5C687]/10 hover:border-[#E5C687]/70 text-xs font-mono font-semibold transition-colors shadow-sm whitespace-nowrap">
         <span>Festivals &amp; Brands</span>
-        <span class="text-emerald-400">&rarr;</span>
+        <span>&rarr;</span>
       </a>
-      <a href="#waitlist" class="inline-flex items-center px-5 py-2.5 rounded-full bg-acid text-void font-display font-bold text-sm tracking-wide hover:shadow-glow-acid transition-all active:scale-95 whitespace-nowrap">
+      <a href="#waitlist" class="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#E5C687] to-[#D8B26E] text-[#0B0B0E] font-display font-bold text-sm tracking-wide shadow-[0_0_20px_rgba(229,198,135,0.20)] hover:shadow-[0_0_28px_rgba(229,198,135,0.35)] hover:from-[#F0D69E] hover:to-[#E5C687] transition-all duration-300 active:scale-95 whitespace-nowrap">
         Reserve Early-Bird Spot
       </a>
     </div>
 
     <!-- Mobile hamburger toggle: only the logo shows above lg, so this is the sole
          way to reach nav links, the B2B pill, and the CTA on phones/tablets -->
-    <button type="button" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/15 text-white hover:border-emerald-400/50 transition shrink-0">
+    <button type="button" id="mobile-menu-btn" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-drawer" class="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/15 text-white hover:border-[#E5C687]/50 transition shrink-0">
       <svg id="mobile-menu-icon-open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
       <svg id="mobile-menu-icon-close" class="w-5 h-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
     </button>
@@ -321,9 +321,9 @@
 
         <div class="my-3 border-t border-white/10"></div>
         <p class="px-2 text-[10px] font-mono text-slate-500 uppercase tracking-widest mb-1">For Business</p>
-        <a href="partnerships.html" class="mobile-drawer-link inline-flex items-center gap-1.5 px-2 py-2.5 rounded-lg text-emerald-400 text-sm font-mono hover:bg-emerald-400/5 transition">Festivals &amp; Brands &rarr;</a>
+        <a href="partnerships.html" class="mobile-drawer-link inline-flex items-center gap-1.5 px-2 py-2.5 rounded-lg text-[#E5C687] text-sm font-mono hover:bg-[#E5C687]/5 transition">Festivals &amp; Brands &rarr;</a>
 
-        <a href="#waitlist" class="mobile-drawer-link mt-3 inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold text-sm px-5 py-3 hover:shadow-glow-acid transition">
+        <a href="#waitlist" class="mobile-drawer-link mt-3 inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#E5C687] to-[#D8B26E] text-[#0B0B0E] font-display font-semibold text-sm px-5 py-3 shadow-[0_0_20px_rgba(229,198,135,0.20)] hover:shadow-[0_0_28px_rgba(229,198,135,0.35)] hover:from-[#F0D69E] hover:to-[#E5C687] transition-all duration-300">
           Reserve Early-Bird Spot
         </a>
       </div>
@@ -340,14 +340,14 @@
       <!-- Left: dual-view product showcase -->
       <div class="order-2 lg:order-1">
         <div class="relative max-w-md mx-auto">
-          <div class="absolute -inset-6 bg-gradient-to-br from-acid/25 to-cyber/25 blur-2xl rounded-[2rem]" aria-hidden="true"></div>
+          <div class="absolute -inset-6 bg-[radial-gradient(circle_at_50%_50%,rgba(229,198,135,0.20)_0%,rgba(11,11,14,0)_70%)] blur-2xl rounded-[2rem]" aria-hidden="true"></div>
 
           <div class="relative bg-panel border border-white/10 rounded-3xl p-4 sm:p-5 shadow-2xl">
             <!-- Product story carousel (auto-advances every 5s) -->
             <div id="hero-carousel" class="hero-carousel">
               <div class="flex items-center justify-between gap-2">
                 <div class="flex items-center gap-2 min-w-0">
-                  <span class="text-[11px] font-mono font-semibold text-emerald-400 bg-emerald-950/80 border border-emerald-500/30 px-2 py-0.5 rounded-md shrink-0" id="carousel-step">01 / 05</span>
+                  <span class="text-[11px] font-mono font-semibold text-[#E5C687] bg-[#E5C687]/10 border border-[#E5C687]/30 px-2 py-0.5 rounded-md shrink-0" id="carousel-step">01 / 05</span>
                   <h4 class="text-sm md:text-base font-semibold text-white tracking-wide truncate" id="carousel-title">In Action</h4>
                 </div>
                 <div class="flex items-center gap-1.5 shrink-0">
@@ -370,7 +370,7 @@
               </div>
 
               <div class="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-3">
-                <div id="carousel-progress" class="h-full bg-emerald-400 w-0"></div>
+                <div id="carousel-progress" class="h-full bg-[#E5C687] w-0"></div>
               </div>
 
               <div class="mt-2.5 text-xs font-mono text-slate-300 bg-slate-950/80 px-3.5 py-2 rounded-xl border border-slate-800 w-full text-center truncate" id="carousel-caption">
@@ -405,10 +405,10 @@
         </p>
 
         <div class="mt-6 inline-flex flex-wrap items-center gap-3 bg-panel border border-white/15 rounded-2xl px-5 py-4 font-mono text-sm">
-          <span class="text-acid font-display font-bold text-2xl">€19.99</span>
+          <span class="text-[#F4EFEA] font-display font-bold text-2xl">€19.99</span>
           <span class="text-gray-400 text-xs">Pouch 5-Pack</span>
           <span class="text-gray-600">|</span>
-          <span class="text-acid font-display font-bold text-2xl">€99.99</span>
+          <span class="text-[#F4EFEA] font-display font-bold text-2xl">€99.99</span>
           <span class="text-gray-400 text-xs">Complete Kit</span>
         </div>
 
@@ -420,14 +420,14 @@
             <label for="hero-email" class="visually-hidden">Email address</label>
             <input id="hero-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com"
               class="flex-1 min-w-0 bg-panel border border-white/15 rounded-full px-5 py-3.5 text-sm placeholder-gray-500 focus:border-acid focus:outline-none">
-            <button type="submit" class="inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid transition whitespace-nowrap">
+            <button type="submit" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#E5C687] to-[#D8B26E] text-[#0B0B0E] font-display font-extrabold px-6 py-3.5 shadow-[0_0_25px_rgba(229,198,135,0.25)] hover:shadow-[0_0_32px_rgba(229,198,135,0.40)] hover:from-[#F0D69E] hover:to-[#E5C687] transition-all duration-300 whitespace-nowrap">
               Claim Early-Bird Access
             </button>
           </div>
         </form>
 
         <div id="hero-success" role="status" aria-live="polite" class="hidden mt-7 max-w-lg items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#10B981" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#E5C687" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#E5C687" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>You're on the Founding VIP List! Watch your inbox for batch production updates.</span>
         </div>
 
@@ -441,33 +441,33 @@
   <section id="threat" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
     <div class="max-w-7xl mx-auto px-5">
       <div class="max-w-2xl">
-        <span class="font-mono text-xs tracking-widest text-cyber uppercase">The Reality Check</span>
+        <span class="font-mono text-xs tracking-widest text-[#E5C687] uppercase">The Reality Check</span>
         <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">What you're doing now, versus what you could be doing instead.</h2>
       </div>
 
       <div class="mt-10 grid md:grid-cols-2 gap-6 items-stretch">
 
         <!-- Left Card: The Open Cup Gamble -->
-        <div class="flex flex-col p-6 sm:p-8 rounded-3xl bg-panel border border-red-500/20 shadow-xl">
-          <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-red-500/30 bg-slate-950 mb-5">
+        <div class="flex flex-col p-6 sm:p-8 rounded-3xl bg-[#16151A]/60 border border-rose-500/20 shadow-xl">
+          <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-rose-500/30 bg-slate-950 mb-5">
             <img src="drug-into-glass.png" alt="Open plastic festival cup exposed to drink spiking" class="w-full h-full object-cover object-top" loading="lazy" data-fallback="drug-into-glass.png">
-            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-red-950/90 border border-red-500/40 text-[11px] font-mono text-red-400 font-semibold shadow-lg">⚠️ THE OPEN CUP GAMBLE</div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-rose-950/40 border border-rose-500/30 text-[11px] font-mono text-rose-300 font-semibold shadow-lg">⚠️ THE OPEN CUP GAMBLE</div>
           </div>
           <span class="font-mono text-xs tracking-widest text-gray-500 uppercase">The Open Cup Gamble</span>
           <h3 class="mt-2 font-display font-bold text-xl text-gray-300">Unsealed and unwatched</h3>
           <ul class="space-y-3 text-sm text-gray-400 mt-auto">
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Drinks left unattended, open to drug spiking</li>
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Constant phone-watching instead of dancing</li>
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Bar queues just to refill</li>
-            <li class="flex items-start gap-3"><span class="text-gray-600 mt-0.5">✕</span> Warm, watered-down, or spilled cocktails</li>
+            <li class="flex items-start gap-3"><span class="text-rose-400 mt-0.5">✕</span> Drinks left unattended, open to drug spiking</li>
+            <li class="flex items-start gap-3"><span class="text-rose-400 mt-0.5">✕</span> Constant phone-watching instead of dancing</li>
+            <li class="flex items-start gap-3"><span class="text-rose-400 mt-0.5">✕</span> Bar queues just to refill</li>
+            <li class="flex items-start gap-3"><span class="text-rose-400 mt-0.5">✕</span> Warm, watered-down, or spilled cocktails</li>
           </ul>
         </div>
 
         <!-- Right Card: The Nitevault Standard -->
-        <div class="flex flex-col p-6 sm:p-8 rounded-3xl bg-panel border-2 border-acid/60 shadow-glow-acid">
-          <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-emerald-500/40 bg-slate-950 mb-5">
+        <div class="flex flex-col p-6 sm:p-8 rounded-3xl bg-[#16151A]/80 border border-[#E5C687]/40 shadow-[0_0_40px_rgba(229,198,135,0.08)]">
+          <div class="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-[#E5C687]/40 bg-slate-950 mb-5">
             <img src="no-drug-into-glass.png" alt="Woman holding a securely locked Nitevault drink pouch" class="w-full h-full object-cover object-top" loading="lazy" data-fallback="no-drug-into-glass.png">
-            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-emerald-950/90 border border-emerald-400/50 text-[11px] font-mono text-emerald-400 font-bold shadow-lg">🔒 THE NITEVAULT STANDARD</div>
+            <div class="absolute top-3 left-3 px-3 py-1 rounded-full bg-[#E5C687]/15 border border-[#E5C687]/40 text-[11px] font-mono text-[#E5C687] font-bold shadow-lg">🔒 THE NITEVAULT STANDARD</div>
           </div>
           <span class="font-mono text-xs tracking-widest text-acid uppercase">The Nitevault Standard</span>
           <h3 class="mt-2 font-display font-bold text-xl">Locked and sealed system</h3>
@@ -505,8 +505,8 @@
           <p class="mt-3 text-sm text-gray-400 flex-1">Nobody tests their drink at 2 AM with wet hands under strobe lights. They don't prevent tampering, they only give you anxiety after the fact, and only test for a tiny fraction of substances.</p>
         </div>
 
-        <div class="bg-panel border border-emerald-400/40 rounded-2xl p-8 flex flex-col shadow-glow-acid">
-          <span class="inline-flex self-start items-center bg-emerald-500/10 border border-emerald-400/40 text-emerald-300 text-[10px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">The Festival Standard</span>
+        <div class="bg-panel border border-[#E5C687]/40 rounded-2xl p-8 flex flex-col shadow-glow-acid">
+          <span class="inline-flex self-start items-center bg-[#E5C687]/10 border border-[#E5C687]/30 text-[#E5C687] text-[10px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">The Festival Standard</span>
           <h3 class="mt-4 font-display font-bold text-lg">The Nitevault System</h3>
           <p class="mt-3 text-sm text-gray-300 flex-1">One mechanical lock at the bar. Carried securely on your chest or waist. Zero awkward rituals, zero spills, zero chance of pills or powders getting in, and an isolated anti-theft pocket that keeps your phone dry and guarded.</p>
         </div>
@@ -522,7 +522,7 @@
 
           <!-- LEFT: Pouch visual + identification -->
           <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col items-center gap-5 text-center sm:text-left lg:text-center lg:border-r lg:border-white/10 lg:pr-8">
-            <div class="w-36 h-44 sm:w-40 sm:h-48 shrink-0 bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-sm shadow-[0_0_30px_rgba(16,185,129,0.1)] flex items-center justify-center">
+            <div class="w-36 h-44 sm:w-40 sm:h-48 shrink-0 bg-white/[0.03] border border-white/10 rounded-2xl p-3 backdrop-blur-sm shadow-[0_0_30px_rgba(229,198,135,0.1)] flex items-center justify-center">
               <img src="pouch-cutout.png" alt="The Nitevault core pouch, sealed and ready to fill" class="w-full h-full object-contain" data-fallback="pouch-cutout.png">
             </div>
             <div>
@@ -534,7 +534,7 @@
           <!-- RIGHT: The 4 pouch systems -->
           <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+              <div class="w-10 h-10 rounded-xl bg-[#221F28] border border-[#E5C687]/30 flex items-center justify-center shrink-0 text-[#E5C687]">
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
@@ -546,7 +546,7 @@
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+              <div class="w-10 h-10 rounded-xl bg-[#221F28] border border-[#E5C687]/30 flex items-center justify-center shrink-0 text-[#E5C687]">
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <circle cx="12" cy="12" r="9"/>
                   <path d="M12 8v4l2.5 2.5"/>
@@ -558,7 +558,7 @@
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+              <div class="w-10 h-10 rounded-xl bg-[#221F28] border border-[#E5C687]/30 flex items-center justify-center shrink-0 text-[#E5C687]">
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
                 </svg>
@@ -569,7 +569,7 @@
               </div>
             </div>
             <div class="flex items-start gap-4">
-              <div class="w-10 h-10 rounded-xl bg-emerald-950/40 border border-emerald-500/30 flex items-center justify-center shrink-0 text-emerald-400">
+              <div class="w-10 h-10 rounded-xl bg-[#221F28] border border-[#E5C687]/30 flex items-center justify-center shrink-0 text-[#E5C687]">
                 <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
                 </svg>
@@ -592,10 +592,10 @@
       <div class="grid lg:grid-cols-2 gap-12 items-center">
 
         <div>
-          <span class="font-mono text-xs tracking-widest text-emerald-400 uppercase">Pre-Drinks &amp; Transit</span>
+          <span class="font-mono text-xs tracking-widest text-[#E5C687] uppercase">Pre-Drinks &amp; Transit</span>
           <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Zero Bulk on the Way In. Locks Down on the Dancefloor.</h2>
           <p class="mt-4 text-gray-400">Heading to pre-drinks or taking the shuttle to the festival? Don't carry dead weight. Whether you're clipped into the modular Holster or just slipping pouches into your everyday bag, the empty bio-pouches fold flat as a passport. Slide them into your pocket, jacket, or handbag, and only fill and lock them once you step onto the festival grounds.</p>
-          <div class="mt-6 inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-mono rounded-full px-4 py-2">
+          <div class="mt-6 inline-flex items-center gap-2 bg-[#E5C687]/10 border border-[#E5C687]/30 text-[#E5C687] text-xs sm:text-sm font-mono rounded-full px-4 py-2">
             Ultra-Packable: 15g pouch weight | 2mm flat-fold profile
           </div>
         </div>
@@ -663,10 +663,10 @@
   <section id="editions" class="py-16 sm:py-20">
     <div class="max-w-7xl mx-auto px-5">
       <div class="max-w-2xl">
-        <span class="font-mono text-xs tracking-widest text-emerald-400 uppercase">Product Lineup</span>
+        <span class="font-mono text-xs tracking-widest text-[#E5C687] uppercase">Product Lineup</span>
         <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Three iconic styles, one sealed system.</h2>
         <p class="mt-3 text-gray-400">Same locked collar, hermetic base clamp, and inward phone armor underneath. Styled for the world's most demanding dancefloors.</p>
-        <p class="mt-4 inline-flex items-center gap-2 bg-emerald-400/10 border border-emerald-400/30 text-emerald-300 text-xs sm:text-sm font-mono rounded-full px-4 py-2">
+        <p class="mt-4 inline-flex items-center gap-2 bg-[#E5C687]/10 border border-[#E5C687]/30 text-[#E5C687] text-xs sm:text-sm font-mono rounded-full px-4 py-2">
           ⚡ Pick a city style now, then choose your Founding Reservation Tier below to see exactly what's included.
         </p>
       </div>
@@ -732,7 +732,7 @@
   <section id="specs" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
     <div class="max-w-7xl mx-auto px-5">
       <div class="max-w-2xl">
-        <span class="font-mono text-xs tracking-widest text-cyber uppercase">Technical Specifications</span>
+        <span class="font-mono text-xs tracking-widest text-[#E5C687] uppercase">Technical Specifications</span>
         <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Built, not just branded.</h2>
         <p class="mt-3 text-gray-400">Engineered to commercial food-safety standards and built to survive multi-day festival environments.</p>
       </div>
@@ -768,8 +768,8 @@
             <div class="font-mono text-xs text-gray-500 leading-relaxed">38MM CAM-BUCKLE STRAP, 680&ndash;1450MM</div>
             <p class="mt-3 text-sm text-gray-300">Wearable as a chest sling or a waist belt, adjusted in seconds.</p>
           </div>
-          <div class="bg-panel border border-emerald-400/40 rounded-2xl p-6 hover:border-emerald-400/60 transition shadow-glow-acid">
-            <div class="font-mono text-xs text-acid leading-relaxed">FOOD-GRADE FDA &amp; LFGB CERTIFIED BIO-POLYMER</div>
+          <div class="border border-[#E5C687]/40 bg-[#16151A]/80 rounded-2xl p-6 hover:border-[#E5C687]/60 transition shadow-glow-acid">
+            <div class="font-mono text-xs text-[#E5C687] leading-relaxed">FOOD-GRADE FDA &amp; LFGB CERTIFIED BIO-POLYMER</div>
             <p class="mt-3 text-sm text-gray-300">100% BPA, BPS, and phthalate-free. Engineered for alcohol resistance (up to 40% ABV), acidic mixer stability, zero odor retention, and multi-cycle festival reusability.</p>
           </div>
         </div>
@@ -821,7 +821,7 @@
       </div>
 
       <div class="mt-10 max-w-3xl space-y-3">
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>When does Nitevault ship?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -829,7 +829,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">We're targeting the upcoming festival season. Everyone on the waitlist gets access to the earliest production batch, in order of reservation.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Is this meant for everyday bar nights or casual clubs?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -837,7 +837,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Nitevault is purpose-built for festival scale: multi-day open airs, beach clubs, marathon electronic events, and all-day outdoor stages. It solves the problems unique to these environments, surging crowds, aggressive pickpocket rings, dusty fields, expensive bar queues, and hours of continuous dancing without a table to rest your drink on.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Why not just use a drink scrunchie or testing strip?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -845,7 +845,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Because real people don't use them. Scrunchies get wet, look clunky, and fall off plastic festival cups. Test strips are impractical in the middle of a set. Nitevault removes open liquid entirely behind a tamper-evident mechanical clamp, making spiking physically impossible rather than something you test for later.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>How much does it cost?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -853,7 +853,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">The standalone Pouch 5-Pack starts at €19.99, and the Complete Holster Kit is €99.99 as a founding-member reservation, both well below planned full retail. The Founding Patron Trilogy (all 3 city editions) is a limited &euro;499.00 collector tier.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Is it really tamper-evident?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -861,7 +861,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Yes. Drink tampering relies on an open liquid surface, the kind where a pill or powder can be dropped in silently in two seconds. Nitevault removes that surface entirely. Once you snap the 2-bar hermetic base clamp and twist-lock the sip nozzle shut, the pouch has no exposed opening left for anything to be dropped into. Releasing the base clamp takes deliberate, two-handed mechanical force, force you'd feel instantly against your ribs since the pouch rides inside the holster against your torso. Any attempt to get at your drink means physically fighting that seal, and if the seal is closed, it can't be accessed without an unmistakable physical sign.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>What does "Pending B Corp" mean?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -869,7 +869,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">It means we're in the process of applying for B Corp certification, a status designed for early-stage companies meeting high standards of verified social and environmental performance. We're not certified yet, and we'll say so plainly here until we are.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>How does the compostable pouch work?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -877,7 +877,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">It's durable enough for multi-day festival refills, and the film is formulated to target EN 13432 and ASTM D6400 industrial compostability standards once you're done with it. It's designed to be compostable, not landfill plastic in disguise.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>What if I switch drinks during the night? Do I need to rinse it?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -885,7 +885,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Zero bathroom sink washing required. Nitevault bio-pouches pack flat as paper when empty. Keep 1&ndash;2 folded spares in your holster's slim side sleeve. When switching from cider to a cocktail, simply compost or stow your used pouch and hand a fresh one to the bartender. Clean pour, fresh taste, under 5 seconds.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Do I have to wear it as a waist belt / fanny pack?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -893,7 +893,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">No. The adjustable 38mm strap is designed primarily as a high cross-body chest sling, a streetwear festival fit. Alternatively, unhook the sealed drink pouch entirely: its hermetic 2-bar clamp ensures zero leakage, so you can slide it directly inside your own handbag, purse, or jacket pocket.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Can I put cocktails, beer, or cider in it?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -901,7 +901,7 @@
           <div class="faq-answer"><div class="faq-answer-inner"><p class="px-6 pb-5 text-sm text-slate-300 leading-relaxed">Yes. The micro-pore CO2 valve is built for carbonated mixers, so ciders and sparkling cocktails are fine alongside still drinks.</p></div></div>
         </div>
 
-        <div class="faq-item bg-panel border border-white/10 hover:border-emerald-400/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
+        <div class="faq-item bg-panel border border-white/10 hover:border-[#E5C687]/40 transition-colors rounded-2xl overflow-hidden" data-open="false">
           <button class="faq-question w-full flex items-center justify-between gap-4 text-left px-6 py-5 font-display font-medium" aria-expanded="false">
             <span>Does it fit larger smartphones (iPhone Pro Max / Galaxy Ultra)?</span>
             <span class="faq-plus text-acid text-xl leading-none">+</span>
@@ -916,7 +916,7 @@
   <section id="pricing-tiers" class="py-16 sm:py-20 bg-obsidian border-y border-white/10">
     <div class="max-w-7xl mx-auto px-5">
       <div class="max-w-2xl mx-auto text-center">
-        <span class="font-mono text-xs tracking-widest text-emerald-400 uppercase">Founding Reservation Tiers</span>
+        <span class="font-mono text-xs tracking-widest text-[#E5C687] uppercase">Founding Reservation Tiers</span>
         <h2 class="mt-3 font-display font-bold text-3xl sm:text-4xl">Choose how you enter the vault.</h2>
         <p class="mt-3 text-gray-400">No payment collected today. Reserve your production slot in Batch 01.</p>
       </div>
@@ -931,7 +931,7 @@
           <span class="mt-5 inline-flex self-start items-center bg-white/5 border border-white/15 text-gray-300 text-[10px] font-mono font-semibold uppercase tracking-wide rounded-full px-3 py-1">Bring Your Own Bag</span>
           <h3 class="mt-4 font-display font-bold text-xl">Pouch 5-Pack</h3>
           <div class="mt-3 flex items-baseline gap-2">
-            <span class="text-3xl font-black text-emerald-400">€19.99</span>
+            <span class="text-3xl font-black text-[#F4EFEA]">€19.99</span>
             <span class="text-sm line-through text-slate-500">€29.00</span>
           </div>
           <ul class="mt-6 space-y-3 text-sm text-gray-300 flex-1">
@@ -941,18 +941,18 @@
             <li class="flex items-start gap-2"><span class="text-acid mt-0.5">✓</span> Zero Leaks: Slides into your own backpack, pocket, or purse</li>
             <li class="flex items-start gap-2"><span class="text-acid mt-0.5">✓</span> Batch 01 Numbered Access</li>
           </ul>
-          <button type="button" class="tier-select-btn mt-8 w-full rounded-full py-3 text-sm font-semibold border border-white/15 text-white hover:border-emerald-400/50 transition" data-tier-id="pouch">Select Pouch 5-Pack (€19.99)</button>
+          <button type="button" class="tier-select-btn mt-8 w-full rounded-full py-3 text-sm font-semibold border border-white/15 text-white hover:border-[#E5C687]/50 transition" data-tier-id="pouch">Select Pouch 5-Pack (€19.99)</button>
         </div>
 
         <!-- Tier 2: Complete Holster Kit (featured, default) -->
-        <div class="tier-card relative bg-panel border-2 border-emerald-400/80 rounded-2xl p-8 flex flex-col shadow-[0_0_30px_rgba(16,185,129,0.15)] lg:-translate-y-3" data-tier-id="kit">
-          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-emerald-400 text-slate-950 text-[10px] font-mono font-bold uppercase tracking-wide rounded-full px-4 py-1.5 shadow-glow-acid whitespace-nowrap">Most Popular // Complete Hands-Free Kit</span>
-          <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-emerald-500/30 mt-2">
+        <div class="tier-card relative bg-panel border border-[#E5C687]/40 rounded-2xl p-8 flex flex-col shadow-[0_0_35px_rgba(229,198,135,0.10)] lg:-translate-y-3" data-tier-id="kit">
+          <span class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#E5C687] text-[#0B0B0E] text-[10px] font-mono font-bold uppercase tracking-wide rounded-full px-4 py-1.5 shadow-glow-acid whitespace-nowrap">Most Popular // Complete Hands-Free Kit</span>
+          <div class="relative aspect-[4/3] w-full overflow-hidden rounded-xl border border-[#E5C687]/30 mt-2">
             <img src="barcelona-unpacking.png" alt="Complete Nitevault Holster Kit unboxing with sling bag and 5 bio-pouches" class="w-full h-full object-cover" data-fallback="barcelona-unpacking.png">
           </div>
           <h3 class="mt-4 font-display font-bold text-xl">Complete Holster Kit</h3>
           <div class="mt-3 flex items-baseline gap-2">
-            <span class="text-3xl font-black text-emerald-400">€99.99</span>
+            <span class="text-3xl font-black text-[#F4EFEA]">€99.99</span>
             <span class="text-sm line-through text-slate-500">€139.00</span>
           </div>
           <ul class="mt-6 space-y-3 text-sm text-gray-300 flex-1">
@@ -983,7 +983,7 @@
             <div class="absolute bottom-2.5 right-2.5 z-10 flex items-center gap-2 bg-slate-950/80 backdrop-blur-md border border-white/10 rounded-full pl-3 pr-2.5 py-1.5 text-[10px] font-mono text-slate-300">
               <span id="patron-carousel-label">Showing 1 of 3: Barcelona</span>
               <span class="flex items-center gap-1 ml-1" id="patron-carousel-dots">
-                <button type="button" class="patron-dot h-1.5 rounded-full bg-emerald-400 w-3 transition-all" data-index="0" aria-label="Slide 1: Barcelona"></button>
+                <button type="button" class="patron-dot h-1.5 rounded-full bg-[#E5C687] w-3 transition-all" data-index="0" aria-label="Slide 1: Barcelona"></button>
                 <button type="button" class="patron-dot h-1.5 rounded-full bg-slate-600 hover:bg-slate-400 w-1.5 transition-all" data-index="1" aria-label="Slide 2: Berlin"></button>
                 <button type="button" class="patron-dot h-1.5 rounded-full bg-slate-600 hover:bg-slate-400 w-1.5 transition-all" data-index="2" aria-label="Slide 3: Ibiza"></button>
               </span>
@@ -1007,13 +1007,13 @@
       </div>
 
       <div id="waitlist" class="mt-14 max-w-xl mx-auto text-center border-t border-white/10 pt-10">
-        <p class="inline-flex flex-wrap items-center justify-center gap-1.5 bg-panel border border-white/15 rounded-full px-4 py-1.5 text-xs font-mono text-emerald-300">
+        <p class="inline-flex flex-wrap items-center justify-center gap-1.5 bg-panel border border-white/15 rounded-full px-4 py-1.5 text-xs font-mono text-[#E5C687]">
           Reserving: <span id="tier-summary-name">Complete Holster Kit</span> &middot; <span id="tier-summary-price">€99.99</span><span id="tier-summary-suffix"></span>
         </p>
 
         <div class="mt-5 max-w-xs mx-auto">
           <div class="scarcity-track w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
-            <div class="scarcity-fill h-full rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+            <div class="scarcity-fill h-full rounded-full bg-gradient-to-r from-[#E5C687] to-cyan-400 shadow-[0_0_10px_rgba(229,198,135,0.5)]"></div>
           </div>
           <p class="mt-2 text-[11px] font-mono text-gray-500">Founding Batch 01 &middot; 500 spots &middot; reservations open now</p>
         </div>
@@ -1038,7 +1038,7 @@
             </div>
           </div>
           <div id="edition-badge-wrap" class="hidden justify-center mb-5">
-            <span id="edition-badge" class="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-emerald-400/30 text-emerald-200 text-xs font-mono rounded-full px-4 py-2 text-center"></span>
+            <span id="edition-badge" class="inline-flex items-center gap-2 backdrop-blur-md bg-white/10 border border-[#E5C687]/30 text-[#F0D69E] text-xs font-mono rounded-full px-4 py-2 text-center"></span>
           </div>
 
           <p class="text-xs text-gray-500 font-mono mb-2">What matters most to you? (optional, select all that apply)</p>
@@ -1050,7 +1050,7 @@
 
           <label for="final-email" class="visually-hidden">Email address</label>
           <input id="final-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com"
-            class="w-full border border-white/20 bg-[#12151E] text-white rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-emerald-400 focus:ring-1 focus:ring-emerald-400 focus:outline-none transition">
+            class="w-full border border-white/20 bg-[#12151E] text-white rounded-full px-5 py-3.5 text-sm text-center placeholder-gray-500 focus:border-[#E5C687] focus:ring-1 focus:ring-[#E5C687] focus:outline-none transition">
           <p id="final-email-error" class="hidden mt-2 text-xs text-amber-400" role="alert">Enter a valid email to continue.</p>
           <button type="submit" class="mt-3 w-full inline-flex items-center justify-center rounded-full bg-acid text-void font-display font-semibold px-6 py-3.5 hover:shadow-glow-acid hover:scale-[1.02] active:scale-[0.99] transition">
             <span id="submit-btn-label">Claim Holster Kit Spot (€99.99)</span>
@@ -1058,7 +1058,7 @@
         </form>
 
         <div id="waitlist-success" role="status" aria-live="polite" class="hidden mt-6 items-center gap-3 bg-acid/10 border border-acid/40 rounded-2xl px-5 py-4 text-sm text-left">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#10B981" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" class="shrink-0"><circle cx="12" cy="12" r="11" stroke="#E5C687" stroke-width="1.6"/><path d="M7.5 12.5l3 3 6-6.5" stroke="#E5C687" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
           <span>You're on the Founding VIP List! Watch your inbox for batch production updates.</span>
         </div>
 
@@ -1071,7 +1071,7 @@
   <section id="b2b-cta" class="relative py-16 md:py-24 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 border-t border-slate-800/80 overflow-hidden">
 
     <!-- Subtle Ambient Glow -->
-    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#E5C687]/10 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
 
     <div class="max-w-6xl mx-auto px-5 relative z-10">
       <div class="relative rounded-3xl p-8 md:p-12 lg:p-16 bg-slate-900/70 border border-slate-800 shadow-2xl backdrop-blur-md overflow-hidden grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
@@ -1084,9 +1084,9 @@
           </div>
 
           <!-- Foreground Primary Card (Ushuaïa Pouch) -->
-          <div class="absolute w-52 sm:w-60 aspect-[4/5] rounded-2xl overflow-hidden border border-emerald-500/40 shadow-[0_10px_35px_rgba(0,0,0,0.6)] rotate-[5deg] translate-y-[-4px] translate-x-[-8px] bg-slate-950 transition-transform duration-300 hover:rotate-[3deg]">
+          <div class="absolute w-52 sm:w-60 aspect-[4/5] rounded-2xl overflow-hidden border border-[#E5C687]/40 shadow-[0_10px_35px_rgba(0,0,0,0.6)] rotate-[5deg] translate-y-[-4px] translate-x-[-8px] bg-slate-950 transition-transform duration-300 hover:rotate-[3deg]">
             <img src="ushuaia.png" alt="Ushuaïa Ibiza co-branded festival drink vessel" class="w-full h-full object-cover" loading="lazy" data-fallback="ushuaia.png">
-            <div class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/10 text-[10px] font-mono text-emerald-400">
+            <div class="absolute bottom-2.5 left-2.5 px-2 py-0.5 rounded-md bg-slate-950/80 border border-white/10 text-[10px] font-mono text-[#E5C687]">
               Custom Festival Co-Branding
             </div>
           </div>
@@ -1096,7 +1096,7 @@
         <div class="lg:col-span-7 flex flex-col items-start space-y-5">
 
           <!-- Category Eyebrow Pill -->
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-500/30 text-xs font-mono text-emerald-400">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E5C687]/10 border border-[#E5C687]/30 text-xs font-mono text-[#E5C687]">
             <span>⚡ EVENT DIRECTORS &amp; BRAND SPONSORS</span>
           </div>
 
@@ -1113,26 +1113,26 @@
           <!-- Bullet Highlights -->
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5 w-full text-xs font-mono text-slate-300 pt-1">
             <div class="flex items-center gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-[#E5C687] font-bold">✓</span>
               <span>Custom Logo &amp; Pantone Co-Branding</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-[#E5C687] font-bold">✓</span>
               <span>Zero Broken Cup Dancefloor Debris</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-[#E5C687] font-bold">✓</span>
               <span>Draft Tap &amp; Speed Rail Compatible</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="text-emerald-400 font-bold">✓</span>
+              <span class="text-[#E5C687] font-bold">✓</span>
               <span>Bulk Wholesale &amp; Turnkey Integration</span>
             </div>
           </div>
 
           <!-- CTA Action Link -->
           <div class="pt-3 w-full sm:w-auto">
-            <a href="partnerships.html#partner-form" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-emerald-400 hover:bg-emerald-300 text-slate-950 font-bold text-sm tracking-wide transition-all shadow-[0_0_20px_rgba(16,185,129,0.25)] hover:shadow-[0_0_30px_rgba(16,185,129,0.4)] active:scale-95 w-full sm:w-auto">
+            <a href="partnerships.html#partner-form" class="inline-flex items-center justify-center gap-2.5 px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#E5C687] to-[#D8B26E] hover:from-[#F0D69E] hover:to-[#E5C687] text-[#0B0B0E] font-bold text-sm tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(229,198,135,0.25)] hover:shadow-[0_0_30px_rgba(229,198,135,0.4)] active:scale-95 w-full sm:w-auto">
               <span>Explore Partnerships &amp; Request Spec Kit</span>
               <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
             </a>
@@ -1153,17 +1153,17 @@
     <div class="flex items-center gap-2 mb-5 text-slate-400">
       <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 shrink-0" aria-hidden="true">
         <path d="M11 14V10C11 7.23858 13.2386 5 16 5C18.7614 5 21 7.23858 21 10V14" stroke="#F8FAFC" stroke-width="2.5" stroke-linecap="round"/>
-        <rect x="6" y="13" width="20" height="15" rx="4" stroke="#10B981" stroke-width="2.5" fill="#020617"/>
-        <path d="M12 18L16 23L20 18" stroke="#10B981" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
+        <rect x="6" y="13" width="20" height="15" rx="4" stroke="#E5C687" stroke-width="2.5" fill="#020617"/>
+        <path d="M12 18L16 23L20 18" stroke="#E5C687" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
       <span class="flex items-baseline text-sm font-display">
-        <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-emerald-400 font-black tracking-widest">VAULT</span>
+        <span class="text-white font-semibold tracking-widest">NITE</span><span class="text-[#E5C687] font-black tracking-widest">VAULT</span>
       </span>
     </div>
     <div class="flex flex-col sm:flex-row gap-3 sm:items-center sm:justify-between text-xs text-gray-500">
       <span>&copy; 2026 Nitevault.com. Designed in Barcelona with love.</span>
       <div class="flex flex-wrap items-center gap-4">
-        <a href="#sustainability" class="hover:text-emerald-400 transition">Sustainability &amp; Impact</a>
+        <a href="#sustainability" class="hover:text-[#E5C687] transition">Sustainability &amp; Impact</a>
         <span>Concept-validation page. No product has shipped yet, and no orders are being charged today.</span>
       </div>
     </div>
@@ -1378,7 +1378,7 @@
       labelEl.textContent = 'Showing ' + (current + 1) + ' of ' + patronSlides.length + ': ' + slide.edition;
       dots.forEach(function(dot){
         var isActive = Number(dot.getAttribute('data-index')) === current;
-        dot.classList.toggle('bg-emerald-400', isActive);
+        dot.classList.toggle('bg-[#E5C687]', isActive);
         dot.classList.toggle('w-3', isActive);
         dot.classList.toggle('bg-slate-600', !isActive);
         dot.classList.toggle('w-1.5', !isActive);
