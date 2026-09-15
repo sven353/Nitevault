@@ -3,17 +3,91 @@ Allow: /
 Disallow: /admin
 Disallow: /api/
 
-# Explicit AI Search & Indexing Scrapers
-User-agent: GPTBot
+# ---------------------------------------------------------------------------
+# Explicit AI / LLM crawler permissions
+#
+# Everything below is already permitted by the "User-agent: *  Allow: /" group
+# above; these groups are listed explicitly so the policy is unambiguous to
+# operators that look for their own token before falling back to "*".
+#
+# Three distinct kinds of token appear here, and they do different jobs:
+#   1. Retrieval / browsing agents (Claude-User, ChatGPT-User, Perplexity-User,
+#      MistralAI-User) - fetch a page live when a person asks an assistant
+#      about it. These are the ones that matter for "an LLM can read our site".
+#   2. Search indexers (OAI-SearchBot, Claude-SearchBot, Googlebot, Bingbot,
+#      Applebot, DuckAssistBot) - build the index those assistants cite from.
+#   3. Training / grounding permission tokens (Google-Extended,
+#      Applebot-Extended) - these do NOT crawl anything. They only signal
+#      whether content already fetched by Googlebot / Applebot may be used for
+#      model training and AI grounding. Allowing them has no effect on whether
+#      a crawler can reach the site.
+# ---------------------------------------------------------------------------
+
+# --- Anthropic (Claude) ---
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: Claude-SearchBot
 Allow: /
 
 User-agent: Claude-Web
 Allow: /
 
+# --- OpenAI (ChatGPT) ---
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+# --- Perplexity ---
 User-agent: PerplexityBot
 Allow: /
 
+User-agent: Perplexity-User
+Allow: /
+
+# --- Google (search + Gemini grounding/training opt-in) ---
+User-agent: Googlebot
+Allow: /
+
 User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+# --- Microsoft (Bing / Copilot) ---
+User-agent: Bingbot
+Allow: /
+
+# --- Apple (Siri / Apple Intelligence) ---
+User-agent: Applebot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# --- Other assistants & dataset crawlers ---
+User-agent: DuckAssistBot
+Allow: /
+
+User-agent: MistralAI-User
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: Amazonbot
+Allow: /
+
+User-agent: CCBot
 Allow: /
 
 Sitemap: https://nitevault.com/sitemap.xml
